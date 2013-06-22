@@ -1,0 +1,76 @@
+"------------------------------------------------------
+" 補完設定
+"------------------------------------------------------
+
+" 補完ウィンドウの設定
+set completeopt=menuone
+
+" 起動時に有効化
+let g:neocomplcache_enable_at_startup            = 1
+
+" 大文字が入力されるまで大文字小文字の区別を無視する
+let g:neocomplcache_enable_smart_case            = 1
+
+" 大文字小文字の区別を無視する
+let g:neocomplcache_enable_ignore_case           = 1
+
+" _(アンダースコア)区切りの補完を有効化
+let g:neocomplcache_enable_underbar_completion   = 1
+
+" キャメルケースでの補完有効化
+let g:neocomplcache_enable_camel_case_completion = 1
+
+" ポップアップメニューで表示される候補の数
+let g:neocomplcache_max_list                     = 20
+
+" シンタックスをキャッシュするときの最小文字長
+let g:neocomplcache_min_syntax_length            = 3
+
+if !exists('g:neocomplcache_keyword_patterns')
+	let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" スニペットを展開する
+imap <C-e> <Plug>(neosnippet_expand_or_jump)
+smap <C-e> <Plug>(neosnippet_expand_or_jump)
+
+" 前回行われた補完をキャンセルします
+inoremap <expr><C-g> neocomplcache#undo_completion()
+
+" 補完候補のなかから、共通する部分を補完します
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+
+"tabで補完候補の選択を行う
+inoremap <expr><TAB>   pumvisible() ? "\<Down>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<S-TAB>"
+
+" <C-h>や<BS>を押したときに確実にポップアップを削除します
+inoremap <expr><C-h> neocomplcache#smart_close_popup().”\<C-h>”
+
+" 現在選択している候補をキャンセルし、ポップアップを閉じます
+inoremap <expr><C-x><C-q> neocomplcache#cancel_popup()
+
+" --------------------------------------------------------
+" C言語用補完機能設定
+" --------------------------------------------------------
+
+" clang_completeのための設定
+" neocomplcache 側の設定
+let g:neocomplcache_force_overwrite_completefunc=1
+
+if !exists("g:neocomplcache_force_omni_patterns")
+	let g:neocomplcache_force_omni_patterns = {}
+endif
+
+" omnifunc が呼び出される場合の正規表現パターンを設定しておく
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|::'
+
+" clang_complete 側の設定
+" clang_complete の自動呼び出しは必ず切っておいて下さい
+" これを設定しておかなければ補完がおかしくなります
+"let g:clang_complete_auto=0
+let g:clang_complete_auto = 1 
+let g:clang_use_library   = 1 
+let g:clang_library_path  = '/usr/lib/'
+

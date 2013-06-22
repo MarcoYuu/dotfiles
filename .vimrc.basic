@@ -1,0 +1,53 @@
+" ------------------------------------------------------------
+" VIM本体の設定
+" ------------------------------------------------------------
+
+filetype indent plugin on
+syntax on
+
+" 表示，動作設定
+set number                            " 行番号の表示
+set noexpandtab                       " タブをタブとして扱う(スペースに展開しない)
+set tabstop        =4                 " タブを表示するときの幅
+set shiftwidth     =4                 " タブを挿入するときの幅
+set softtabstop    =0                 " タブを押したとききっちりタブストップ分だけ進める
+set backspace      =indent,eol,start  " バックスペース有効化
+set whichwrap      =b,s,h,l,<,>,[,],~ " 左右移動で行跨ぎ
+set ttyfast                           " もしかしたらスクロールがなめらかになるかも
+set scrolloff      =5                 " スクロール時の余白確保
+set nobackup                          " バックアップ取らない
+set autoread                          " 他で書き換えられたら自動で読み直す
+set noswapfile                        " スワップファイル作らない
+set hidden                            " 編集中でも他のファイルを開けるようにする
+set formatoptions  =lmoq              " テキスト整形オプション，マルチバイト系を追加
+set vb t_vb        =                  " ビープをならさない
+set clipboard     +=unnamed           " OSのクリップボードを使用する
+
+set list                                          " 不可視文字表示
+""set listchars=tab:>.,trail:_,extends:>,precedes:< " 不可視文字の表示形式
+set listchars=tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
+
+set virtualedit+=block " 矩形選択で自由に移動する
+
+" insertモードを抜けるとIMEオフしてくれるらしい
+set noimdisable
+set iminsert=0 imsearch=0
+set noimcmdline
+"inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+
+" Java設定
+let java_highlight_all       =1
+let java_highlight_functions ="style"
+let java_allow_cpp_keywords  =1
+
+" エンコード設定
+set ambiwidth                =double                        " ○や※をちゃんと表示
+set encoding                 =utf-8                         " vim内部で通常使用する文字エンコーディングを設定
+set charconvert              =utf-8                         " 文字エンコーディングに使われるexpressionを定める
+set fileencoding             =utf-8                         " バッファのファイルエンコーディングを指定
+set fileencodings            =utf-8,sjis,euc-jp,iso-2022-jp " 既存ファイルを開く際の文字コード自動判別
+
+" 検索設定
+set hlsearch                        " 検索結果強調-:nohで解除
+set incsearch                       " インクリメンタルサーチを有効
+set helplang                 =ja,en " ヘルプ検索で日本語を優先

@@ -1,0 +1,31 @@
+[user]
+	name = Yuu MOMMA
+	email = yuumomma@gmail.com
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 1062x716+98+46
+	history-view-vpane-position = 238
+	file-view-vpane-position = 341
+	main-window-view = HistoryView
+[alias]
+	ls = !git ls-files -t|perl -pe 's/\\/.*/\\//'|uniq -c
+	ll = !git ls-files -cdmokt|perl -pe 's/\\/.*/\\//'|grep -v '/'
+	la = ls-files -cdmokt
+	st = status
+	diffmeld = !git-meld.pl
+	diffword = diff --color-words
+	co = checkout
+	bra = branch
+	oneline = log --pretty=oneline
+	logstat = log --stat
+	graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
+	graph-all = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
+[merge]
+	tool = meld
+[color]
+	diff = auto
+	ui = auto
+[core]
+	editor = vim
+	pager = less
+	autocrlf = input

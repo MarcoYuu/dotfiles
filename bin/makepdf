@@ -1,0 +1,112 @@
+#! /usr/bin/python
+# coding:utf-8
+from optparse import OptionParser
+import os
+import sys
+
+if __name__ != '__main__':
+	sys.exit()	
+
+# スクリプトの使用方法を表す文字列
+# デフォルト値は"Usage: %prog [options]"
+# "usage: "で始まらないと自動的に"usage :"が追加される
+# %progはスクリプト名で置換
+usage = "usage: %prog [options] input_file"
+
+# OptionPraserのインスタンスを生成
+parser = OptionParser(usage)
+
+# オプションの追加
+# action オプションが見つかった場合に行う処理
+# type   オプションの型
+# dest   引数の保存先
+#        省略時は長いオプション名を使用
+#        それも省略なら短いオプション名
+# default オプションのデフォルト値
+#         省略した場合のデフォルト値はNone
+# metavar ヘルプ表示で使われる仮引数
+#         省略時は保存先の名前を大文字にして使用
+parser.add_option("-f", "--font",
+		help="Specify a font map file.")
+parser.add_option("-p", "--pdf", action="store_true", dest="pdf",
+		help="Make pdf or not.")
+parser.add_option("-r", "--rm", action="store_true", dest="rm",
+		help="Remove temporary file or not.")
+
+# コマンドラインの解析
+# options 全てのオプションの値が入ったオブジェクト
+# args    コマンドライン解析後に残った引数
+(options, args) = parser.parse_args()
+
+# エラー処理
+if not args:
+	parser.error("requires tex file")
+	parser.print_help() # ヘルプメッセージを表示
+	sys.exit()	
+if options.font != None and not os.path.exists("./"+options.font):
+	parser.error("not exist such font map file")
+	parser.print_help() # ヘルプメッセージを表示
+	sys.exit()	
+if not os.path.exists("./"+args[0]):
+	parser.error("not exist such tex file")
+	parser.print_help() # ヘルプメッセージを表示
+	sys.exit()	
+
+# オプションを参照
+# dest="file"ならoptions.fileで参照
+# destが省略されていれば長いオプション名で参照
+# それも省略されていれば短いオプション名で参照
+print "\n"
+print "font map:		", options.font
+print "make pdf:		", options.pdf
+print "remove tmp files:	", options.rm
+print "tex file:		", args[0]
+print "\n"
+
+# 名前と拡張子を分離
+name, ext = os.path.splitext(args[0])
+
+if os.path.exists("./tex_processing.log"):
+	os.system("rm -f tex_processing.log")
+
+print "-------------------------------------------------"
+print "platex (To make aux file)"
+print "-------------------------------------------------"
+print "creating ...\n"
+os.system("platex "+name+".tex > tex_processing.log.tmp")
+
+
+print "-------------------------------------------------"
+print "pbibtex (To make bbl file)"
+print "-------------------------------------------------"
+print "reading ref ...\n"
+os.system("pbibtex "+name+".aux > tex_processing.log.tmp")
+
+
+print "-------------------------------------------------"
+print "platex (To make ref)"
+print "-------------------------------------------------"
+print "linking ref ...\n"
+os.system("platex "+name+".tex > tex_processing.log.tmp")
+os.system("platex "+name+".tex > tex_processing.log.tmp")
+
+
+print name+".dvi is created.\n"
+
+if options.pdf == True:
+	if options.font == None:
+		os.system("dvipdfmx "+name+".dvi")
+	else:
+		os.system("dvipdfmx -f "+options.font+" "+name+".dvi")
+	print name+".pdf is created.\n"
+
+if options.rm == True:
+	os.system("rm -f *.lot *.toc *.aux *.lof *.bbl *.blg *.log *~ *.idx")
+
+os.system("mv tex_processing.log.tmp tex_processing.log")
+
+print "finish processing tex."
+
+
+
+

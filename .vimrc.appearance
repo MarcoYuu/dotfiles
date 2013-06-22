@@ -1,0 +1,19 @@
+
+" ------------------------------------------------------------
+" ステータス行を表示して色々
+" ------------------------------------------------------------
+
+" 常に表示
+set laststatus=2
+
+" ステータスバーカラー表示のため
+set t_Co=256
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_mode_n  = 'NORMAL'
+
+" カラースキーマ
+colorscheme zenburn 
+let g:zenburn_alternate_visual = 1
+let g:zenburn_force_dark_Background = 1
+let g:solarized_termtrans=1

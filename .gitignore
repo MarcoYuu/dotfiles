@@ -1,0 +1,10 @@
+.*~
+*~
+*.sw[po]
+*.log
+*.dvi
+*.aux
+
+.vim/bundle/*
+!.vim/bundle/neobundle.vim
+.vim/.netrwhist

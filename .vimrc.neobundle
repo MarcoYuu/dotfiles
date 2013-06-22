@@ -1,0 +1,110 @@
+" ------------------------------------------------------------
+" NeoBundle よるプラグインのロード
+" ------------------------------------------------------------
+
+" プラグインの読み込み
+"
+" 日本語ヘルプ
+NeoBundle 'vim-jp/vimdoc-ja'
+
+" プラグイン管理
+NeoBundle 'Shougo/neobundle.vim'
+
+" 補完とスニペット
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+
+" Unite(なんか色々)
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+
+" ファイラ
+NeoBundle 'Shougo/vimfiler.git'
+
+" シェル
+NeoBundle 'Shougo/vimshell'
+
+" 非同期処理化プラグイン
+" 更新後は再コンパイル必要(うまく行けば下の設定で勝手にやってくれるはず)
+" after install, turn shell ~/.vim/bundle/vimproc, 
+" (n,g)make -f your_machines_makefile
+NeoBundle 'Shougo/vimproc',{ 'build' : {
+			\'cygwin' : 'make -f make_cygwin.mak',
+			\'unix' : 'make -f make_unix.mak',
+			\},
+			\}
+
+" テキスト囲み
+NeoBundle 'tpope/vim-surround'
+
+" フォント拡大
+NeoBundle 'thinca/vim-fontzoom'
+
+" バッファ一覧
+NeoBundle 'buffet.vim'
+
+" Gitのいろいろ
+NeoBundle 'tpope/vim-fugitive'
+
+" ステータスバーかっこ良く機能的に
+NeoBundle 'Lokaltog/vim-powerline'
+"NeoBundle 'taichouchou2/alpaca_powertabline'
+"NeoBundle 'Lokaltog/powerline', { 'rtp' : 'powerline/bindings/vim'}
+
+" 英単語のスペル補完 
+NeoBundle 'ujihisa/neco-look'
+
+" excite翻訳 
+NeoBundle 'mattn/excitetranslate-vim'
+NeoBundle 'mattn/webapi-vim'
+
+" カラースキーマ
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'cschlueter/vim-wombat'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'croaker/mustang-vim'
+NeoBundle 'jeffreyiacono/vim-colors-wombat'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'vim-scripts/Lucius'
+NeoBundle 'vim-scripts/Zenburn'
+NeoBundle 'mrkn/mrkn256.vim'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'therubymug/vim-pyte'
+NeoBundle 'tomasr/molokai'
+
+" カラースキーム一覧表示に Unite.vim を使う
+NeoBundle 'ujihisa/unite-colorscheme'
+
+" ctags情報から型をハイライト
+NeoBundle 'TagHighlight'
+
+" logcat
+NeoBundle 'thinca/vim-logcat'
+
+" Doxygenコメントを追加する
+NeoBundle 'DoxygenToolkit.vim'
+
+" clangによるC/C++の補完
+NeoBundle 'osyo-manga/neocomplcache-clang_complete'
+NeoBundle 'Rip-Rip/clang_complete'
+
+" TeX用Plugin
+NeoBundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex' 
+
+" 位置揃え
+NeoBundle 'h1mesuke/vim-alignta'
+
+" ソースヘッダ切り替え
+NeoBundle 'a.vim'
+
+" ディレクトリをツリー表示
+NeoBundle 'scrooloose/nerdtree'
+
+" pythonのシンタックスチェック(QuickFix On/Off) 
+NeoBundle 'mitechie/pyflakes-pathogen'
+let pyflakes_use_quickfix = 0
+
+NeoBundle 'mattn/zencoding-vim'
+
+source ~/.vim/plugin/gtags.vim
+source ~/.vim/plugin/jspell.vim

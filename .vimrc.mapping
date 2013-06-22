@@ -1,0 +1,90 @@
+
+"-------------------------------------------------------------------------------"
+" Mapping
+"-------------------------------------------------------------------------------"
+" コマンド       ノーマルモード 挿入モード コマンドラインモード ビジュアルモード
+" map  / noremap         @            -              -                  @
+" nmap / nnoremap        @            -              -	                -
+" imap / inoremap        -            @              -                  -
+" cmap / cnoremap        -            -              @                  -
+" vmap / vnoremap        -            -              -                  @
+" map! / noremap!        -            @              @                  -
+"-------------------------------------------------------------------------------"
+
+
+" 行移動を見た目上に行うようにしています。wrap指定している場合、
+" 見た目上は数行に改行されていても内部的には1行なので。
+nnoremap h      <Left>
+nnoremap l      <Right>
+noremap  j      gj
+noremap  k      gk
+nnoremap <Down> gj
+nnoremap <Up>   gk
+
+" 検索結果に移動したとき、その位置を画面の中央にします。
+nnoremap n  nzz
+nnoremap N  Nzz
+nnoremap *  *zz
+nnoremap #  #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+" 挿入モードでのカーソル移動
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+
+" ファイラーを起動
+nnoremap <silent><C-x><C-f> :VimFiler<CR>
+
+" 前のバッファ、次のバッファ、バッファの削除、バッファのリスト
+nnoremap <silent><S-b> :bp<CR>
+nnoremap <silent><S-n> :bn<CR>
+nnoremap <silent><S-k> :bd<CR>
+nnoremap <silent><S-l> :Bufferlist<CR>
+
+" CTRL-hjklでウィンドウ移動
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+
+" 一行追加
+nnoremap <silent><C-o> o<ESC>
+
+" アウトラインを表示
+nnoremap <silent><C-t> :Unite -vertical -winwidth=30 -no-quit outline<CR>
+
+" ツリーをトグル 
+nmap <Leader>n :NERDTreeToggle<CR>
+
+" Ctrl s で保存などWindows系キーバインド(.bashrcなんかで$stty -ixon　-ixoffが必要)
+nnoremap <C-s> <ESC>:w<CR>
+inoremap <C-s> <ESC><ESC>:w<CR>i
+nnoremap <C-q> <ESC>:q!<CR>
+inoremap <C-q> <ESC>:q!<CR>
+
+" 日本語モードでもモード切り替えできるようにとか
+nnoremap <C-i> i
+nnoremap <C-v> v
+nnoremap <C-u> u
+nnoremap <C-p> p
+nnoremap <C-y> y
+nnoremap <C-*> :
+
+" Spaceでページ送り
+nnoremap <Space> <C-f> 
+
+" ノーマルモードエンターで改行挿入
+nnoremap <CR> i<CR><ESC> 
+
+" Doxygenコメントの追加
+nnoremap <C-d><C-x> :Dox<CR>
+
+" 連番入力
+" ノーマルモードで連番に置換したい数字の上で3coとかで3行文連番になる
+" ビジュアルモード選択後だと選択行が連番に
+nnoremap <silent> co :ContinuousNumber <C-a><CR>
+vnoremap <silent> co :ContinuousNumber <C-a><CR>
+command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
