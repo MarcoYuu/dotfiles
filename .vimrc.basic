@@ -51,3 +51,6 @@ set fileencodings            =utf-8,sjis,euc-jp,iso-2022-jp " 既存ファイル
 set hlsearch                        " 検索結果強調-:nohで解除
 set incsearch                       " インクリメンタルサーチを有効
 set helplang                 =ja,en " ヘルプ検索で日本語を優先
+
+" CMake_xxx.txtもcmake用ハイライトを使う
+autocmd BufNewFile,BufRead CMakeLists*.txt set filetype=cmake

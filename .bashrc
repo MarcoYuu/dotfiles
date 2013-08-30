@@ -151,6 +151,12 @@ alias la='ls -AF'
 alias l='ls -CF'
 alias diff=colordiff
 alias emacs='XMODIFIERS=@im=none emacs'
+function cdls() {
+# cdがaliasでループするので\をつける
+\cd $1;
+ls;
+}
+alias cd=cdls
 
 # less syntax hightlight
 export LESS='-R'
