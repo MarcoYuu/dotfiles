@@ -71,6 +71,7 @@ NeoBundle 'mrkn/mrkn256.vim'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'bandit.vim'
 
 " カラースキーム一覧表示に Unite.vim を使う
 NeoBundle 'ujihisa/unite-colorscheme'
@@ -89,7 +90,7 @@ NeoBundle 'osyo-manga/neocomplcache-clang_complete'
 NeoBundle 'Rip-Rip/clang_complete'
 
 " TeX用Plugin
-NeoBundle 'git://vim-latex.git.sourceforge.net/gitroot/vim-latex/vim-latex' 
+NeoBundle 'jcf/vim-latex' 
 
 " 位置揃え
 NeoBundle 'h1mesuke/vim-alignta'
@@ -105,6 +106,12 @@ NeoBundle 'mitechie/pyflakes-pathogen'
 let pyflakes_use_quickfix = 0
 
 NeoBundle 'mattn/zencoding-vim'
+
+" 最新のC++シンタックス情報
+NeoBundle 'vim-jp/cpp-vim'
+
+" color schema setting
+NeoBundle 'abudden/EasyColour'
 
 source ~/.vim/plugin/gtags.vim
 source ~/.vim/plugin/jspell.vim

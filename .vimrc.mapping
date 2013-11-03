@@ -77,7 +77,7 @@ nnoremap <C-*> :
 nnoremap <Space> <C-f> 
 
 " ノーマルモードエンターで改行挿入
-nnoremap <CR> i<CR><ESC> 
+nnoremap <CR> i<CR><ESC>^ 
 
 " Doxygenコメントの追加
 nnoremap <C-d><C-x> :Dox<CR>

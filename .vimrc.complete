@@ -1,63 +1,121 @@
 "------------------------------------------------------
 " 補完設定
 "------------------------------------------------------
+filetype plugin on 
+filetype indent off
+
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 
 " 補完ウィンドウの設定
 set completeopt=menuone
-
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
 " 起動時に有効化
 let g:neocomplcache_enable_at_startup            = 1
-
 " 大文字が入力されるまで大文字小文字の区別を無視する
 let g:neocomplcache_enable_smart_case            = 1
-
 " 大文字小文字の区別を無視する
 let g:neocomplcache_enable_ignore_case           = 1
+" ポップアップメニューで表示される候補の数       
+let g:neocomplcache_max_list                     = 20
+" シンタックスをキャッシュするときの最小文字長   
+let g:neocomplcache_min_syntax_length            = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" _(アンダースコア)区切りの補完を有効化
+" Enable heavy features.
+" _区切りの補完を有効化
 let g:neocomplcache_enable_underbar_completion   = 1
-
 " キャメルケースでの補完有効化
 let g:neocomplcache_enable_camel_case_completion = 1
 
-" ポップアップメニューで表示される候補の数
-let g:neocomplcache_max_list                     = 20
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+			\ 'default' : '',
+			\ 'vimshell' : $HOME.'/.vimshell_hist',
+			\ 'scheme' : $HOME.'/.gosh_completions'
+			\ }
 
-" シンタックスをキャッシュするときの最小文字長
-let g:neocomplcache_min_syntax_length            = 3
-
+" Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
 	let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
+" Plugin key-mappings.
+" 前回行われた補完をキャンセルします
+inoremap <expr><C-g> neocomplcache#undo_completion()
+" 補完候補のなかから、共通する部分を補完します
+inoremap <expr><C-l> neocomplcache#complete_common_string()
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+	return neocomplcache#smart_close_popup() . "\<CR>"
+	" For no inserting <CR> key.
+	"return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><TAB>   pumvisible() ? "\<Down>" : "\<TAB>"
+"inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<S-TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-y>  neocomplcache#close_popup()
+"inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+
+" For cursor moving in insert mode(Not recommended)
+"inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+"inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+"inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+"inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplcache_enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplcache_enable_insert_char_pre = 1
+
+" AutoComplPop like behavior.
+"let g:neocomplcache_enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplcache_enable_auto_select = 1
+"let g:neocomplcache_disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+"
 " スニペットを展開する
 imap <C-e> <Plug>(neosnippet_expand_or_jump)
 smap <C-e> <Plug>(neosnippet_expand_or_jump)
 
-" 前回行われた補完をキャンセルします
-inoremap <expr><C-g> neocomplcache#undo_completion()
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+	let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|::'
+"let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-" 補完候補のなかから、共通する部分を補完します
-inoremap <expr><C-l> neocomplcache#complete_common_string()
-
-"tabで補完候補の選択を行う
-inoremap <expr><TAB>   pumvisible() ? "\<Down>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<S-TAB>"
-
-" <C-h>や<BS>を押したときに確実にポップアップを削除します
-inoremap <expr><C-h> neocomplcache#smart_close_popup().”\<C-h>”
-
-" 現在選択している候補をキャンセルし、ポップアップを閉じます
-inoremap <expr><C-x><C-q> neocomplcache#cancel_popup()
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 " --------------------------------------------------------
 " C言語用補完機能設定
 " --------------------------------------------------------
-
 " clang_completeのための設定
-" neocomplcache 側の設定
+" add neocomplcache option
 let g:neocomplcache_force_overwrite_completefunc=1
+let g:neocomplcache_clang_use_library=1
 
 if !exists("g:neocomplcache_force_omni_patterns")
 	let g:neocomplcache_force_omni_patterns = {}
@@ -70,7 +128,10 @@ let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|::'
 " clang_complete の自動呼び出しは必ず切っておいて下さい
 " これを設定しておかなければ補完がおかしくなります
 "let g:clang_complete_auto=0
-let g:clang_complete_auto = 1 
-let g:clang_use_library   = 1 
+" " clang_complete 側の設定
+let g:clang_complete_auto = 0_
+let g:clang_use_library   = 1_
 let g:clang_library_path  = '/usr/lib/'
+let g:clang_user_options  = '-std=c++11'
+" let g:clang_user_options  = '2>/dev/null || exit 0"'
 
