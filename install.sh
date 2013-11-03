@@ -32,7 +32,7 @@ if [ ! -d ${VIM_DIR}/bundle ]; then
 fi
 
 NEO_BUNDLE_DIR=${VIM_DIR}/bundle/neobundle.vim
-if [ ! -d ${NEO_BUNDLE_DIR}]; then
+if [ ! -d ${NEO_BUNDLE_DIR} ]; then
 	git clone git://github.com/Shougo/neobundle.vim NEO_BUNDLE_DIR
 fi
 
