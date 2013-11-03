@@ -1,0 +1,16 @@
+# Saving this file will update the current colour scheme.
+Basis:zenburn
+Light:
+	#Comment:LightGreen
+	Error:Yellow,Red
+	Class:LightSalmon,Style=Bold
+	DefinedName:LightCoral,Style=Bold
+	EnumerationValue:RosyBrown,Style=Bold
+	EnumerationName:RosyBrown,Style=Bold
+	Member:SteelBlue
+	Union:MediumPurple,Style=Bold
+	GlobalVariable:green3
+	LocalVariable:grey65
+	GlobalConstant:LightCoral
+
+# vim: ff=unix:noet:ft=EasyColour
