@@ -9,6 +9,7 @@ rm ~/.tmux.conf
 rm ~/.tmux-powerlinerc
 rm ~/.vimrc
 rm ~/.zshrc
+rm ~/.ctags
 rm -rf ~/.vim
 rm -rf ~/bin
 
@@ -21,6 +22,7 @@ ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.tmux-powerlinerc ~/.tmux-powerlinerc
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.ctags ~/.ctags
 ln -s ~/dotfiles/.vim ~/.vim
 ln -s ~/dotfiles/bin ~/bin
 

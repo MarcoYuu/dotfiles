@@ -37,7 +37,7 @@ function! s:main()
 			call s:LoadPlugins()
 		catch
 			call s:WithoutBundles()
-		endtry 
+		endtry
 	else
 		call s:WithoutBundles()
 	endif
