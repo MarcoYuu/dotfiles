@@ -26,6 +26,13 @@ ln -s ~/dotfiles/.ctags ~/.ctags
 ln -s ~/dotfiles/.vim ~/.vim
 ln -s ~/dotfiles/bin ~/bin
 
-mkdir -p .vim/bundle
-git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+VIM_DIR=~/.vim
+if [ ! -d ${VIM_DIR}/bundle ]; then
+	mkdir -p ${VIM_DIR}/bundle
+fi
+
+NEO_BUNDLE_DIR=${VIM_DIR}/bundle/neobundle.vim
+if [ ! -d ${NEO_BUNDLE_DIR}]; then
+	git clone git://github.com/Shougo/neobundle.vim NEO_BUNDLE_DIR
+fi
 
