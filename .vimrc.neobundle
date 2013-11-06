@@ -111,5 +111,13 @@ NeoBundle 'vim-jp/cpp-vim'
 " color schema setting
 NeoBundle 'abudden/EasyColour'
 
-source ~/.vim/plugin/gtags.vim
-source ~/.vim/plugin/jspell.vim
+" Markdown for vim
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tyru/open-browser.vim'
+" NeoBundle 'thinca/vim-quickrun'
+" " -------------------- QuickRun ----------------------------- "
+" let g:quickrun_config = {}
+" let g:quickrun_config['markdown'] = {
+" 			\   'outputter': 'browser'
+" 			\ }
