@@ -115,9 +115,6 @@ NeoBundle 'abudden/EasyColour'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tyru/open-browser.vim'
-" NeoBundle 'thinca/vim-quickrun'
-" " -------------------- QuickRun ----------------------------- "
-" let g:quickrun_config = {}
-" let g:quickrun_config['markdown'] = {
-" 			\   'outputter': 'browser'
-" 			\ }
+
+" リファレンス
+NeoBundle 'thinca/vim-ref'

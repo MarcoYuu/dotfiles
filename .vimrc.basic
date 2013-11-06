@@ -6,36 +6,44 @@ filetype indent plugin on
 syntax on
 
 " 表示，動作設定
-set number                            " 行番号の表示
-set noexpandtab                       " タブをタブとして扱う(スペースに展開しない)
-set tabstop        =4                 " タブを表示するときの幅
-set shiftwidth     =4                 " タブを挿入するときの幅
-set softtabstop    =0                 " タブを押したとききっちりタブストップ分だけ進める
-set backspace      =indent,eol,start  " バックスペース有効化
-set whichwrap      =b,s,h,l,<,>,[,],~ " 左右移動で行跨ぎ
-set ttyfast                           " もしかしたらスクロールがなめらかになるかも
-set scrolloff      =5                 " スクロール時の余白確保
-set nobackup                          " バックアップ取らない
-set autoread                          " 他で書き換えられたら自動で読み直す
-set noswapfile                        " スワップファイル作らない
-set hidden                            " 編集中でも他のファイルを開けるようにする
-set formatoptions  =lmoq              " テキスト整形オプション，マルチバイト系を追加
-set vb t_vb        =                  " ビープをならさない
-set clipboard      =autoselect        " OSのクリップボードを使用する
-set clipboard      +=unnamed          " OSのクリップボードを使用する
-set clipboard      +=unnamedplus      " OSのクリップボードを使用する
+set number                                                 " 行番号の表示
+set noexpandtab                                            " タブをタブとして扱う(スペースに展開しない)
+set tabstop         =4                                     " タブを表示するときの幅
+set shiftwidth      =4                                     " タブを挿入するときの幅
+set softtabstop     =0                                     " タブを押したとききっちりタブストップ分だけ進める
+set backspace       =indent,eol,start                      " バックスペース有効化
+set whichwrap       =b,s,h,l,<,>,[,],~                     " 左右移動で行跨ぎ
+set ttyfast                                                " もしかしたらスクロールがなめらかになるかも
+set scrolloff       =5                                     " スクロール時の余白確保
+set nobackup                                               " バックアップ取らない
+set autoread                                               " 他で書き換えられたら自動で読み直す
+set noswapfile                                             " スワップファイル作らない
+set hidden                                                 " 編集中でも他のファイルを開けるようにする
+set formatoptions   =lmoq                                  " テキスト整形オプション，マルチバイト系を追加
+set vb t_vb         =" ビープをならさない
+set clipboard       =autoselect                            " OSのクリップボードを使用する
+set clipboard      +=unnamed                               " OSのクリップボードを使用する
+set clipboard      +=unnamedplus                           " OSのクリップボードを使用する
+set list                                                   " 不可視文字表示
+set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
+set virtualedit    +=block                                 " 矩形選択で自由に移動する
 
-set list                                          " 不可視文字表示
-""set listchars=tab:>.,trail:_,extends:>,precedes:< " 不可視文字の表示形式
-set listchars=tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
-
-set virtualedit+=block " 矩形選択で自由に移動する
+" Using the mouse on a terminal.
+if has('mouse')
+	set mouse=a
+	if has('mouse_sgr')
+		set ttymouse=sgr
+	elseif v:version > 703 || v:version is 703 && has('patch632') " I couldn't use has('mouse_sgr') :-(
+		set ttymouse=sgr
+	else
+		set ttymouse=xterm2
+	endif
+endif
 
 " insertモードを抜けるとIMEオフしてくれるらしい
 set noimdisable
 set iminsert=0 imsearch=0
 set noimcmdline
-"inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 
 " Java設定
 let java_highlight_all       =1
@@ -43,11 +51,11 @@ let java_highlight_functions ="style"
 let java_allow_cpp_keywords  =1
 
 " エンコード設定
-set ambiwidth                =double                        " ○や※をちゃんと表示
-set encoding                 =utf-8                         " vim内部で通常使用する文字エンコーディングを設定
-set charconvert              =utf-8                         " 文字エンコーディングに使われるexpressionを定める
-set fileencoding             =utf-8                         " バッファのファイルエンコーディングを指定
-set fileencodings            =utf-8,sjis,euc-jp,iso-2022-jp " 既存ファイルを開く際の文字コード自動判別
+set ambiwidth     =double                        " ○や※をちゃんと表示
+set encoding      =utf-8                         " vim内部で通常使用する文字エンコーディングを設定
+set charconvert   =utf-8                         " 文字エンコーディングに使われるexpressionを定める
+set fileencoding  =utf-8                         " バッファのファイルエンコーディングを指定
+set fileencodings =utf-8,sjis,euc-jp,iso-2022-jp " 既存ファイルを開く際の文字コード自動判別
 
 " 検索設定
 set hlsearch                        " 検索結果強調-:nohで解除
@@ -56,59 +64,30 @@ set helplang                 =ja,en " ヘルプ検索で日本語を優先
 
 " CMake_xxx.txtもcmake用ハイライトを使う
 autocmd BufNewFile,BufRead CMakeLists*.txt set filetype=cmake
-autocmd FileType html setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=./;/
-autocmd FileType php setlocal path+=/usr/local/share/pear
+autocmd FileType html   setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=./;/
+autocmd FileType php    setlocal path+=/usr/local/share/pear
 autocmd FileType apache setlocal path+=./;/
-autocmd FileType c setlocal path+=./;/usr/include/;/usr/local/include/
-autocmd FileType cpp setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.6/
-"autocmd FileType c setlocal foldmethod=syntax
-"autocmd FileType cpp setlocal foldmethod=syntax
+autocmd FileType c      setlocal path+=./;/usr/include/;/usr/local/include/
+autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.6/
 
 " C auto indent
 set cinoptions+=:0,l1,g0
-" Don't indent namespace and template
-function! CppNoNamespaceAndTemplateIndent()
-	let l:cline_num = line('.')
-	let l:cline = getline(l:cline_num)
-	let l:pline_num = prevnonblank(l:cline_num - 1)
-	let l:pline = getline(l:pline_num)
-	while l:pline =~# '\(^\s*{\s*\|^\s*//\|^\s*/\*\|\*/\s*$\)'
-		let l:pline_num = prevnonblank(l:pline_num - 1)
-		let l:pline = getline(l:pline_num)
-	endwhile
-	let l:retv = cindent('.')
-	let l:pindent = indent(l:pline_num)
-	if l:pline =~# '^\s*template\s*\s*$'
-		let l:retv = l:pindent
-	elseif l:pline =~# '\s*typename\s*.*,\s*$'
-		let l:retv = l:pindent
-	elseif l:cline =~# '^\s*>\s*$'
-		let l:retv = l:pindent - &shiftwidth
-	elseif l:pline =~# '\s*typename\s*.*>\s*$'
-		let l:retv = l:pindent - &shiftwidth
-	elseif l:pline =~# '^\s*namespace.*'
-		let l:retv = 0
-	endif
-	return l:retv
-endfunction
 fun! GetCppIndent()
-  let l:pline_num = prevnonblank(v:lnum - 1)
-  let l:pline = getline(l:pline_num)
-  if l:pline =~? '<$'
-    if getline(v:lnum) =~# '^\s*>'
-      return indent(pline_num)
-    en
-    return indent(pline_num) + &l:shiftwidth
-  elseif l:pline =~# ',$'
-    if getline(l:pline_num - 1) =~? '<$' "bug fix
-      return indent(l:pline_num)
-    en
-  elseif getline(v:lnum) =~# '^\s*>'
-    return indent(l:pline_num) - &l:shiftwidth
-  "elseif l:pline =~# '^\s*template<.*>$'
-  "  return indent(l:pline_num)
-  en
-  return cindent(v:lnum)
+	let l:pline_num = prevnonblank(v:lnum - 1)
+	let l:pline = getline(l:pline_num)
+	if l:pline =~? '<$'
+		if getline(v:lnum) =~# '^\s*>'
+			return indent(pline_num)
+		en
+		return indent(pline_num) + &l:shiftwidth
+	elseif l:pline =~# ',$'
+		if getline(l:pline_num - 1) =~? '<$' "bug fix
+			return indent(l:pline_num)
+		en
+	elseif getline(v:lnum) =~# '^\s*>'
+		return indent(l:pline_num) - &l:shiftwidth
+	en
+	return cindent(v:lnum)
 endf
 if has("autocmd")
 	autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
