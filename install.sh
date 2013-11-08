@@ -37,6 +37,5 @@ if [ ! -d ${NEO_BUNDLE_DIR} ]; then
 fi
 
 git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
-cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
 sudo apt-get install command-not-found
 sudo apt-get install tig
