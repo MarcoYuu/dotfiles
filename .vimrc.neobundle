@@ -118,5 +118,10 @@ NeoBundle 'kana/vim-textobj-indent'
 " color schema setting
 NeoBundle 'abudden/EasyColour'
 
-source ~/.vim/plugin/gtags.vim
-source ~/.vim/plugin/jspell.vim
+" Markdown for vim
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'tyru/open-browser.vim'
+
+" リファレンス
+NeoBundle 'thinca/vim-ref'
