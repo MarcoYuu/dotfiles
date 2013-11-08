@@ -108,6 +108,13 @@ NeoBundle 'mattn/zencoding-vim'
 " 最新のC++シンタックス情報
 NeoBundle 'vim-jp/cpp-vim'
 
+" Clangでフォーマット
+NeoBundle 'rhysd/vim-clang-format'
+NeoBundle 'kana/vim-operator-user'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-textobj-entire'
+NeoBundle 'kana/vim-textobj-indent'
+
 " color schema setting
 NeoBundle 'abudden/EasyColour'
 

@@ -82,6 +82,9 @@ nnoremap <CR> i<CR><ESC>^
 " Doxygenコメントの追加
 nnoremap <C-d><C-x> :Dox<CR>
 
+" Clangでフォーマット
+map ,x <Plug>(operator-clang-format)
+
 " 連番入力
 " ノーマルモードで連番に置換したい数字の上で3coとかで3行文連番になる
 " ビジュアルモード選択後だと選択行が連番に
