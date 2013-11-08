@@ -30,14 +30,14 @@ set virtualedit    +=block                                 " 矩形選択で自�
 
 " Using the mouse on a terminal.
 if has('mouse')
-	set mouse=a
-	if has('mouse_sgr')
-		set ttymouse=sgr
-	elseif v:version > 703 || v:version is 703 && has('patch632') " I couldn't use has('mouse_sgr') :-(
-		set ttymouse=sgr
-	else
-		set ttymouse=xterm2
-	endif
+  set mouse=a
+  if has('mouse_sgr')
+    set ttymouse=sgr
+  elseif v:version > 703 || v:version is 703 && has('patch632') " I couldn't use has('mouse_sgr') :-(
+    set ttymouse=sgr
+  else
+    set ttymouse=xterm2
+  endif
 endif
 
 " insertモードを抜けるとIMEオフしてくれるらしい
@@ -73,22 +73,39 @@ autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr
 " C auto indent
 set cinoptions+=:0,l1,g0
 fun! GetCppIndent()
-	let l:pline_num = prevnonblank(v:lnum - 1)
-	let l:pline = getline(l:pline_num)
-	if l:pline =~? '<$'
-		if getline(v:lnum) =~# '^\s*>'
-			return indent(pline_num)
-		en
-		return indent(pline_num) + &l:shiftwidth
-	elseif l:pline =~# ',$'
-		if getline(l:pline_num - 1) =~? '<$' "bug fix
-			return indent(l:pline_num)
-		en
-	elseif getline(v:lnum) =~# '^\s*>'
-		return indent(l:pline_num) - &l:shiftwidth
-	en
-	return cindent(v:lnum)
+  let l:pline_num = prevnonblank(v:lnum - 1)
+  let l:pline = getline(l:pline_num)
+  if l:pline =~? '<$'
+    if getline(v:lnum) =~# '^\s*>'
+      return indent(pline_num)
+    en
+    return indent(pline_num) + &l:shiftwidth
+  elseif l:pline =~# ',$'
+    if getline(l:pline_num - 1) =~? '<$' "bug fix
+      return indent(l:pline_num)
+    en
+  elseif getline(v:lnum) =~# '^\s*>'
+    return indent(l:pline_num) - &l:shiftwidth
+  en
+  return cindent(v:lnum)
 endf
 if has("autocmd")
-	autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
+  autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
 endif
+
+" カーソル行のハイライト
+set cursorline
+augroup cch
+  autocmd! cch
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter,BufRead * set cursorline
+augroup END
+
+hi clear CursorLine
+hi CursorLine gui=underline
+highlight CursorLine ctermbg=black guibg=black
+
+" 保存時に行末の空白を除去する
+autocmd BufWritePre * :%s/\s\+$//ge
+" 保存時にtabをスペースに変換する
+"autocmd BufWritePre * :%s/\t/  /ge

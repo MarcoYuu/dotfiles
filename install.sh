@@ -1,17 +1,17 @@
 #!/bin/bash
 
-rm ~/.bashrc
-rm ~/.gdbinit
-rm ~/.gitconfig
-rm ~/.gvimrc
-rm ~/.inputrc
-rm ~/.tmux.conf
-rm ~/.tmux-powerlinerc
-rm ~/.vimrc
-rm ~/.zshrc
-rm ~/.ctags
-rm -rf ~/.vim
-rm -rf ~/bin
+# rm ~/.bashrc
+# rm ~/.gdbinit
+# rm ~/.gitconfig
+# rm ~/.gvimrc
+# rm ~/.inputrc
+# rm ~/.tmux.conf
+# rm ~/.tmux-powerlinerc
+# rm ~/.vimrc
+# rm ~/.zshrc
+# rm ~/.ctags
+# rm -rf ~/.vim
+# rm -rf ~/bin
 
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.gdbinit ~/.gdbinit
@@ -36,3 +36,7 @@ if [ ! -d ${NEO_BUNDLE_DIR} ]; then
 	git clone git://github.com/Shougo/neobundle.vim $NEO_BUNDLE_DIR
 fi
 
+git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+sudo apt-get install command-not-found
+sudo apt-get install tig
