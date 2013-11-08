@@ -116,5 +116,12 @@ NeoBundle 'kannokanno/previm'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tyru/open-browser.vim'
 
+" Tagをツリー表示
+NeoBundle 'taglist.vim'
+set tags=tags
+
 " リファレンス
 NeoBundle 'thinca/vim-ref'
+
+" リファレンス
+NeoBundle 'sjl/gundo.vim'

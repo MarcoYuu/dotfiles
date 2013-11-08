@@ -6,42 +6,43 @@ umask 022
 ulimit -c 0
 
 if [ "x$COLORFGBG" != "x" ]; then
-        unset COLORFGBG
+	unset COLORFGBG
 fi
 if [ "x$COLORTERM" != "x" ]; then
-        unset COLORTERM
+	unset COLORTERM
 fi
 if [ "TERM" != "screen" ]; then
-        TERM=xterm
+	TERM=xterm
 fi
 if [ "$TERM" == "xterm" ]; then
-    export TERM=xterm-256color
+	#export TERM=xterm-256color
+	export TERM=screen-256color
 fi
 
 #git用
 if [ -f ~/.git-completion.bash ]; then
-        . ~/.git-completion.bash
+	. ~/.git-completion.bash
 fi
 
 # If running interactively, then:
 if [ "$PS1" ]; then
-        set -o ignoreeof
-        set -o notify
-        set -o noclobber
+	set -o ignoreeof
+	set -o notify
+	set -o noclobber
 
-        FIGNORE='.c~:.h~:.tex~:.ps~:.sty~:.aux:.lot:.lof:.toc'
+	FIGNORE='.c~:.h~:.tex~:.ps~:.sty~:.aux:.lot:.lof:.toc'
 
-        if [ ! "$LOGIN_SHELL" ]; then
-                PS1="\033[7m \u[\h:\w] \033[m\n\!> "
-        fi
+	if [ ! "$LOGIN_SHELL" ]; then
+		PS1="\033[7m \u[\h:\w] \033[m\n\!> "
+	fi
 
-        HISTSIZE=200
-        MAILCHECK=60
+	HISTSIZE=200
+	MAILCHECK=60
 fi
 export LANG=ja_JP.UTF-8
 
 if [ -f .bash_aliases ]; then
-    source .bash_aliases
+	source .bash_aliases
 fi
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -75,12 +76,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+	debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+	xterm-color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -89,30 +90,31 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+		# We have color support; assume it's compliant with Ecma-48
+		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+		# a case would tend to support setf rather than setaf.)
+		color_prompt=yes
+	else
+		color_prompt=
+	fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
 fi
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -125,14 +127,14 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+	. /etc/bash_completion
 fi
 
 
@@ -152,21 +154,21 @@ alias l='ls -CF'
 alias diff=colordiff
 alias emacs='XMODIFIERS=@im=none emacs'
 function cdls() {
-# cdがaliasでループするので\をつける
-\cd $1;
+\pushd $1;
 ls;
 }
 alias cd=cdls
+alias bd=popd
 
 # less syntax hightlight
 export LESS='-R'
 export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
 
 # ssh X forwarding aliases
-alias sshosore='ssh -X -Y momma@osore' 
-alias sshhome='ssh -X -Y yuumomma@beafjerkyoishi.hobby.jp' 
-alias sshtesla='ssh -X -Y momma@tesla' 
-alias sshlab='ssh -X -Y momma@gate0.comp.sd.keio.ac.jp' 
+alias sshosore='ssh -X -Y momma@osore'
+alias sshhome='ssh -X -Y yuumomma@beafjerkyoishi.hobby.jp'
+alias sshtesla='ssh -X -Y momma@tesla'
+alias sshlab='ssh -X -Y momma@gate0.comp.sd.keio.ac.jp'
 
 # Android SDK
 export PATH=${PATH}:~/Library/Android/android-sdk-linux/tools
