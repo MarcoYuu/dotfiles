@@ -24,6 +24,21 @@ function! s:LoadPlugins()
 endfunction
 
 function! s:main()
+	let s:is_windows = has('win16') || has('win32') || has('win64')
+	let s:is_cygwin = has('win32unix')
+	let s:is_mac = !s:is_windows && !s:is_cygwin
+				\ && (has('mac') || has('macunix') || has('gui_macvim') ||
+				\   (!executable('xdg-open') &&
+				\     system('uname') =~? '^darwin'))
+	let s:is_sudo = $SUDO_USER != '' && $USER !=# $SUDO_USER
+				\ && $HOME !=# expand('~'.$USER)
+				\ && $HOME ==# expand('~'.$SUDO_USER)
+
+	if s:is_windows
+		" Exchange path separator.
+		set shellslash
+	endif
+
 	" NeoBundle がインストールされているなら LoadBundles() を呼び出す
 	" そうでないなら WithoutBundles() を呼び出す
 	if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))

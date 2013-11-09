@@ -3,63 +3,83 @@
 " ------------------------------------------------------------
 
 " プラグインの読み込み
-"
-" 日本語ヘルプ
-NeoBundle 'vim-jp/vimdoc-ja'
 
-" プラグイン管理
-NeoBundle 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'               " Neobundle自体を更新
 
-" 補完とスニペット
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'vim-jp/vimdoc-ja'                        " 日本語ヘルプ
+
+NeoBundle 'Shougo/neocomplcache'                    " 補完とスニペット
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/vimfiler'                         " ファイラ
+NeoBundle 'Shougo/vimshell'                         " シェル
+NeoBundle 'Shougo/vinarise.vim'                     " バイナリ
 
-" Unite(なんか色々)
-NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite.vim'                        " Unite(なんか色々)
+NeoBundle 'Shougo/unite-sudo'
 NeoBundle 'Shougo/unite-outline'
+NeoBundle 'hrsh7th/vim-versions'                    " VCSのUnite
+NeoBundle 'ujihisa/unite-colorscheme'               " カラースキーム一覧表示に Unite.vim を使う
+NeoBundleLazy 'Shougo/unite-build', { 'autoload' : {
+			\ 'unite_sources' : 'build',
+			\ }}
+NeoBundleLazy 'Shougo/unite-ssh', { 'autoload' : {
+			\ 'filetypes' : 'vimfiler',
+			\ 'unite_sources' : 'ssh',
+			\ }}
+NeoBundleLazy 'ujihisa/vimshell-ssh', { 'autoload' : {
+			\ 'filetypes' : 'vimshell',
+			\ }}
+NeoBundleLazy 'Shougo/vim-vcs', {
+			\ 'depends' : 'thinca/vim-openbuf',
+			\ 'autoload' : {'commands' : 'Vcs'},
+			\ }
+NeoBundleLazy 'ujihisa/unite-font', {
+			\ 'gui' : 1,
+			\ 'autoload' : {
+			\  'unite_sources' : 'font'
+			\ }}
+NeoBundleLazy 'thinca/vim-qfreplace', { 'autoload' : {
+			\ 'filetypes' : ['unite', 'quickfix'],
+			\ }}
 
-" ファイラ
-NeoBundle 'Shougo/vimfiler.git'
-
-" シェル
-NeoBundle 'Shougo/vimshell'
+" Neobundlelazyを生成
+NeoBundleLazy 'LeafCage/nebula.vim', {
+			\ 'autoload' : {'commands' : 'NebulaPutLazy'},
+			\ }
 
 " 非同期処理化プラグイン
-" 更新後は再コンパイル必要(うまく行けば下の設定で勝手にやってくれるはず)
-" after install, turn shell ~/.vim/bundle/vimproc, 
-" (n,g)make -f your_machines_makefile
-NeoBundle 'Shougo/vimproc',{ 'build' : {
-			\'cygwin' : 'make -f make_cygwin.mak',
-			\'unix' : 'make -f make_unix.mak',
-			\},
-			\}
-
-" テキスト囲み
-NeoBundle 'tpope/vim-surround'
+NeoBundle 'Shougo/vimproc', {
+			\ 'build' : {
+			\     'windows' : 'make -f make_mingw32.mak',
+			\     'cygwin' : 'make -f make_cygwin.mak',
+			\     'mac' : 'make -f make_mac.mak',
+			\     'unix' : 'make -f make_unix.mak',
+			\    },
+			\ }
+NeoBundleLazy 'yomi322/vim-gitcomplete', { 'autoload' : {
+			\ 'filetype' : 'vimshell'
+			\ }}
 
 " フォント拡大
-NeoBundle 'thinca/vim-fontzoom'
+NeoBundleLazy 'thinca/vim-fontzoom', {
+			\ 'gui' : 1,
+			\ 'autoload' : {
+			\  'mappings' : [
+			\   ['n', '<Plug>(fontzoom-larger)'],
+			\   ['n', '<Plug>(fontzoom-smaller)']]
+			\ }}
 
-" バッファ一覧
-NeoBundle 'buffet.vim'
 
-" Gitのいろいろ
-NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ujihisa/neco-look'                       " 英単語のスペル補完
 
-" ステータスバーかっこ良く機能的に
-NeoBundle 'Lokaltog/vim-powerline'
-
-" 英単語のスペル補完 
-NeoBundle 'ujihisa/neco-look'
-
-" excite翻訳 
-NeoBundle 'mattn/excitetranslate-vim'
+" excite翻訳
+NeoBundleLazy 'mattn/excitetranslate-vim', {
+			\ 'depends' : 'mattn/webapi-vim',
+			\ 'autoload': {'commands': ['ExciteTranslate']}}
 NeoBundle 'mattn/webapi-vim'
 
-" カラースキーマ
-NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'altercation/vim-colors-solarized'        " カラースキーマ
 NeoBundle 'cschlueter/vim-wombat'
-NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'croaker/mustang-vim'
 NeoBundle 'jeffreyiacono/vim-colors-wombat'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -70,65 +90,114 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'bandit.vim'
+NeoBundle 'abudden/EasyColour' , { 'rev' : '9d683aec8' }
 
-" カラースキーム一覧表示に Unite.vim を使う
-NeoBundle 'ujihisa/unite-colorscheme'
+" バッファ一覧
+NeoBundleLazy 'buffet.vim', {
+			\ 'autoload': {
+			\ 'commands': ['Bufferlistsw', 'Bufferlist']}}
 
-" ctags情報から型をハイライト
-NeoBundle 'TagHighlight'
+NeoBundle 'tpope/vim-fugitive'                      " Gitのいろいろ
 
-" logcat
-NeoBundle 'thinca/vim-logcat'
+NeoBundle 'Lokaltog/vim-powerline'                  " ステータスバーかっこ良く機能的に
+
+NeoBundleLazy 'thinca/vim-logcat', {
+			\ 'autoload': {
+			\ 'commands': ['LogcatClear', 'Logcat']}}
 
 " Doxygenコメントを追加する
-NeoBundle 'DoxygenToolkit.vim'
-
-" clangによるC/C++の補完
-NeoBundle 'osyo-manga/neocomplcache-clang_complete'
-NeoBundle 'Rip-Rip/clang_complete'
+NeoBundleLazy 'DoxygenToolkit.vim', {
+			\ 'autoload': {
+			\ 	'commands': ['DoxUndoc', 'DoxAuthor', 'Dox', 'DoxLic', 'DoxBlock']}}
 
 " TeX用Plugin
-NeoBundle 'jcf/vim-latex' 
+NeoBundleLazy 'jcf/vim-latex', {
+			\ 'autoload': {	'filetypes': [ 'latex', 'tex' ] }}
 
-" 位置揃え
-NeoBundle 'h1mesuke/vim-alignta'
-
-" ソースヘッダ切り替え
-NeoBundle 'a.vim'
+NeoBundle 'h1mesuke/vim-alignta'                    " 位置揃え
 
 " ディレクトリをツリー表示
-NeoBundle 'scrooloose/nerdtree'
+NeoBundleLazy 'scrooloose/nerdtree', {
+			\'autoload': { 'commands': ['NERDTree']}}
 
-" pythonのシンタックスチェック(QuickFix On/Off) 
-NeoBundle 'mitechie/pyflakes-pathogen'
+NeoBundle 'mattn/zencoding-vim'                     " ZenCoding記法
+
+NeoBundle 'mitechie/pyflakes-pathogen'              " pythonのシンタックスチェック(QuickFix On/Off)
 let pyflakes_use_quickfix = 0
 
-NeoBundle 'mattn/zencoding-vim'
-
-" 最新のC++シンタックス情報
-NeoBundle 'vim-jp/cpp-vim'
-
+NeoBundle 'vim-jp/cpp-vim'                          " 最新のC++シンタックス情報
+NeoBundle 'TagHighlight'                            " ctags情報から型をハイライト
+NeoBundle 'a.vim'                                   " ソースヘッダ切り替え
 " Clangでフォーマット
-NeoBundle 'rhysd/vim-clang-format'
-NeoBundle 'kana/vim-operator-user'
+NeoBundleLazy 'rhysd/vim-clang-format', {
+			\'autoload': {
+			\'commands': ['ClangFormat', 'ClangFormatEchoFormattedCode']}}
+NeoBundle 'osyo-manga/neocomplcache-clang_complete' " clangによるC/C++の補完
+NeoBundle 'Rip-Rip/clang_complete'
+
+NeoBundle 'kana/vim-operator-user', {
+			\ 'autoload' : {
+			\   'functions' : 'operator#user#define',
+			\ }}
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-entire'
 NeoBundle 'kana/vim-textobj-indent'
+NeoBundleLazy 'kana/vim-smartchr', { 'autoload' : {
+			\ 'insert' : 1,
+			\ }}
+NeoBundleLazy 'kana/vim-smartword', { 'autoload' : {
+			\ 'mappings' : [
+			\   '<Plug>(smartword-']
+			\ }}
+NeoBundleLazy 'kana/vim-smarttill', { 'autoload' : {
+			\ 'mappings' : [
+			\   '<Plug>(smarttill-']
+			\ }}
+NeoBundleLazy 'kana/vim-operator-replace', {
+			\ 'depends' : 'vim-operator-user',
+			\ 'autoload' : {
+			\   'mappings' : [
+			\     ['nx', '<Plug>(operator-replace)']]
+			\ }}
+map R  <Plug>(operator-replace)
 
-" color schema setting
-NeoBundle 'abudden/EasyColour'
-
-" Markdown for vim
-NeoBundle 'kannokanno/previm'
+NeoBundle 'kannokanno/previm'                       " Markdown for vim
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tyru/open-browser.vim'
 
-" Tagをツリー表示
-NeoBundle 'taglist.vim'
+NeoBundle 'taglist.vim'                             " Tagをツリー表示
 set tags=tags
 
-" リファレンス
-NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-ref'                          " リファレンス
 
-" リファレンス
-NeoBundle 'sjl/gundo.vim'
+" UNDO履歴
+NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {
+			\ 'commands' : 'GundoToggle'
+			\ }}
+
+" テキスト囲み
+NeoBundle 'anyakichi/vim-surround', {
+			\ 'autoload' : {
+			\   'mappings' : [
+			\     ['n', '<Plug>Dsurround'], ['n', '<Plug>Csurround'],
+			\     ['n', '<Plug>Ysurround'], ['n', '<Plug>YSurround']
+			\ ]}}
+if !&l:modifiable
+	silent! nunmap <buffer> ds
+	silent! nunmap <buffer> cs
+	silent! nunmap <buffer> ys
+	silent! nunmap <buffer> yS
+else
+	nmap <buffer>         ds   <Plug>Dsurround
+	nmap <buffer>         cs   <Plug>Csurround
+	nmap <buffer>         ys   <Plug>Ysurround
+	nmap <buffer>         yS   <Plug>YSurround
+endif
+
+" Twitter
+NeoBundleLazy 'basyura/TweetVim', { 'depends' :
+			\ ['basyura/twibill.vim', 'tyru/open-browser.vim'],
+			\ 'autoload' : { 'commands' : 'TweetVimHomeTimeline' }}
+
+
+

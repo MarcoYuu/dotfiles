@@ -154,7 +154,8 @@ alias l='ls -CF'
 alias diff=colordiff
 alias emacs='XMODIFIERS=@im=none emacs'
 function cdls() {
-\pushd $1;
+\pushd .;
+\cd $1
 ls;
 }
 alias cd=cdls

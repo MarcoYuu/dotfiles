@@ -1,4 +1,8 @@
 
+HISTSIZE=50000
+SAVEHIST=50000
+
+
 # Version Control System(vcs)の情報を出すようにする
 autoload -Uz add-zsh-hook
 autoload -Uz colors
@@ -28,15 +32,6 @@ LANG=en_US.UTF-8 vcs_info
 }
 add-zsh-hook precmd _update_vcs_info_msg
 
-source ~/bin/git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=true
-
-RPROMPT="%F{cyan}[%D %*]%f"
-setopt transient_rprompt
-local p_mark="%(!,#,$)"
-PROMPT='%{%F{green}%B%n@%m%b%f:%F{blue}%~%f%F{red}%B%1(v|%F{red}%1v%f|)%b%f$p_mark%}
->'
-
 # Alias
 alias ls='ls -pF --color=auto --group-directories-first'
 alias ll='ls -alF'
@@ -51,6 +46,7 @@ alias bd=popd
 export LESS='-R'
 export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
 
+alias ex='extract'
 # use oh-my-zsh/plugins/extract.zsh
 #
 # extract http://d.hatena.ne.jp/jeneshicc/20110215/1297778049
@@ -77,4 +73,12 @@ export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
       # echo "'$1' is not a valid file!"
   # fi
 # }
-alias ex='extract'
+
+
+# Prompt
+RPROMPT="%F{cyan}[%D %*]%f"
+setopt transient_rprompt
+local p_mark="%(!,#,$)"
+PROMPT='%{%F{green}%B%n@%m%b%f:%F{blue}%~%f%F{red}%B%1(v|%F{red}%1v%f|)%b%f$p_mark%}
+>'
+
