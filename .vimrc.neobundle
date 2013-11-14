@@ -82,6 +82,8 @@ NeoBundleLazy 'thinca/vim-fontzoom', {
 
 NeoBundle 'ujihisa/neco-look'                       " 英単語のスペル補完
 
+NeoBundle 'LeafCage/foldCC'                         " 折りたたみ支援
+
 " excite翻訳
 NeoBundleLazy 'mattn/excitetranslate-vim', {
 			\ 'depends' : 'mattn/webapi-vim',

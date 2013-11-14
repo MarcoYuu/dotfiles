@@ -144,7 +144,7 @@ fi
 # --------------------------------------------------------------------------------
 
 # PATH
-export PATH=~/bin:${PATH}
+export PATH=~/bin:/usr/local/bin:${PATH}
 
 # aliases
 alias ls='ls -pF --color=auto --group-directories-first'
@@ -154,9 +154,13 @@ alias l='ls -CF'
 alias diff=colordiff
 alias emacs='XMODIFIERS=@im=none emacs'
 function cdls() {
-\pushd .;
-\cd $1
-ls;
+if [ -z "$1" ]; then
+	\cd;
+	ls;
+else
+	\pushd $1;
+	ls;
+fi
 }
 alias cd=cdls
 alias bd=popd

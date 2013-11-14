@@ -10,9 +10,9 @@ colors
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git svn hg bzr
-zstyle ':vcs_info:*' formats '%s:[%b]'
-zstyle ':vcs_info:*' actionformats '%s:[%b|%a]'
-zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:r%r'
+zstyle ':vcs_info:*' formats ' (%s:[%b])'
+zstyle ':vcs_info:*' actionformats ' (%s:[%b|%a])'
+zstyle ':vcs_info:(svn|bzr):*' branchformat ' (%b:r%)r'
 zstyle ':vcs_info:bzr:*' use-simple true
 
 autoload -Uz is-at-least
@@ -39,7 +39,15 @@ alias la='ls -AF'
 alias l='ls -CF'
 alias diff=colordiff
 alias emacs='XMODIFIERS=@im=none emacs'
-function cdls() {\pushd $1;ls;}
+function cdls() {
+if [ -z "$1" ]; then
+	\cd;
+	ls;
+else
+	\pushd $1;
+	ls;
+fi
+}
 alias cd=cdls
 alias bd=popd
 

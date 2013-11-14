@@ -20,24 +20,31 @@ set autoread                                               " 他で書き換え�
 set noswapfile                                             " スワップファイル作らない
 set hidden                                                 " 編集中でも他のファイルを開けるようにする
 set formatoptions   =lmoq                                  " テキスト整形オプション，マルチバイト系を追加
-set vb t_vb         =" ビープをならさない
+set vb t_vb         =                                      " ビープをならさない
 set clipboard       =autoselect                            " OSのクリップボードを使用する
-set clipboard      +=unnamed                               " OSのクリップボードを使用する
-set clipboard      +=unnamedplus                           " OSのクリップボードを使用する
+set clipboard      +=unnamed                               "
+set clipboard      +=unnamedplus                           "
 set list                                                   " 不可視文字表示
 set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
 set virtualedit    +=block                                 " 矩形選択で自由に移動する
+set foldmethod      =syntax                                " 折りたたみ
+set foldtext        =FoldCCtext()                          " 折りたたみテキスト
+set foldlevel       =2                          " どのレベルからデフォで折りたたむか
+set foldnestmax     =4                          " どのレベルまで折りたたむか
+set fillchars       =vert:\|
+hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
+hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 
 " Using the mouse on a terminal.
 if has('mouse')
-  set mouse=a
-  if has('mouse_sgr')
-    set ttymouse=sgr
-  elseif v:version > 703 || v:version is 703 && has('patch632') " I couldn't use has('mouse_sgr') :-(
-    set ttymouse=sgr
-  else
-    set ttymouse=xterm2
-  endif
+	set mouse=a
+	if has('mouse_sgr')
+		set ttymouse=sgr
+	elseif v:version > 703 || v:version is 703 && has('patch632') " I couldn't use has('mouse_sgr') :-(
+		set ttymouse=sgr
+	else
+		set ttymouse=xterm2
+	endif
 endif
 
 " insertモードを抜けるとIMEオフしてくれるらしい
@@ -64,6 +71,10 @@ set helplang                 =ja,en " ヘルプ検索で日本語を優先
 
 " CMake_xxx.txtもcmake用ハイライトを使う
 autocmd BufNewFile,BufRead CMakeLists*.txt set filetype=cmake
+
+" QuickFixを開く
+au QuickfixCmdPost make,grep,grepadd,vimgrep copen
+
 autocmd FileType html   setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=./;/
 autocmd FileType php    setlocal path+=/usr/local/share/pear
 autocmd FileType apache setlocal path+=./;/
@@ -73,32 +84,32 @@ autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr
 " C auto indent
 set cinoptions+=:0,l1,g0
 fun! GetCppIndent()
-  let l:pline_num = prevnonblank(v:lnum - 1)
-  let l:pline = getline(l:pline_num)
-  if l:pline =~? '<$'
-    if getline(v:lnum) =~# '^\s*>'
-      return indent(pline_num)
-    en
-    return indent(pline_num) + &l:shiftwidth
-  elseif l:pline =~# ',$'
-    if getline(l:pline_num - 1) =~? '<$' "bug fix
-      return indent(l:pline_num)
-    en
-  elseif getline(v:lnum) =~# '^\s*>'
-    return indent(l:pline_num) - &l:shiftwidth
-  en
-  return cindent(v:lnum)
+	let l:pline_num = prevnonblank(v:lnum - 1)
+	let l:pline = getline(l:pline_num)
+	if l:pline =~? '<$'
+		if getline(v:lnum) =~# '^\s*>'
+			return indent(pline_num)
+		en
+		return indent(pline_num) + &l:shiftwidth
+	elseif l:pline =~# ',$'
+		if getline(l:pline_num - 1) =~? '<$' "bug fix
+			return indent(l:pline_num)
+		en
+	elseif getline(v:lnum) =~# '^\s*>'
+		return indent(l:pline_num) - &l:shiftwidth
+	en
+	return cindent(v:lnum)
 endf
 if has("autocmd")
-  autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
+	autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
 endif
 
 " カーソル行のハイライト
 set cursorline
 augroup cch
-  autocmd! cch
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter,BufRead * set cursorline
+	autocmd! cch
+	autocmd WinLeave * set nocursorline
+	autocmd WinEnter,BufRead * set cursorline
 augroup END
 
 hi clear CursorLine

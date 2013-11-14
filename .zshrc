@@ -48,4 +48,4 @@ source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/.zsh.custom
 
 # PATH
-export PATH=~/bin:${PATH}
+export PATH=~/bin:/usr/local/bin:${PATH}

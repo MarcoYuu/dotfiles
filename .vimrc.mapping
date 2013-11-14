@@ -16,7 +16,7 @@
 " 行移動を見た目上に行うようにしています。wrap指定している場合、
 " 見た目上は数行に改行されていても内部的には1行なので。
 nnoremap h      <Left>
-nnoremap l      <Right>
+nnoremap l      <Right>zo
 noremap  j      gj
 noremap  k      gk
 nnoremap <Down> gj
@@ -57,7 +57,7 @@ nnoremap <silent><C-o> o<ESC>
 " アウトラインを表示
 nnoremap <silent><Leader>t :Unite -vertical -winwidth=30 -no-quit outline<CR>
 
-" ツリーをトグル 
+" ツリーをトグル
 nmap <Leader>n :NERDTreeToggle<CR>
 
 " Ctrl s で保存などWindows系キーバインド(.bashrcなんかで$stty -ixon　-ixoffが必要)
