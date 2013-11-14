@@ -148,3 +148,8 @@ nmap <ESC><ESC> :nohlsearch<CR><ESC>
 nnoremap <C-i>  :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><CR>
+
+" tagsジャンプの時に複数ある時は一覧表示
+nnoremap <C-]> g<C-]>
+
+

@@ -157,6 +157,9 @@ function cdls() {
 if [ -z "$1" ]; then
 	\cd;
 	ls;
+elif [ -z "$2" ]; then
+	\cd $1;
+	ls;
 else
 	\pushd $1;
 	ls;

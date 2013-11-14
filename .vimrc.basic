@@ -69,17 +69,6 @@ set hlsearch                        " 検索結果強調-:nohで解除
 set incsearch                       " インクリメンタルサーチを有効
 set helplang                 =ja,en " ヘルプ検索で日本語を優先
 
-" CMake_xxx.txtもcmake用ハイライトを使う
-autocmd BufNewFile,BufRead CMakeLists*.txt set filetype=cmake
-
-" QuickFixを開く
-au QuickfixCmdPost make,grep,grepadd,vimgrep copen
-
-autocmd FileType html   setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=./;/
-autocmd FileType php    setlocal path+=/usr/local/share/pear
-autocmd FileType apache setlocal path+=./;/
-autocmd FileType c      setlocal path+=./;/usr/include/;/usr/local/include/
-autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.6/
 
 " C auto indent
 set cinoptions+=:0,l1,g0
@@ -100,9 +89,6 @@ fun! GetCppIndent()
 	en
 	return cindent(v:lnum)
 endf
-if has("autocmd")
-	autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
-endif
 
 " カーソル行のハイライト
 set cursorline
@@ -111,12 +97,32 @@ augroup cch
 	autocmd WinLeave * set nocursorline
 	autocmd WinEnter,BufRead * set cursorline
 augroup END
-
-hi clear CursorLine
-hi CursorLine gui=underline
+highlight clear CursorLine
+highlight CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
-" 保存時に行末の空白を除去する
-autocmd BufWritePre * :%s/\s\+$//ge
-" 保存時にtabをスペースに変換する
-"autocmd BufWritePre * :%s/\t/  /ge
+
+augroup MyGroup
+	" CMake_xxx.txtもcmake用ハイライトを使う
+	autocmd BufNewFile,BufRead CMakeLists*.txt set filetype=cmake
+	" QuickFixを開く
+	autocmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
+
+	autocmd FileType html   setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=./,/
+	autocmd FileType php    setlocal path+=/usr/local/share/pear
+	autocmd FileType apache setlocal path+=./,/
+	autocmd FileType c      setlocal path+=./,/usr/include/,/usr/local/include/
+	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.6/
+
+	autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
+
+	" 保存時に行末の空白を除去する
+	autocmd BufWritePre * :%s/\s\+$//ge
+	" 保存時にtabをスペースに変換する
+	"autocmd BufWritePre * :%s/\t/  /ge
+
+	" 拡張子で読み込みタグ変更
+	au BufNewFile,BufRead *.php setl tags+=$HOME/.vim/tags/php.tags
+	au BufNewFile,BufRead *.py,*.pyc setl tags+=$HOME/.vim/tags/python.tags
+	au BufNewFile,BufRead *.h,*.c,*.cc,*.cpp,*.ipp,*.hpp setl tags+=$HOME/.vim/tags/cpp.tags
+augroup END

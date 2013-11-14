@@ -39,6 +39,10 @@ function! s:main()
 		set shellslash
 	endif
 
+	augroup MyGroup
+		autocmd!
+	augroup END
+
 	" NeoBundle がインストールされているなら LoadBundles() を呼び出す
 	" そうでないなら WithoutBundles() を呼び出す
 	if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
