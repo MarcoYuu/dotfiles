@@ -29,8 +29,8 @@ set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の�
 set virtualedit    +=block                                 " 矩形選択で自由に移動する
 set foldmethod      =syntax                                " 折りたたみ
 set foldtext        =FoldCCtext()                          " 折りたたみテキスト
-set foldlevel       =4                          " どのレベルからデフォで折りたたむか
-set foldnestmax     =6                          " どのレベルまで折りたたむか
+set foldlevel       =6                          " どのレベルからデフォで折りたたむか
+set foldnestmax     =8                          " どのレベルまで折りたたむか
 set fillchars       =vert:\|
 hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
 hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
