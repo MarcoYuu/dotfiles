@@ -152,4 +152,7 @@ nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><CR>
 " tagsジャンプの時に複数ある時は一覧表示
 nnoremap <C-]> g<C-]>
 
+" gitの変更箇所をマークする
+nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 

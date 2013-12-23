@@ -62,7 +62,14 @@ set ambiwidth     =double                        " ○や※をちゃんと表�
 set encoding      =utf-8                         " vim内部で通常使用する文字エンコーディングを設定
 set charconvert   =utf-8                         " 文字エンコーディングに使われるexpressionを定める
 set fileencoding  =utf-8                         " バッファのファイルエンコーディングを指定
-set fileencodings =utf-8,sjis,euc-jp,iso-2022-jp " 既存ファイルを開く際の文字コード自動判別
+set fileencodings =utf-8,sjis,euc-jp,iso-2022-jp,jis,cp932,latin " 既存ファイルを開く際の文字コード自動判別
+" ☆や□や○の文字があってもカーソル位置がずれないようにする
+" ambiwidthの設定のみでは, 解決しない場合がある
+" Ubuntuでは, gnome-terminal, terminatorを以下のコマンドに貼り替えると解決する
+"   /bin/sh -c "VTE_CJK_WIDTH=1 terminator -m"
+"   /bin/sh -c "VTE_CJK_WIDTH=1 gnome-terminal --disable-factory"
+" MacのiTermでは, Profiles>Text>Double-Width Characters>Treat ambiguous-width characters as double widthにチェック
+set ambiwidth=double
 
 " 検索設定
 set hlsearch                        " 検索結果強調-:nohで解除

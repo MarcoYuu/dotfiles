@@ -4,31 +4,42 @@
 
 " プラグインの読み込み
 
-NeoBundleFetch 'Shougo/neobundle.vim'               " Neobundle自体を更新
+" Neobundle自体を更新
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'vim-jp/vimdoc-ja'                        " 日本語ヘルプ
+" 日本語ヘルプ
+NeoBundle 'vim-jp/vimdoc-ja'
 
 " 補完とスニペット
+NeoBundle 'Shougo/neosnippet'
 function! s:meet_neocomplete_requirements()
-    return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
+	return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
 endfunction
 if s:meet_neocomplete_requirements()
-    NeoBundle 'Shougo/neocomplete.vim'
-    NeoBundleFetch 'Shougo/neocomplcache.vim'
+	NeoBundle 'Shougo/neocomplete.vim'
+	NeoBundleFetch 'Shougo/neocomplcache.vim'
 else
-    NeoBundleFetch 'Shougo/neocomplete.vim'
-    NeoBundle 'Shougo/neocomplcache.vim'
+	NeoBundleFetch 'Shougo/neocomplete.vim'
+	NeoBundle 'Shougo/neocomplcache.vim'
 endif
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/vimfiler'                         " ファイラ
-NeoBundle 'Shougo/vimshell'                         " シェル
-NeoBundle 'Shougo/vinarise.vim'                     " バイナリ
 
-NeoBundle 'Shougo/unite.vim'                        " Unite(なんか色々)
+" ファイラ
+NeoBundle 'Shougo/vimfiler'
+" シェル
+NeoBundle 'Shougo/vimshell'
+" バイナリ
+NeoBundle 'Shougo/vinarise.vim'
+
+" Unite(なんか色々)
+NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-sudo'
 NeoBundle 'Shougo/unite-outline'
-NeoBundle 'hrsh7th/vim-versions'                    " VCSのUnite
-NeoBundle 'ujihisa/unite-colorscheme'               " カラースキーム一覧表示に Unite.vim を使う
+
+" VCSのUnite
+NeoBundle 'hrsh7th/vim-versions'
+
+" カラースキーム一覧表示に Unite.vim を使う
+NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundleLazy 'Shougo/unite-build', { 'autoload' : {
 			\ 'unite_sources' : 'build',
 			\ }}
@@ -80,9 +91,11 @@ NeoBundleLazy 'thinca/vim-fontzoom', {
 			\ }}
 
 
-NeoBundle 'ujihisa/neco-look'                       " 英単語のスペル補完
+" 英単語のスペル補完
+NeoBundle 'ujihisa/neco-look'
 
-NeoBundle 'LeafCage/foldCC'                         " 折りたたみ支援
+" 折りたたみ支援
+NeoBundle 'LeafCage/foldCC'
 
 " excite翻訳
 NeoBundleLazy 'mattn/excitetranslate-vim', {
@@ -90,7 +103,8 @@ NeoBundleLazy 'mattn/excitetranslate-vim', {
 			\ 'autoload': {'commands': ['ExciteTranslate']}}
 NeoBundle 'mattn/webapi-vim'
 
-NeoBundle 'altercation/vim-colors-solarized'        " カラースキーマ
+" カラースキーマ
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'cschlueter/vim-wombat'
 NeoBundle 'croaker/mustang-vim'
 NeoBundle 'jeffreyiacono/vim-colors-wombat'
@@ -109,9 +123,13 @@ NeoBundleLazy 'buffet.vim', {
 			\ 'autoload': {
 			\ 'commands': ['Bufferlistsw', 'Bufferlist']}}
 
-NeoBundle 'tpope/vim-fugitive'                      " Gitのいろいろ
+" Gitのいろいろ
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'airblade/vim-gitgutter'
 
-NeoBundle 'Lokaltog/vim-powerline'                  " ステータスバーかっこ良く機能的に
+" ステータスバーかっこ良く機能的に
+" NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'itchyny/lightline.vim'
 
 NeoBundleLazy 'thinca/vim-logcat', {
 			\ 'autoload': {
@@ -126,25 +144,36 @@ NeoBundleLazy 'DoxygenToolkit.vim', {
 NeoBundleLazy 'jcf/vim-latex', {
 			\ 'autoload': {	'filetypes': [ 'latex', 'tex' ] }}
 
-NeoBundle 'h1mesuke/vim-alignta'                    " 位置揃え
+" 位置揃え
+NeoBundle 'h1mesuke/vim-alignta'
 
 " ディレクトリをツリー表示
 NeoBundleLazy 'scrooloose/nerdtree', {
 			\'autoload': { 'commands': ['NERDTree']}}
 
-NeoBundle 'mattn/zencoding-vim'                     " ZenCoding記法
+" ZenCoding記法
+NeoBundle 'mattn/zencoding-vim'
 
-NeoBundle 'mitechie/pyflakes-pathogen'              " pythonのシンタックスチェック(QuickFix On/Off)
+" pythonのシンタックスチェック(QuickFix On/Off)
+NeoBundle 'mitechie/pyflakes-pathogen'
 let pyflakes_use_quickfix = 0
 
-NeoBundle 'vim-jp/cpp-vim'                          " 最新のC++シンタックス情報
-NeoBundle 'TagHighlight'                            " ctags情報から型をハイライト
-NeoBundle 'a.vim'                                   " ソースヘッダ切り替え
+" 最新のC++シンタックス情報
+NeoBundle 'vim-jp/cpp-vim'
+
+" ctags情報から型をハイライト
+NeoBundle 'TagHighlight'
+
+" ソースヘッダ切り替え
+NeoBundle 'a.vim'
+
 " Clangでフォーマット
 NeoBundleLazy 'rhysd/vim-clang-format', {
 			\'autoload': {
 			\'commands': ['ClangFormat', 'ClangFormatEchoFormattedCode']}}
-NeoBundle 'osyo-manga/neocomplcache-clang_complete' " clangによるC/C++の補完
+
+" clangによるC/C++の補完
+NeoBundle 'osyo-manga/neocomplcache-clang_complete'
 NeoBundle 'Rip-Rip/clang_complete'
 
 NeoBundle 'kana/vim-operator-user', {
@@ -173,14 +202,17 @@ NeoBundleLazy 'kana/vim-operator-replace', {
 			\ }}
 map R  <Plug>(operator-replace)
 
-NeoBundle 'kannokanno/previm'                       " Markdown for vim
+" Markdown for vim
+NeoBundle 'kannokanno/previm'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tyru/open-browser.vim'
 
-NeoBundle 'taglist.vim'                             " Tagをツリー表示
+" Tagをツリー表示
+NeoBundle 'taglist.vim'
 set tags=tags
 
-NeoBundle 'thinca/vim-ref'                          " リファレンス
+" リファレンス
+NeoBundle 'thinca/vim-ref'
 
 " UNDO履歴
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {
@@ -200,10 +232,10 @@ if !&l:modifiable
 	silent! nunmap <buffer> ys
 	silent! nunmap <buffer> yS
 else
-	nmap <buffer>         ds   <Plug>Dsurround
-	nmap <buffer>         cs   <Plug>Csurround
-	nmap <buffer>         ys   <Plug>Ysurround
-	nmap <buffer>         yS   <Plug>YSurround
+	nmap <buffer> ds <Plug>Dsurround
+	nmap <buffer> cs <Plug>Csurround
+	nmap <buffer> ys <Plug>Ysurround
+	nmap <buffer> yS <Plug>YSurround
 endif
 
 " Twitter
@@ -211,5 +243,5 @@ NeoBundleLazy 'basyura/TweetVim', { 'depends' :
 			\ ['basyura/twibill.vim', 'tyru/open-browser.vim'],
 			\ 'autoload' : { 'commands' : 'TweetVimHomeTimeline' }}
 
-
-
+" syntacs check
+NeoBundle 'scrooloose/syntastic'
