@@ -1,4 +1,5 @@
 
+
 " ------------------------------------------------------------
 " ステータス行を表示して色々
 " ------------------------------------------------------------
@@ -51,6 +52,9 @@ let g:lightline = {
 			\     ['fileformat', 'fileencoding', 'filetype'],
 			\   ]
 			\ },
+			\ 'component': {
+			\   'lineinfo': ' %3l:%-2v',
+			\ },
 			\ 'component_function': {
 			\   'modified': 'MyModified',
 			\   'readonly': 'MyReadonly',
@@ -73,14 +77,10 @@ let g:lightline = {
 			\ 'subseparator': {'left': '⮁', 'right': '⮃'}
 			\ }
 let g:syntastic_mode_map = { 'mode': 'passive' }
-augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.c,*.cpp,*.cc,*.h,*.hpp,*.ipp,*.hh call s:syntastic()
-augroup END
 
 function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
+	SyntasticCheck
+	call lightline#update()
 endfunction
 
 function! MyModified()
@@ -100,6 +100,27 @@ function! MyFugitive()
 	catch
 	endtry
 	return ''
+endfunction
+
+function! MyGitGutter()
+	if ! exists('*GitGutterGetHunkSummary')
+				\ || ! get(g:, 'gitgutter_enabled', 0)
+				\ || winwidth('.') <= 90
+		return ''
+	endif
+	let symbols = [
+				\ g:gitgutter_sign_added . '',
+				\ g:gitgutter_sign_modified . '',
+				\ g:gitgutter_sign_removed . ''
+				\ ]
+	let hunks = GitGutterGetHunkSummary()
+	let ret = []
+	for i in [0, 1, 2]
+		if hunks[i] > 0
+			call add(ret, symbols[i] . hunks[i])
+		endif
+	endfor
+	return join(ret, ' ')
 endfunction
 
 function! MyFilename()
@@ -163,23 +184,3 @@ function! MyCharCode()
 	return "'". char ."' ". nr
 endfunction
 
-function! MyGitGutter()
-	if ! exists('*GitGutterGetHunkSummary')
-				\ || ! get(g:, 'gitgutter_enabled', 0)
-				\ || winwidth('.') <= 90
-		return ''
-	endif
-	let symbols = [
-				\ g:gitgutter_sign_added . ' ',
-				\ g:gitgutter_sign_modified . ' ',
-				\ g:gitgutter_sign_removed . ' '
-				\ ]
-	let hunks = GitGutterGetHunkSummary()
-	let ret = []
-	for i in [0, 1, 2]
-		if hunks[i] > 0
-			call add(ret, symbols[i] . hunks[i])
-		endif
-	endfor
-	return join(ret, ' ')
-endfunction

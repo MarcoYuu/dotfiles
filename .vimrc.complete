@@ -12,6 +12,7 @@ set completeopt=menuone
 function! s:meet_neocomplete_requirements()
 	return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
 endfunction
+
 if s:meet_neocomplete_requirements()
 	" Disable AutoComplPop.
 	let g:acp_enableAtStartup = 0
@@ -79,6 +80,20 @@ if s:meet_neocomplete_requirements()
 	let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 	let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 	let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+	" --------------------------------------------------------
+	" marchin.vim
+	" --------------------------------------------------------
+	" 非同期ではなくて同期処理で補完する
+	"let g:marching_backend = "sync_clang_command"
+
+	" オプションの設定
+	" これは clang のコマンドに渡される
+	"let g:marching_clang_command_option="-std=c++1y"
+
+	" neocomplete.vim と併用して使用する場合
+	" neocomplete.vim を使用すれば自動補完になる
+	"let g:marching_enable_neocomplete = 1
 
 	" --------------------------------------------------------
 	" C言語用補完機能設定

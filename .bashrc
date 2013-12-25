@@ -165,7 +165,8 @@ else
 	ls;
 fi
 }
-alias cd=cdls
+#alias cd=cdls
+alias pd=pushd
 alias bd=popd
 
 # less syntax hightlight
@@ -198,6 +199,7 @@ alias plantuml='java -jar ~/bin/plantuml.jar'
 
 # vim キーバインド用
 stty -ixon -ixoff
+
 # ※とかを普通に表示させる
 export VTE_CJK_WIDTH=auto
 

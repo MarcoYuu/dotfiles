@@ -108,6 +108,21 @@ highlight clear CursorLine
 highlight CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
+" vimrc edit.
+augroup MyAutoCmd
+	autocmd!
+
+	if !has('gui_running') && !(has('win32') || has('win64'))
+		" .vimrcの再読込時にも色が変化するようにする
+		autocmd BufWritePost $MYVIMRC,*vimrc* nested source $MYVIMRC
+	else
+		" .vimrcの再読込時にも色が変化するようにする
+		autocmd BufWritePost $MYVIMRC,*vimrc* source $MYVIMRC |
+					\if has('gui_running') | source $MYGVIMRC
+		autocmd BufWritePost $MYGVIMRC,*vimrc* if has('gui_running') | source $MYGVIMRC
+	endif
+augroup END
+command! EditVimrc :edit $MYVIMRC
 
 augroup MyGroup
 	" CMake_xxx.txtもcmake用ハイライトを使う
@@ -119,7 +134,14 @@ augroup MyGroup
 	autocmd FileType php    setlocal path+=/usr/local/share/pear
 	autocmd FileType apache setlocal path+=./,/
 	autocmd FileType c      setlocal path+=./,/usr/include/,/usr/local/include/
-	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.6/
+	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,,**,/usr/include/**
+
+	augroup vimrc-set_filetype_cpp
+		autocmd!
+		" 標準ライブラリへのパスを設定
+		" filetype が設定されていない場合に filetype=cpp を設定する
+		autocmd BufReadPost /usr/include/c++/4.8/* if empty(&filetype) | set filetype=cpp | endif
+	augroup END
 
 	autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
 
@@ -132,4 +154,6 @@ augroup MyGroup
 	au BufNewFile,BufRead *.php setl tags+=$HOME/.vim/tags/php.tags
 	au BufNewFile,BufRead *.py,*.pyc setl tags+=$HOME/.vim/tags/python.tags
 	au BufNewFile,BufRead *.h,*.c,*.cc,*.cpp,*.ipp,*.hpp setl tags+=$HOME/.vim/tags/cpp.tags
+
+	au BufRead *.php,*.py,*.pycsetl,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
 augroup END
