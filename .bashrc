@@ -179,12 +179,6 @@ alias sshhome='ssh -X -Y yuumomma@beafjerkyoishi.hobby.jp'
 alias sshtesla='ssh -X -Y momma@tesla'
 alias sshlab='ssh -X -Y momma@gate0.comp.sd.keio.ac.jp'
 
-# Android SDK
-export PATH=${PATH}:~/Library/Android/android-sdk-linux/tools
-export PATH=${PATH}:~/Library/Android/android-sdk-linux/platform-tools
-export PATH=${PATH}:~/Library/Android/android-ndk-r8
-export PATH=${PATH}:/opt/eclipse
-
 # cuda 64bit
 export MANPATH=$MANPATH:/usr/local/cuda/man
 export PATH=$PATH:/usr/local/cuda/bin
@@ -211,4 +205,16 @@ export PS1='\[\033[1;32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps
 # tmux用
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
-
+# man color view
+export MANPAGER='less -R'
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;31m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;32m") \
+		man "$@"
+}
