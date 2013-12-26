@@ -17,6 +17,7 @@ endif
 "}}}
 
 " NeoBundleの読み込み "{{{
+
 " git ある? "{{{
 if !executable("git")
 	echo "Please install git."

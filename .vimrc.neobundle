@@ -695,7 +695,9 @@ NeoBundle 'vim-jp/cpp-vim'
 NeoBundle 'TagHighlight'
 augroup Highlight
 	autocmd!
-	au BufRead *.php,*.py,*.pycsetl,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
+	au BufNewFile *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
+	au BufRead *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
+	au TabEnter *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
 augroup END
 
 " syntacs check "{{{
