@@ -5,7 +5,7 @@
 filetype indent plugin on
 syntax on
 
-" 表示，動作設定
+" 表示・動作設定 "{{{
 set number                                                 " 行番号の表示
 set noexpandtab                                            " タブをタブとして扱う(スペースに展開しない)
 set tabstop         =4                                     " タブを表示するときの幅
@@ -27,15 +27,48 @@ set clipboard      +=unnamedplus                           "
 set list                                                   " 不可視文字表示
 set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
 set virtualedit    +=block                                 " 矩形選択で自由に移動する
-set foldmethod      =syntax                                " 折りたたみ
-set foldtext        =FoldCCtext()                          " 折りたたみテキスト
-set foldlevel       =6                          " どのレベルからデフォで折りたたむか
-set foldnestmax     =8                          " どのレベルまで折りたたむか
-set fillchars       =vert:\|
-hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
-hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 
-" Using the mouse on a terminal.
+" カーソル行のハイライト "{{{
+set cursorline
+augroup cch
+	autocmd! cch
+	autocmd WinLeave * set nocursorline
+	autocmd WinEnter,BufRead * set cursorline
+augroup END
+highlight clear CursorLine
+highlight CursorLine gui=underline
+highlight CursorLine ctermbg=black guibg=black
+"}}}
+
+" insertモードを抜けるとIMEオフしてくれるらしい "{{{
+set noimdisable
+set iminsert=0 imsearch=0
+set noimcmdline
+"}}}
+
+" 折りたたみ設定 "{{{
+augroup Folding
+	autocmd!
+
+	autocmd FileType * setl foldmethod    =syntax
+	autocmd FileType * setl foldlevel     =6
+	autocmd FileType * setl foldnestmax   =8
+
+	autocmd FileType vim setlocal foldlevel    =0      " 折りたたみ
+	autocmd FileType vim setlocal foldnestmax  =6      " どのレベルからデフォで折りたたむか
+	autocmd FileType vim setlocal foldmethod   =marker " どのレベルまで折りたたむか
+
+	set foldtext      =FoldCCtext() " 折りたたみテキスト
+	set fillchars     =vert:\|
+
+	hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
+	hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
+augroup END
+"}}}
+
+"}}}
+
+" マウス設定 "{{{
 if has('mouse')
 	set mouse=a
 	if has('mouse_sgr')
@@ -46,78 +79,71 @@ if has('mouse')
 		set ttymouse=xterm2
 	endif
 endif
+"}}}
 
-" insertモードを抜けるとIMEオフしてくれるらしい
-set noimdisable
-set iminsert=0 imsearch=0
-set noimcmdline
-
-" Java設定
-let java_highlight_all       =1
-let java_highlight_functions ="style"
-let java_allow_cpp_keywords  =1
-
-" エンコード設定
+" エンコード設定 "{{{
+" ☆や□や○の文字があってもカーソル位置がずれないようにする
+" ambiwidthの設定のみでは, 解決しない場合がある
+" Ubuntuでは, gnome-terminal, terminatorを以下のコマンドに貼り替えると解決する
+"   /bin/sh -c "VTE_CJK_WIDTH=1 terminator -m"
+"   /bin/sh -c "VTE_CJK_WIDTH=1 gnome-terminal --disable-factory"
+" MacのiTermでは, Profiles>Text>Double-Width Characters>Treat ambiguous-width characters as double widthにチェック
 set ambiwidth     =double                        " ○や※をちゃんと表示
 set encoding      =utf-8                         " vim内部で通常使用する文字エンコーディングを設定
 set charconvert   =utf-8                         " 文字エンコーディングに使われるexpressionを定める
 set fileencoding  =utf-8                         " バッファのファイルエンコーディングを指定
-set fileencodings =utf-8,sjis,euc-jp,iso-2022-jp " 既存ファイルを開く際の文字コード自動判別
+set fileencodings =utf-8,sjis,euc-jp,iso-2022-jp,jis,cp932,latin " 既存ファイルを開く際の文字コード自動判別
+"}}}
 
-" 検索設定
-set hlsearch                        " 検索結果強調-:nohで解除
-set incsearch                       " インクリメンタルサーチを有効
-set helplang                 =ja,en " ヘルプ検索で日本語を優先
+" 検索設定 "{{{
+set hlsearch         " 検索結果強調-:nohで解除
+set incsearch        " インクリメンタルサーチを有効
+set helplang =ja,en  " ヘルプ検索で日本語を優先
+"}}}
 
+" Java設定 "{{{
+let java_highlight_all       =1
+let java_highlight_functions ="style"
+let java_allow_cpp_keywords  =1
+"}}}
 
-" C auto indent
-set cinoptions+=:0,l1,g0
-fun! GetCppIndent()
-	let l:pline_num = prevnonblank(v:lnum - 1)
-	let l:pline = getline(l:pline_num)
-	if l:pline =~? '<$'
-		if getline(v:lnum) =~# '^\s*>'
-			return indent(pline_num)
-		en
-		return indent(pline_num) + &l:shiftwidth
-	elseif l:pline =~# ',$'
-		if getline(l:pline_num - 1) =~? '<$' "bug fix
-			return indent(l:pline_num)
-		en
-	elseif getline(v:lnum) =~# '^\s*>'
-		return indent(l:pline_num) - &l:shiftwidth
-	en
-	return cindent(v:lnum)
-endf
+" vimrc編集 "{{{
+augroup VimrcEdit
+	autocmd!
 
-" カーソル行のハイライト
-set cursorline
-augroup cch
-	autocmd! cch
-	autocmd WinLeave * set nocursorline
-	autocmd WinEnter,BufRead * set cursorline
+	if !has('gui_running') && !(has('win32') || has('win64'))
+		" .vimrcの再読込時にも色が変化するようにする
+		autocmd BufWritePost $MYVIMRC,*vimrc* nested source $MYVIMRC
+	else
+		" .vimrcの再読込時にも色が変化するようにする
+		autocmd BufWritePost $MYVIMRC,*vimrc* source $MYVIMRC |
+					\if has('gui_running') | source $MYGVIMRC
+		autocmd BufWritePost $MYGVIMRC,*vimrc* if has('gui_running') | source $MYGVIMRC
+	endif
 augroup END
-highlight clear CursorLine
-highlight CursorLine gui=underline
-highlight CursorLine ctermbg=black guibg=black
+command! EditVimrc :edit $MYVIMRC
+"}}}
 
+" オートコマンド設定 "{{{
+augroup MyAutoCommands
+	autocmd!
 
-augroup MyGroup
 	" CMake_xxx.txtもcmake用ハイライトを使う
 	autocmd BufNewFile,BufRead CMakeLists*.txt set filetype=cmake
+
 	" QuickFixを開く
 	autocmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
+	" パスの設定
 	autocmd FileType html   setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=./,/
 	autocmd FileType php    setlocal path+=/usr/local/share/pear
 	autocmd FileType apache setlocal path+=./,/
 	autocmd FileType c      setlocal path+=./,/usr/include/,/usr/local/include/
-	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.6/
-
-	autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
+	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,,**,/usr/include/**
 
 	" 保存時に行末の空白を除去する
 	autocmd BufWritePre * :%s/\s\+$//ge
+
 	" 保存時にtabをスペースに変換する
 	"autocmd BufWritePre * :%s/\t/  /ge
 
@@ -125,4 +151,32 @@ augroup MyGroup
 	au BufNewFile,BufRead *.php setl tags+=$HOME/.vim/tags/php.tags
 	au BufNewFile,BufRead *.py,*.pyc setl tags+=$HOME/.vim/tags/python.tags
 	au BufNewFile,BufRead *.h,*.c,*.cc,*.cpp,*.ipp,*.hpp setl tags+=$HOME/.vim/tags/cpp.tags
+
+	" filetype が設定されていない場合に filetype=cpp を設定する
+	augroup vimrc-set_filetype_cpp
+		autocmd!
+		autocmd BufReadPost /usr/include/c++/4.8/* if empty(&filetype) | set filetype=cpp | endif
+	augroup END
+
+	" C auto indent
+	set cinoptions+=:0,l1,g0
+	fun! GetCppIndent()
+		let l:pline_num = prevnonblank(v:lnum - 1)
+		let l:pline = getline(l:pline_num)
+		if l:pline =~? '<$'
+			if getline(v:lnum) =~# '^\s*>'
+				return indent(pline_num)
+			en
+			return indent(pline_num) + &l:shiftwidth
+		elseif l:pline =~# ',$'
+			if getline(l:pline_num - 1) =~? '<$' "bug fix
+				return indent(l:pline_num)
+			en
+		elseif getline(v:lnum) =~# '^\s*>'
+			return indent(l:pline_num) - &l:shiftwidth
+		en
+		return cindent(v:lnum)
+	endf
+	autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
 augroup END
+"}}}

@@ -12,7 +12,14 @@
 " map! / noremap!        -            @              @                  -
 "-------------------------------------------------------------------------------"
 
+" Leaderを,に変更
+let mapleader = ","
+" ,のデフォルトの機能は、\で使えるように退避
+noremap \ ,
 
+" 標準 "{{{
+
+" カーソル移動 "{{{
 " 行移動を見た目上に行うようにしています。wrap指定している場合、
 " 見た目上は数行に改行されていても内部的には1行なので。
 nnoremap h      <Left>
@@ -22,6 +29,13 @@ noremap  k      gk
 nnoremap <Down> gj
 nnoremap <Up>   gk
 
+" 挿入モードでのカーソル移動
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+"}}}
+
 " 検索結果に移動したとき、その位置を画面の中央にします。
 nnoremap n  nzz
 nnoremap N  Nzz
@@ -30,20 +44,11 @@ nnoremap #  #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
 
-" 挿入モードでのカーソル移動
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-
-" ファイラーを起動
-nnoremap <silent><C-x><C-f> :VimFiler<CR>
-
-" 前のバッファ、次のバッファ、バッファの削除、バッファのリスト
+" 前のバッファ、次のバッファ
 nnoremap <silent><S-b> :bp<CR>
 nnoremap <silent><S-n> :bn<CR>
-nnoremap <silent><S-k> :bd<CR>
-nnoremap <silent><S-l> :Bufferlist<CR>
+" バッファを閉じる
+nnoremap <Leader>xx :bdelete<CR>
 
 " CTRL-hjklでウィンドウ移動
 nnoremap <S-j> <C-w>j
@@ -54,18 +59,11 @@ nnoremap <S-h> <C-w>h
 " 一行追加
 nnoremap <silent><C-o> o<ESC>
 
-" アウトラインを表示
-nnoremap <silent><Leader>t :Unite -vertical -winwidth=30 -no-quit outline<CR>
-
-" ツリーをトグル
-nmap <Leader>n :NERDTreeToggle<CR>
-
 " Ctrl s で保存などWindows系キーバインド(.bashrcなんかで$stty -ixon　-ixoffが必要)
 nnoremap <C-s> <ESC>:w<CR>
 inoremap <C-s> <ESC><ESC>:w<CR>i
 nnoremap <C-q> <ESC>:q!<CR>
 inoremap <C-q> <ESC>:q!<CR>
-
 
 " Spaceでページ送り
 nnoremap <Space> <C-f>
@@ -75,81 +73,100 @@ nnoremap <CR> i<CR><ESC>^^
 " ノーマルモードBSで削除
 nnoremap  i<ESC>l
 
-" Doxygenコメントの追加
-nnoremap <C-d><C-x> :Dox<CR>
-
-" Clangでフォーマット
-map ,x <Plug>(operator-clang-format)
-
-" 連番入力
-" ノーマルモードで連番に置換したい数字の上で3coとかで3行文連番になる
-" ビジュアルモード選択後だと選択行が連番に
-nnoremap <silent> co :ContinuousNumber <C-a><CR>
-vnoremap <silent> co :ContinuousNumber <C-a><CR>
-command! -count -nargs=1 ContinuousNumber let c = col('.')|for n in range(1, <count>?<count>-line('.'):1)|exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
-
-" バッファを閉じる
-nnoremap <Leader>xx :bdelete<CR>
-
-
-" TabPageの設定
-" Anywhere SID.
-function! s:SID_PREFIX()
-	return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
-endfunction
-
-" Set tabline.
-function! s:my_tabline()  "{{{
-	let s = ''
-	for i in range(1, tabpagenr('$'))
-		let bufnrs = tabpagebuflist(i)
-		let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
-		let no = i  " display 0-origin tabpagenr.
-		let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
-		let title = fnamemodify(bufname(bufnr), ':t')
-		let title = '[' . title . ']'
-		let s .= '%'.i.'T'
-		let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
-		let s .= no . ':' . title
-		let s .= mod
-		let s .= '%#TabLineFill# '
-	endfor
-	let s .= '%#TabLineFill#%T%=%#TabLine#'
-	return s
-endfunction "}}}
-let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
-set showtabline=2 " 常にタブラインを表示
-
-" The prefix key.
-nnoremap    [Tag]   <Nop>
-nmap    t [Tag]
-" Tab jump
-for n in range(1, 9)
-	execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
-endfor
-" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
-
-" tc 新しいタブを一番右に作る
-map <silent> [Tag]c :tablast <bar> tabnew<CR>
-" tx タブを閉じる
-map <silent> [Tag]x :tabclose<CR>
-" tn 次のタブ
-map <silent> [Tag]n :tabnext<CR>
-" tp 前のタブ
-map <silent> [Tag]p :tabprevious<CR>
-
-" UNDO履歴表示
-nmap U :<C-u>GundoToggle<CR>
-
 "Escの2回押しでハイライト消去
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
-" Ctrl-iでヘルプ
-nnoremap <C-i>  :<C-u>help<Space>
 " カーソル下のキーワードをヘルプでひく
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><CR>
 
 " tagsジャンプの時に複数ある時は一覧表示
 nnoremap <C-]> g<C-]>
 
+" 連番入力
+" ノーマルモードで連番に置換したい数字の上で3coとかで3行文連番になる
+" ビジュアルモード選択後だと選択行が連番に
+nnoremap <silent> co :ContinuousNumber <C-a><CR>
+vnoremap <silent> co :ContinuousNumber <C-a><CR>
+command! -count -nargs=1 ContinuousNumber let c = col('.')|
+			\ for n in range(1, <count>?<count>-line('.'):1)|
+			\ exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
+"}}}
 
+" タブ "{{{
+" The prefix key.
+nnoremap [Tab] <Nop>
+nmap t [Tab]
+
+" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
+for n in range(1, 9)
+	execute 'nnoremap <silent> [Tab]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+
+" tc 新しいタブを一番右に作る
+map <silent> [Tab]c :tablast <bar> tabnew<CR>
+" tx タブを閉じる
+map <silent> [Tab]x :tabclose<CR>
+" tn 次のタブ
+map <silent> [Tab]n :tabnext<CR>
+" tp 前のタブ
+map <silent> [Tab]p :tabprevious<CR>
+"}}}
+
+" Plugins "{{{
+"
+" UNDO履歴表示
+nmap U :<C-u>GundoToggle<CR>
+
+" Doxygenコメントの追加
+nnoremap <C-d><C-x> :Dox<CR>
+
+" Clangでフォーマット
+map ,x <Plug>(operator-clang-format)
+
+" ファイラーを起動
+nnoremap <silent><C-x><C-f> :VimFiler<CR>
+
+" ツリーをトグル
+nmap <Leader>n :NERDTreeToggle<CR>
+
+" gitの変更箇所をマークする
+nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+
+" コメントアウトを切り替えるマッピング
+" \c でカーソル行をコメントアウト
+" 再度 \c でコメントアウトを解除
+" 選択してから複数行の \c も可能
+nmap <Leader>c <Plug>(caw:I:toggle)
+vmap <Leader>c <Plug>(caw:I:toggle)
+
+" \C でコメントアウトの解除
+nmap <Leader>C <Plug>(caw:I:uncomment)
+vmap <Leader>C <Plug>(caw:I:uncomment)
+
+" <Space>m でカーソル下の単語、もしくは選択した範囲のハイライトを行う
+" 再度 <Space>m を行うとカーソル下のハイライトを解除する
+" これは複数の単語のハイライトを行う事もできる
+" <Space>M で全てのハイライトを解除する
+nmap <Leader>m <Plug>(quickhl-manual-this)
+xmap <Leader>m <Plug>(quickhl-manual-this)
+nmap <Leader>M <Plug>(quickhl-manual-reset)
+xmap <Leader>M <Plug>(quickhl-manual-reset)
+
+" Unite "{{{
+nnoremap [unite] <Nop>
+xnoremap [unite] <Nop>
+nmap f [unite]
+xmap f [unite]
+
+nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
+xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
+
+" アウトラインを表示
+nnoremap <silent><Leader>t :Unite -vertical -winwidth=30 -no-quit outline<CR>
+
+" Uniteでビルド
+nnoremap <Leader>bb :Unite -no-quit -direction=botright -winheight=14 build<CR>
+"}}}
+
+"}}}

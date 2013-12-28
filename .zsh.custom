@@ -87,6 +87,6 @@ alias ex='extract'
 RPROMPT="%F{cyan}[%D %*]%f"
 setopt transient_rprompt
 local p_mark="%(!,#,$)"
-PROMPT='%{%F{green}%B%n@%m%b%f:%F{blue}%~%f%F{red}%B%1(v|%F{red}%1v%f|)%b%f$p_mark%}
+PROMPT='%{%F{green}%B%n@%m%b%f:%F{blue}%~%f%F{red}%B%1(v|%F{red}%1v%f|)%b%f${p_mark}%}
 >'
 
