@@ -691,6 +691,10 @@ NeoBundle 'a.vim'
 " 最新のC++シンタックス情報
 NeoBundle 'vim-jp/cpp-vim'
 
+" JSON
+NeoBundle 'elzr/vim-json'
+NeoBundle '5t111111/neat-json.vim'
+
 " ctags情報から型をハイライト
 NeoBundle 'TagHighlight'
 augroup Highlight
