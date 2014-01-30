@@ -3,6 +3,7 @@
 rm ~/.bashrc
 rm ~/.gdbinit
 rm ~/.gitconfig
+rm ~/.git-completion.bash
 rm ~/.gvimrc
 rm ~/.inputrc
 rm ~/.tmux.conf

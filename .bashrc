@@ -170,8 +170,8 @@ alias pd=pushd
 alias bd=popd
 
 # less syntax hightlight
-export LESS='-R'
-export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
+# export LESS='-R'
+# export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
 
 # ssh X forwarding aliases
 alias sshosore='ssh -X -Y momma@osore'

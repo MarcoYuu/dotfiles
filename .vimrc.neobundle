@@ -1,5 +1,4 @@
-
-" ------------------------------------------------------------
+"-----------------------------------------------------------
 " NeoBundle よるプラグインのロード
 " ------------------------------------------------------------
 
@@ -88,6 +87,14 @@ let g:quickrun_config = {
 			\       "runner" : "vimproc",
 			\   },
 			\}
+if executable("clang++")
+	let g:quickrun_config = {}
+	let g:quickrun_config['cpp/clang++11'] = {
+				\ 'cmdopt': '--std=c++11 --stdlib=libc++',
+				\ 'type': 'cpp/clang++'
+				\ }
+	let g:quickrun_config['cpp'] = {'type': 'cpp/clang++11'}
+endif
 
 " QuickRun Hooks
 NeoBundle 'osyo-manga/shabadou.vim'
@@ -635,8 +642,9 @@ else
 	" clang_complete 側の設定
 	" clang_complete の自動呼び出しは必ず切っておいて下さい
 	" これを設定しておかなければ補完がおかしくなります
-	let g:clang_complete_auto = 0_
-	let g:clang_use_library   = 1_
+
+	let g:clang_complete_auto = 0
+	let g:clang_use_library   = 1
 	let g:clang_library_path  = '/usr/lib/'
 	let g:clang_user_options  = '-std=c++11'
 endif
@@ -709,6 +717,11 @@ augroup END
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
+let g:syntastic_c_include_dirs = ['./','/usr/include/','/usr/local/include/','/usr/include/c++/4.8/']
+if executable("clang++")
+	let g:syntastic_cpp_compiler = 'clang++'
+	let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
+endif
 augroup AutoSyntastic
 	autocmd!
 	autocmd BufWritePost *.c,*.cpp,*.cc,*.h,*.hpp,*.ipp,*.hh call s:syntastic()

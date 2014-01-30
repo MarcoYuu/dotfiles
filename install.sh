@@ -16,6 +16,7 @@
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.gdbinit ~/.gdbinit
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/.git-completion.bash ~/.git-completion.bash
 ln -s ~/dotfiles/.gvimrc ~/.gvimrc
 ln -s ~/dotfiles/.inputrc ~/.inputrc
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
