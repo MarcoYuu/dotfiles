@@ -1,17 +1,19 @@
 #!/bin/bash
 
-# rm ~/.bashrc
-# rm ~/.gdbinit
-# rm ~/.gitconfig
-# rm ~/.gvimrc
-# rm ~/.inputrc
-# rm ~/.tmux.conf
-# rm ~/.tmux-powerlinerc
-# rm ~/.vimrc
-# rm ~/.zshrc
-# rm ~/.ctags
-# rm -rf ~/.vim
-# rm -rf ~/bin
+mkdir ~/dotfiles_backup
+
+mv ~/.bashrc ~/dotfiles_backup
+mv ~/.gdbinit ~/dotfiles_backup
+mv ~/.gitconfig ~/dotfiles_backup
+mv ~/.gvimrc ~/dotfiles_backup
+mv ~/.inputrc ~/dotfiles_backup
+mv ~/.tmux.conf ~/dotfiles_backup
+mv ~/.tmux-powerlinerc ~/dotfiles_backup
+mv ~/.vimrc ~/dotfiles_backup
+mv ~/.zshrc ~/dotfiles_backup
+mv ~/.ctags ~/dotfiles_backup
+mv -rf ~/.vim ~/dotfiles_backup
+mv -rf ~/bin ~/dotfiles_backup
 
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.gdbinit ~/.gdbinit
@@ -37,6 +39,15 @@ if [ ! -d ${NEO_BUNDLE_DIR} ]; then
 	git clone git://github.com/Shougo/neobundle.vim $NEO_BUNDLE_DIR
 fi
 
-git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+RBENV_DIR=~/.rbenv
+if [ ! -d ${RBENV_DIR} ]; then
+	git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
+fi
+
+ZSH_EASY_SETTING_DIR=~/.rbenv
+if [ ! -d ${ZSH_EASY_SETTING_DIR} ]; then
+	git clone git://github.com/robbyrussell/oh-my-zsh.git ~/dotfiles/.oh-my-zsh
+fi
+
 sudo apt-get install command-not-found
 sudo apt-get install tig
