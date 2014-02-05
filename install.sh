@@ -42,6 +42,8 @@ fi
 RBENV_DIR=~/.rbenv
 if [ ! -d ${RBENV_DIR} ]; then
 	git clone git://github.com/sstephenson/rbenv.git ~/.rbenv
+	mkdir -p ~/.rbenv/plugins
+	git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 fi
 
 ZSH_EASY_SETTING_DIR=~/.rbenv

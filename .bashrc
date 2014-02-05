@@ -218,5 +218,13 @@ man() {
 		LESS_TERMCAP_us=$(printf "\e[1;32m") \
 		man "$@"
 }
+
+# ruby env
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# make のデフォオプション
+export MAKEOPTS=-j4
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
