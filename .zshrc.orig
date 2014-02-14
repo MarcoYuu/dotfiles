@@ -119,12 +119,6 @@ alias emacs='XMODIFIERS=@im=none emacs'
 export LESS='-R'
 export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
 
-# ssh X forwarding aliases
-alias sshosore='ssh -X -Y momma@osore' 
-alias sshhome='ssh -X -Y yuumomma@beafjerkyoishi.hobby.jp' 
-alias sshtesla='ssh -X -Y momma@tesla' 
-alias sshlab='ssh -X -Y momma@gate0.comp.sd.keio.ac.jp' 
-
 # gcc切り替え
 alias switchgcc='sudo update-alternatives --config gcc'
 
@@ -163,7 +157,7 @@ GIT_PS1_SHOWDIRTYSTATE=true
 #RPROMPT="%1(v|%F{red}%1v%f|)"
 RPROMPT="%1(v|%F{red}%1v%f|) %F{cyan}[%D %*]%f"
 setopt transient_rprompt
-PROMPT='%{%F{green}%B%n@%m%b%f:%F{blue}%~%f%F{red}%B$(__git_ps1)%b%f%#%} 
+PROMPT='%{%F{green}%B%n@%m%b%f:%F{blue}%~%f%F{red}%B$(__git_ps1)%b%f%#%}
 > '
 
 

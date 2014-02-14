@@ -169,16 +169,6 @@ fi
 alias pd=pushd
 alias bd=popd
 
-# less syntax hightlight
-# export LESS='-R'
-# export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
-
-# ssh X forwarding aliases
-alias sshosore='ssh -X -Y momma@osore'
-alias sshhome='ssh -X -Y yuumomma@beafjerkyoishi.hobby.jp'
-alias sshtesla='ssh -X -Y momma@tesla'
-alias sshlab='ssh -X -Y momma@gate0.comp.sd.keio.ac.jp'
-
 # cuda 64bit
 export MANPATH=$MANPATH:/usr/local/cuda/man
 export PATH=$PATH:/usr/local/cuda/bin
