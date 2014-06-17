@@ -218,3 +218,7 @@ export MAKEOPTS=-j4
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+#  [[ -s "/share/home/momma/.gvm/bin/gvm-init.sh" ]] && source "/share/home/momma/.gvm/bin/gvm-init.sh"
+#  export GVM_SERVICE="api.gvmtool.net"

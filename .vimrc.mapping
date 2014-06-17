@@ -13,9 +13,9 @@
 "-------------------------------------------------------------------------------"
 
 " Leaderを,に変更
-let mapleader = ","
+"let mapleader = ","
 " ,のデフォルトの機能は、\で使えるように退避
-noremap \ ,
+"noremap \ ,
 
 " 標準 "{{{
 
@@ -169,4 +169,16 @@ nnoremap <silent><Leader>t :Unite -vertical -winwidth=30 -no-quit outline<CR>
 nnoremap <Leader>bb :Unite -no-quit -direction=botright -winheight=14 build<CR>
 "}}}
 
+" over.vim {{{
+
+" over.vimの起動
+nnoremap <silent> <Leader>m :OverCommandLine<CR>
+
+" カーソル下の単語をハイライト付きで置換
+nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+
+" コピーした文字列をハイライト付きで置換
+nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
+" }}}
 "}}}

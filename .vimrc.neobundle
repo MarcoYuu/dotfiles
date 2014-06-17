@@ -137,6 +137,8 @@ NeoBundleLazy 'buffet.vim', {
 			\ 'autoload': {
 			\ 'commands': ['Bufferlistsw', 'Bufferlist']}}
 
+" 置換操作をヴィジュアライズ
+NeoBundle 'osyo-manga/vim-over'
 "}}}
 
 " 表示 "{{{
@@ -332,7 +334,7 @@ NeoBundle "tyru/caw.vim"
 NeoBundle 'ujihisa/neco-look'
 
 " ZenCoding記法
-NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/emmet-vim'
 
 " Doxygenコメントを追加する
 NeoBundleLazy 'DoxygenToolkit.vim', {
@@ -414,6 +416,7 @@ unlet s:comment_leadings
 
 " スニペット
 NeoBundle 'Shougo/neosnippet'
+NeoBundle "Shougo/neosnippet-snippets"
 NeoBundle 'honza/vim-snippets'
 let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
@@ -653,8 +656,8 @@ endif
 "}}}
 
 " clangによるC/C++の補完
-NeoBundle 'osyo-manga/neocomplcache-clang_complete'
-NeoBundle 'Rip-Rip/clang_complete'
+"NeoBundle 'osyo-manga/neocomplcache-clang_complete'
+"NeoBundle 'Rip-Rip/clang_complete'
 "NeoBundle "osyo-manga/vim-marching"
 "}}}
 
@@ -731,12 +734,12 @@ NeoBundle '5t111111/neat-json.vim'
 
 " ctags情報から型をハイライト
 NeoBundle 'TagHighlight'
-augroup Highlight
-	autocmd!
-	au BufNewFile *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-	au BufRead *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-	au TabEnter *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-augroup END
+" augroup Highlight
+" 	autocmd!
+" 	au BufNewFile *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
+" 	au BufRead *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
+" 	au TabEnter *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
+" augroup END
 
 " syntacs check "{{{
 NeoBundle 'scrooloose/syntastic'
