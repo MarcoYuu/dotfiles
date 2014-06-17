@@ -29,6 +29,7 @@ ln -s ~/dotfiles/.ctags ~/.ctags
 ln -s ~/dotfiles/.vim ~/.vim
 ln -s ~/dotfiles/bin ~/bin
 
+
 VIM_DIR=~/.vim
 if [ ! -d ${VIM_DIR}/bundle ]; then
 	mkdir -p ${VIM_DIR}/bundle

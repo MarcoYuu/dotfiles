@@ -51,4 +51,4 @@ source ~/dotfiles/.zsh.custom
 export PATH=~/bin:/usr/local/bin:${PATH}
 
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
-[[ -s "/home/momma/.gvm/bin/gvm-init.sh" ]] && source "/home/momma/.gvm/bin/gvm-init.sh"
+[[ -s "~/.gvm/bin/gvm-init.sh" ]] && source "~/.gvm/bin/gvm-init.sh"

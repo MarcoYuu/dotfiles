@@ -137,6 +137,8 @@ NeoBundleLazy 'buffet.vim', {
 			\ 'autoload': {
 			\ 'commands': ['Bufferlistsw', 'Bufferlist']}}
 
+" 置換操作をヴィジュアライズ
+NeoBundle 'osyo-manga/vim-over'
 "}}}
 
 " 表示 "{{{
@@ -332,7 +334,6 @@ NeoBundle "tyru/caw.vim"
 NeoBundle 'ujihisa/neco-look'
 
 " ZenCoding記法
-" NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/emmet-vim'
 
 " Doxygenコメントを追加する
@@ -560,7 +561,7 @@ else
 	" ポップアップメニューで表示される候補の数
 	let g:neocomplcache_max_list                     = 20
 	" シンタックスをキャッシュするときの最小文字長
-	let g:neocomplcache_min_syntax_length            = 2
+	let g:neocomplcache_min_syntax_length            = 3
 	let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 	" Enable heavy features.
@@ -694,25 +695,25 @@ map R  <Plug>(operator-replace)
 "
 " Tagsファイル生成(rubyとか向け)
 NeoBundleLazy 'alpaca-tc/alpaca_tags', {
-			\ 'rev' : 'development',
-			\ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
-			\ 'autoload' : {
-			\   'commands' : ['Tags', 'TagsUpdate', 'TagsSet', 'TagsBundle', 'TagsCleanCache'],
-			\   'unite_sources' : ['tags']
-			\ }}
+      \ 'rev' : 'development',
+      \ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
+      \ 'autoload' : {
+      \   'commands' : ['Tags', 'TagsUpdate', 'TagsSet', 'TagsBundle', 'TagsCleanCache'],
+      \   'unite_sources' : ['tags']
+      \ }}
 " ~/.ctagsにctagsの設定ファイルを設置します。現在無い人は、このディレクトリ内の.ctagsをコピーしてください。
 " 適切なlanguageは`ctags --list-maps=all`で見つけてください。人によりますので。
 let g:alpaca_update_tags_config = {
-			\ '_' : '-R --sort=yes --languages=-js,html,css',
-			\ 'ruby': '--languages=+Ruby',
-			\ }
+      \ '_' : '-R --sort=yes --languages=-js,html,css',
+      \ 'ruby': '--languages=+Ruby',
+      \ }
 augroup AlpacaTags
-	autocmd!
-	if exists(':Tags')
-		autocmd BufWritePost * TagsUpdate ruby
-		autocmd BufWritePost Gemfile TagsBundle
-		autocmd BufEnter * TagsSet
-	endif
+  autocmd!
+  if exists(':Tags')
+    autocmd BufWritePost * TagsUpdate ruby
+    autocmd BufWritePost Gemfile TagsBundle
+    autocmd BufEnter * TagsSet
+  endif
 augroup END
 nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<cword>").'<CR>'
 
