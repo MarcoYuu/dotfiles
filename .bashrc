@@ -145,6 +145,8 @@ fi
 
 # PATH
 export PATH=~/bin:/usr/local/bin:${PATH}
+export PATH=${PATH}:/opt/android-studio/sdk/platform-tools:/opt/android-studio/sdk/tools
+
 
 # aliases
 alias ls='ls -pF --color=auto --group-directories-first'
@@ -218,3 +220,7 @@ export MAKEOPTS=-j4
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+#curl -s get.gvmtool.net/selfupdate | bash
+#[[ -s "/home/momma/.gvm/bin/gvm-init.sh" ]] && source "/home/momma/.gvm/bin/gvm-init.sh"

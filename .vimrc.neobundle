@@ -332,7 +332,8 @@ NeoBundle "tyru/caw.vim"
 NeoBundle 'ujihisa/neco-look'
 
 " ZenCoding記法
-NeoBundle 'mattn/zencoding-vim'
+" NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/emmet-vim'
 
 " Doxygenコメントを追加する
 NeoBundleLazy 'DoxygenToolkit.vim', {
@@ -414,8 +415,9 @@ unlet s:comment_leadings
 
 " スニペット
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
 
 " 補完 "{{{
 
@@ -452,7 +454,7 @@ if s:meet_neocomplete_requirements()
 	" ポップアップメニューで表示される候補の数
 	let g:neocomplete#max_list                     = 20
 
-	let g:neocomplete#sources#syntax#min_keyword_length            = 3
+	let g:neocomplete#sources#syntax#min_keyword_length            = 2
 	let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 	let g:neocomplete#enable_fuzzy_completion = 1
@@ -558,7 +560,7 @@ else
 	" ポップアップメニューで表示される候補の数
 	let g:neocomplcache_max_list                     = 20
 	" シンタックスをキャッシュするときの最小文字長
-	let g:neocomplcache_min_syntax_length            = 3
+	let g:neocomplcache_min_syntax_length            = 2
 	let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 	" Enable heavy features.
@@ -645,7 +647,7 @@ else
 
 	let g:clang_complete_auto = 0
 	let g:clang_use_library   = 1
-	let g:clang_library_path  = '/usr/lib/'
+	let g:clang_library_path  = '/usr/lib/llvm-3.5/lib/'
 	let g:clang_user_options  = '-std=c++11'
 endif
 "}}}
@@ -653,8 +655,8 @@ endif
 "}}}
 
 " clangによるC/C++の補完
-NeoBundle 'osyo-manga/neocomplcache-clang_complete'
-NeoBundle 'Rip-Rip/clang_complete'
+" NeoBundle 'osyo-manga/neocomplcache-clang_complete'
+" NeoBundle 'Rip-Rip/clang_complete'
 "NeoBundle "osyo-manga/vim-marching"
 "}}}
 
@@ -692,28 +694,35 @@ map R  <Plug>(operator-replace)
 "
 " Tagsファイル生成(rubyとか向け)
 NeoBundleLazy 'alpaca-tc/alpaca_tags', {
-      \ 'rev' : 'development',
-      \ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
-      \ 'autoload' : {
-      \   'commands' : ['Tags', 'TagsUpdate', 'TagsSet', 'TagsBundle', 'TagsCleanCache'],
-      \   'unite_sources' : ['tags']
-      \ }}
+			\ 'rev' : 'development',
+			\ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
+			\ 'autoload' : {
+			\   'commands' : ['Tags', 'TagsUpdate', 'TagsSet', 'TagsBundle', 'TagsCleanCache'],
+			\   'unite_sources' : ['tags']
+			\ }}
 " ~/.ctagsにctagsの設定ファイルを設置します。現在無い人は、このディレクトリ内の.ctagsをコピーしてください。
 " 適切なlanguageは`ctags --list-maps=all`で見つけてください。人によりますので。
 let g:alpaca_update_tags_config = {
-      \ '_' : '-R --sort=yes --languages=-js,html,css',
-      \ 'ruby': '--languages=+Ruby',
-      \ }
+			\ '_' : '-R --sort=yes --languages=-js,html,css',
+			\ 'ruby': '--languages=+Ruby',
+			\ }
 augroup AlpacaTags
-  autocmd!
-  if exists(':Tags')
-    autocmd BufWritePost * TagsUpdate ruby
-    autocmd BufWritePost Gemfile TagsBundle
-    autocmd BufEnter * TagsSet
-  endif
+	autocmd!
+	if exists(':Tags')
+		autocmd BufWritePost * TagsUpdate ruby
+		autocmd BufWritePost Gemfile TagsBundle
+		autocmd BufEnter * TagsSet
+	endif
 augroup END
 nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<cword>").'<CR>'
 
+" Android開発
+" LogCat
+NeoBundleLazy 'thinca/vim-logcat', {
+			\ 'autoload': {
+			\ 'commands': ['LogcatClear', 'Logcat']}}
+NeoBundle 'hsanson/vim-android'
+let g:android_sdk_path='/opt/android-studio/sdk'
 
 " pythonのシンタックスチェック(QuickFix On/Off)
 NeoBundle 'mitechie/pyflakes-pathogen'
@@ -725,24 +734,31 @@ NeoBundle 'a.vim'
 " 最新のC++シンタックス情報
 NeoBundle 'vim-jp/cpp-vim'
 
+" #ifdef highlight
+NeoBundle 'vim-scripts/ifdef-highlighting'
+
 " JSON
 NeoBundle 'elzr/vim-json'
 NeoBundle '5t111111/neat-json.vim'
 
 " ctags情報から型をハイライト
 NeoBundle 'TagHighlight'
-augroup Highlight
-	autocmd!
-	au BufNewFile *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-	au BufRead *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-	au TabEnter *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-augroup END
+" augroup Highlight
+" 	autocmd!
+" 	au BufNewFile *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
+" 	au BufRead *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
+" 	au TabEnter *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
+" augroup END
 
 " syntacs check "{{{
 NeoBundle 'scrooloose/syntastic'
+let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
 let g:syntastic_c_include_dirs = ['./','/usr/include/','/usr/local/include/','/usr/include/c++/4.8/']
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_remove_include_errors = 1
+let g:syntastic_cpp_include_dirs = ['./','/usr/include/','/usr/local/include/','/usr/include/c++/4.8/']
 if executable("clang++")
 	let g:syntastic_cpp_compiler = 'clang++'
 	let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
@@ -795,11 +811,6 @@ NeoBundleLazy 'mattn/excitetranslate-vim', {
 			\ 'depends' : 'mattn/webapi-vim',
 			\ 'autoload': {'commands': ['ExciteTranslate']}}
 NeoBundle 'mattn/webapi-vim'
-
-" LogCat
-NeoBundleLazy 'thinca/vim-logcat', {
-			\ 'autoload': {
-			\ 'commands': ['LogcatClear', 'Logcat']}}
 
 " Markdown for vim
 NeoBundle 'kannokanno/previm'
