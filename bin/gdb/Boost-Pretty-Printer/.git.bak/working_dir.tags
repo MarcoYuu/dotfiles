@@ -1,0 +1,273 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BaseSet	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^typedef boost::intrusive::set< MyClass, boost::intrusive::compare<std::greater<MyClass> > > BaseSet;$/;"	t	file:
+BoostArray	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostArray:$/;"	c
+BoostCircular	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostCircular:$/;"	c
+BoostGregorianDate	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostGregorianDate:$/;"	c
+BoostIntrusiveList	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostIntrusiveList:$/;"	c
+BoostIntrusiveListIterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostIntrusiveListIterator:$/;"	c
+BoostIntrusiveRbtreeIterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostIntrusiveRbtreeIterator:$/;"	c
+BoostIntrusiveSet	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostIntrusiveSet:$/;"	c
+BoostIntrusiveTreeIterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostIntrusiveTreeIterator:$/;"	c
+BoostIteratorRange	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostIteratorRange:$/;"	c
+BoostOptional	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostOptional:$/;"	c
+BoostPosixTimePTime	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostPosixTimePTime:$/;"	c
+BoostReferenceWrapper	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostReferenceWrapper:$/;"	c
+BoostScopedPtr	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostScopedPtr:$/;"	c
+BoostSharedPtr	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostSharedPtr:$/;"	c
+BoostTribool	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostTribool:$/;"	c
+BoostUuid	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostUuid:$/;"	c
+BoostVariant	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class BoostVariant:$/;"	c
+Boost_Multi_Index	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class Boost_Multi_Index:$/;"	c
+GDB_Value_Wrapper	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class GDB_Value_Wrapper():$/;"	c
+Int_Set	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^    > Int_Set;$/;"	t	file:
+MyClass	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^   MyClass(int i)$/;"	f	class:MyClass
+MyClass	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^class MyClass : public boost::intrusive::set_base_hook<boost::intrusive::optimize_size<true> >$/;"	c	file:
+MyClass_list	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^   MyClass_list(int i)$/;"	f	class:MyClass_list
+MyClass_list	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^class MyClass_list : public boost::intrusive::list_base_hook<>   \/\/This is a derivation hook$/;"	c	file:
+Printer_Gen	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^class Printer_Gen(object):$/;"	c
+SubPrinter_Gen	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class SubPrinter_Gen(object):$/;"	c	class:Printer_Gen
+__call__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __call__(self, v):$/;"	m	class:Printer_Gen.SubPrinter_Gen	file:
+__call__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __call__(self, value):$/;"	m	class:Printer_Gen	file:
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self):$/;"	m	class:Boost_Multi_Index.empty_iterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self, Printer):$/;"	m	class:Printer_Gen.SubPrinter_Gen
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self, begin, end):$/;"	m	class:BoostIteratorRange._iterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self, elem_type, index_offset, begin, end):$/;"	m	class:Boost_Multi_Index.sequenced_iterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self, elem_type, index_offset, first, last):$/;"	m	class:Boost_Multi_Index.ordered_iterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self, first, last, buff, end, size):$/;"	m	class:BoostCircular._iterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self, index_type):$/;"	m	class:Boost_Multi_Index.na_iterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self, listiter):$/;"	m	class:BoostIntrusiveList._iter
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self, member, empty):$/;"	m	class:BoostOptional._iterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __init__(self, rbiter):$/;"	m	class:BoostIntrusiveSet._iter
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, listHeader, elementPointerType, memberOffset=0):$/;"	m	class:BoostIntrusiveListIterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, name):$/;"	m	class:Printer_Gen
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, rbTreeHeader, elementPointerType, memberOffset=0):$/;"	m	class:BoostIntrusiveRbtreeIterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, v):$/;"	m	class:Boost_Multi_Index
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostArray
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostCircular
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostGregorianDate
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostIntrusiveList
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostIntrusiveListIterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostIntrusiveSet
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostIntrusiveTreeIterator
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostIteratorRange
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostOptional
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostPosixTimePTime
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostReferenceWrapper
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostScopedPtr
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostSharedPtr
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostTribool
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostUuid
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:BoostVariant
+__init__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __init__(self, value):$/;"	m	class:GDB_Value_Wrapper
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __iter__(self):$/;"	m	class:BoostCircular._iterator	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __iter__(self):$/;"	m	class:BoostIntrusiveList._iter	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __iter__(self):$/;"	m	class:BoostIntrusiveSet._iter	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __iter__(self):$/;"	m	class:BoostIteratorRange._iterator	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __iter__(self):$/;"	m	class:BoostOptional._iterator	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __iter__(self):$/;"	m	class:Boost_Multi_Index.empty_iterator	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __iter__(self):$/;"	m	class:Boost_Multi_Index.na_iterator	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __iter__(self):$/;"	m	class:Boost_Multi_Index.ordered_iterator	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def __iter__(self):$/;"	m	class:Boost_Multi_Index.sequenced_iterator	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __iter__(self):$/;"	m	class:BoostIntrusiveListIterator	file:
+__iter__	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def __iter__(self):$/;"	m	class:BoostIntrusiveRbtreeIterator	file:
+_boost_multi_index_get_indexes	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def _boost_multi_index_get_indexes(v):$/;"	f
+_boost_multi_index_index_size	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^_boost_multi_index_index_size = {}$/;"	v
+_cant_register_printer	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def _cant_register_printer(Printer):$/;"	f
+_conditionally_register_printer	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def _conditionally_register_printer(condition):$/;"	f
+_get_subtype	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def _get_subtype(basic_type, idx):$/;"	f
+_have_execute_to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    _have_execute_to_string = False$/;"	v
+_have_execute_to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^_have_execute_to_string = True$/;"	v
+_have_gdb_printing	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    _have_gdb_printing = False$/;"	v
+_have_gdb_printing	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^_have_gdb_printing = True$/;"	v
+_is_boost_multi_index	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def _is_boost_multi_index(v):$/;"	f
+_iter	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class _iter:$/;"	c	class:BoostIntrusiveList
+_iter	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class _iter:$/;"	c	class:BoostIntrusiveSet
+_iterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class _iterator:$/;"	c	class:BoostCircular
+_iterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class _iterator:$/;"	c	class:BoostIteratorRange
+_iterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class _iterator:$/;"	c	class:BoostOptional
+_paren_split	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def _paren_split(s, target_paren = '<'):$/;"	f
+_register_printer	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def _register_printer(Printer):$/;"	f
+_strip_inheritance_qual	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def _strip_inheritance_qual(s):$/;"	f
+add	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def add(self, Printer):$/;"	m	class:Printer_Gen
+children	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def children (self):$/;"	m	class:BoostIntrusiveList
+children	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def children (self):$/;"	m	class:BoostIntrusiveSet
+children	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def children(self):$/;"	m	class:BoostCircular
+children	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def children(self):$/;"	m	class:BoostIteratorRange
+children	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def children(self):$/;"	m	class:BoostOptional
+children	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def children(self):$/;"	m	class:Boost_Multi_Index
+display_hint	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def display_hint(self):$/;"	m	class:BoostArray
+display_hint	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def display_hint(self):$/;"	m	class:BoostCircular
+display_hint	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def display_hint(self):$/;"	m	class:BoostIteratorRange
+done	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^int done()$/;"	f
+done	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^int done()$/;"	f
+empty_cont	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def empty_cont(self):$/;"	m	class:Boost_Multi_Index
+empty_iterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class empty_iterator:$/;"	c	class:Boost_Multi_Index
+gen	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::uuids::string_generator gen;$/;"	v
+getElementPointerFromNodePointer	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def getElementPointerFromNodePointer(self):$/;"	m	class:BoostIntrusiveListIterator
+getElementPointerFromNodePointer	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def getElementPointerFromNodePointer(self):$/;"	m	class:BoostIntrusiveRbtreeIterator
+getHeader	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def getHeader(self):$/;"	m	class:BoostIntrusiveList
+getHeader	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def getHeader(self):$/;"	m	class:BoostIntrusiveSet
+getSize	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def getSize(self):$/;"	m	class:BoostIntrusiveList
+getSize	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def getSize(self):$/;"	m	class:BoostIntrusiveSet
+get_basic_type	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def get_basic_type(type):$/;"	f
+get_left_ptr	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def get_left_ptr(node_ptr):$/;"	m	class:Boost_Multi_Index.ordered_iterator
+get_named_template_argument	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def get_named_template_argument(gdb_type, arg_name):$/;"	f
+get_next_ptr	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def get_next_ptr(node_ptr):$/;"	m	class:Boost_Multi_Index.sequenced_iterator
+get_parent_ptr	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def get_parent_ptr(node_ptr):$/;"	m	class:Boost_Multi_Index.ordered_iterator
+get_prev_ptr	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def get_prev_ptr(node_ptr):$/;"	m	class:Boost_Multi_Index.sequenced_iterator
+get_right_ptr	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def get_right_ptr(node_ptr):$/;"	m	class:Boost_Multi_Index.ordered_iterator
+get_val_ptr	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def get_val_ptr(node_ptr, index_offset):$/;"	m	class:Boost_Multi_Index
+hasElements	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def hasElements(self):$/;"	m	class:BoostIntrusiveList
+hasElements	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def hasElements(self):$/;"	m	class:BoostIntrusiveSet
+idx	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    idx = {}$/;"	v	class:Boost_Multi_Index
+insert	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^    s.insert(s.end(), 14);$/;"	p	file:
+insert	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^    s.insert(s.end(), 17);$/;"	p	file:
+insert	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^    s.insert(s.end(), 3);$/;"	p	file:
+insert	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^    s.insert(s.end(), 4);$/;"	p	file:
+insert	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^    s.insert(s.end(), 5);$/;"	p	file:
+insert	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^    s.insert(s.end(), 9);$/;"	p	file:
+insert	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^    s.insert(s.end(), argc);$/;"	p	file:
+insert	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^    v_intrusive_set_2.insert(tmp);$/;"	p	file:
+int_	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^   int int_;$/;"	m	class:MyClass	file:
+int_	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^   int int_;$/;"	m	class:MyClass_list	file:
+intrusive_container_has_size_member	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def intrusive_container_has_size_member(intrusive_container_type):$/;"	f
+intrusive_iterator_to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def intrusive_iterator_to_string(iterator_value):$/;"	f
+local_day	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::gregorian::date v_gregorian_date_2(boost::gregorian::day_clock::local_day());$/;"	p	file:
+main	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^int main(int argc, char* argv[])$/;"	f
+main	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^int main(int argc, char* argv[])$/;"	f
+match_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def match_re(self, v):$/;"	m	class:Printer_Gen.SubPrinter_Gen
+member_hook_	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^   boost::intrusive::list_member_hook<> member_hook_;$/;"	m	class:MyClass_list	file:
+member_hook_	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^   boost::intrusive::set_member_hook<> member_hook_;$/;"	m	class:MyClass	file:
+na_iterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class na_iterator:$/;"	c	class:Boost_Multi_Index
+negative	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^int negative(int x)$/;"	f
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def next(self):$/;"	m	class:BoostCircular._iterator
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def next(self):$/;"	m	class:BoostIntrusiveList._iter
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def next(self):$/;"	m	class:BoostIntrusiveSet._iter
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def next(self):$/;"	m	class:BoostIteratorRange._iterator
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def next(self):$/;"	m	class:BoostOptional._iterator
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def next(self):$/;"	m	class:Boost_Multi_Index.empty_iterator
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def next(self):$/;"	m	class:Boost_Multi_Index.na_iterator
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def next(self):$/;"	m	class:Boost_Multi_Index.ordered_iterator
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        def next(self):$/;"	m	class:Boost_Multi_Index.sequenced_iterator
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def next(self):$/;"	m	class:BoostIntrusiveListIterator
+next	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def next(self):$/;"	m	class:BoostIntrusiveRbtreeIterator
+operator <	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^   friend bool operator< (const MyClass &a, const MyClass &b)$/;"	f	class:MyClass
+operator ==	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^   friend bool operator== (const MyClass &a, const MyClass &b)$/;"	f	class:MyClass
+operator >	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^   friend bool operator> (const MyClass &a, const MyClass &b)$/;"	f	class:MyClass
+ordered_iterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class ordered_iterator:$/;"	c	class:Boost_Multi_Index
+parse_and_eval	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def parse_and_eval(exp):$/;"	f
+print_not_supported	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    print_not_supported = True$/;"	v	class:Boost_Multi_Index
+printer_gen	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^printer_gen = Printer_Gen('boost')$/;"	v
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::array'$/;"	v	class:BoostArray
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::circular_buffer'$/;"	v	class:BoostCircular
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::gregorian::date'$/;"	v	class:BoostGregorianDate
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::intrusive::list'$/;"	v	class:BoostIntrusiveList
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::intrusive::list_iterator'$/;"	v	class:BoostIntrusiveListIterator
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::intrusive::set'$/;"	v	class:BoostIntrusiveSet
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::intrusive::tree_iterator'$/;"	v	class:BoostIntrusiveTreeIterator
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::iterator_range'$/;"	v	class:BoostIteratorRange
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::logic::tribool'$/;"	v	class:BoostTribool
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::multi_index_container'$/;"	v	class:Boost_Multi_Index
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::optional'$/;"	v	class:BoostOptional
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::posix_time::ptime'$/;"	v	class:BoostPosixTimePTime
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::reference_wrapper'$/;"	v	class:BoostReferenceWrapper
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::scoped\/intrusive_ptr\/array'$/;"	v	class:BoostScopedPtr
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::shared\/weak_ptr\/array'$/;"	v	class:BoostSharedPtr
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::uuids::uuid'$/;"	v	class:BoostUuid
+printer_name	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    printer_name = 'boost::variant'$/;"	v	class:BoostVariant
+ptype_cmd	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^        ptype_cmd = 'ptype'$/;"	v
+ptype_cmd	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    ptype_cmd = 'ptype\/mtr'$/;"	v
+push_front	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^    v_intrusive_list_2.push_front(tmp_list);$/;"	p	file:
+r	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^    int r = done();  \/\/ break here$/;"	l
+r	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^    int r = done();  \/\/ break here$/;"	l
+regex	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    regex = re.compile(type_name_re)$/;"	v	class:BoostOptional
+regex	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    regex = re.compile(type_name_re)$/;"	v	class:BoostVariant
+register_printer_gen	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^def register_printer_gen(obj):$/;"	f
+s	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    s = execute('help', True, True)$/;"	v
+s	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-multi-index.cpp	/^Int_Set s;$/;"	v
+sequenced_iterator	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    class sequenced_iterator:$/;"	c	class:Boost_Multi_Index
+supports	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def supports(self_type, v):$/;"	m	class:Boost_Multi_Index
+text	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^char text[] = "hello dolly!";$/;"	v
+tmp	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^    MyClass tmp(x);$/;"	p	file:
+tmp_list	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^    MyClass_list tmp_list(x);$/;"	p	file:
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string (self):$/;"	m	class:BoostIntrusiveList
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string (self):$/;"	m	class:BoostIntrusiveSet
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostArray
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostCircular
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostGregorianDate
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostIntrusiveListIterator
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostIntrusiveTreeIterator
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostIteratorRange
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostOptional
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostPosixTimePTime
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostReferenceWrapper
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostScopedPtr
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostSharedPtr
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostTribool
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostUuid
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:BoostVariant
+to_string	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    def to_string(self):$/;"	m	class:Boost_Multi_Index
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::(intrusive|scoped)_(ptr|array)<(.*)>$'$/;"	v	class:BoostScopedPtr
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::(weak|shared)_(ptr|array)<(.*)>$'$/;"	v	class:BoostSharedPtr
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::array<(.*)>$'$/;"	v	class:BoostArray
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::circular_buffer<(.*)>$'$/;"	v	class:BoostCircular
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::gregorian::date$'$/;"	v	class:BoostGregorianDate
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::intrusive::list<.*>$'$/;"	v	class:BoostIntrusiveList
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::intrusive::list_iterator<.*>$'$/;"	v	class:BoostIntrusiveListIterator
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::intrusive::set<.*>$'$/;"	v	class:BoostIntrusiveSet
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::intrusive::tree_iterator<.*>$'$/;"	v	class:BoostIntrusiveTreeIterator
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::iterator_range<.*>$'$/;"	v	class:BoostIteratorRange
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::logic::tribool$'$/;"	v	class:BoostTribool
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::optional<(.*)>$'$/;"	v	class:BoostOptional
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::posix_time::ptime$'$/;"	v	class:BoostPosixTimePTime
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::reference_wrapper<(.*)>$'$/;"	v	class:BoostReferenceWrapper
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::uuids::uuid$'$/;"	v	class:BoostUuid
+type_name_re	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    type_name_re = '^boost::variant<(.*)>$'$/;"	v	class:BoostVariant
+v_array_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::array<int*, 3> v_array_1;$/;"	v
+v_array_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::array<short, 5> v_array_2 = {{0, 1, 2}};$/;"	v
+v_circular_buffer_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::circular_buffer<int> v_circular_buffer_1;$/;"	v
+v_gregorian_date_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::gregorian::date v_gregorian_date_1;$/;"	v
+v_intrusive_list_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::intrusive::list<MyClass_list> v_intrusive_list_1;$/;"	v
+v_intrusive_list_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::intrusive::list<MyClass_list> v_intrusive_list_2;$/;"	v
+v_intrusive_set_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::intrusive::set<MyClass> v_intrusive_set_1;$/;"	v
+v_intrusive_set_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::intrusive::set<MyClass> v_intrusive_set_2;$/;"	v
+v_iterator_range_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::iterator_range<char*> v_iterator_range_1;$/;"	v
+v_iterator_range_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::iterator_range<char*> v_iterator_range_2 = boost::algorithm::find_last(text, "ll");$/;"	v
+v_optional_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::optional<int> v_optional_1;$/;"	v
+v_optional_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::optional<char*> v_optional_2(text);$/;"	p	file:
+v_ptime_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::posix_time::ptime v_ptime_1;$/;"	v
+v_ptime_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::posix_time::ptime v_ptime_2(v_gregorian_date_2, boost::posix_time::hours(5));$/;"	p	file:
+v_reference_wrapper_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::reference_wrapper<int> v_reference_wrapper_1(x);$/;"	p	file:
+v_scoped_ptr_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::scoped_ptr<int> v_scoped_ptr_1;$/;"	v
+v_scoped_ptr_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::scoped_ptr<int> v_scoped_ptr_2(new int(7));$/;"	p	file:
+v_shared_ptr_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::shared_ptr<int> v_shared_ptr_1;$/;"	v
+v_shared_ptr_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::shared_ptr<int> v_shared_ptr_2(new int(9));$/;"	p	file:
+v_tribool_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::logic::tribool v_tribool_1;$/;"	v
+v_tribool_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::logic::tribool v_tribool_2(boost::logic::indeterminate);$/;"	p	file:
+v_uuid_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::uuids::uuid v_uuid_1;$/;"	v
+v_uuid_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::uuids::uuid v_uuid_2 = gen("{01234567-89ab-cdef-0123-456789abcdef}");$/;"	v
+v_variant_1	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::variant<int, std::string> v_variant_1;$/;"	v
+v_variant_2	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^boost::variant<char*, int> v_variant_2(x);$/;"	p	file:
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostArray
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostCircular
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostGregorianDate
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostIntrusiveList
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostIntrusiveListIterator
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostIntrusiveSet
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostIntrusiveTreeIterator
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostIteratorRange
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostOptional
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostPosixTimePTime
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostReferenceWrapper
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostScopedPtr
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostSharedPtr
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostTribool
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostUuid
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.40'$/;"	v	class:BoostVariant
+version	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/boost/printers.py	/^    version = '1.42'$/;"	v	class:Boost_Multi_Index
+x	/share/home/momma/dotfiles/bin/gdb/Boost-Pretty-Printer/examples/test-other.cpp	/^int x = 42;$/;"	v
