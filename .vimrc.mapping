@@ -49,7 +49,6 @@ nnoremap <silent><S-b> :bp<CR>
 nnoremap <silent><S-n> :bn<CR>
 " バッファを閉じる
 nnoremap <Leader>xx :bdelete<CR>
-
 " CTRL-hjklでウィンドウ移動
 nnoremap <S-j> <C-w>j
 nnoremap <S-k> <C-w>k
