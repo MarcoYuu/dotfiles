@@ -8,8 +8,8 @@ end
 python
 import sys
 sys.path.insert(0, '/share/home/momma/bin/gdb/Boost-Pretty-Printer')
-from boost.printers import register_boost_printers
-register_boost_printers(None)
+from boost.printers import register_printer_gen
+register_printer_gen(None)
 end
 
 set history save on
