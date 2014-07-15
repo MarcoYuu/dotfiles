@@ -14,6 +14,7 @@ mv ~/.zshrc ~/dotfiles_backup
 mv ~/.ctags ~/dotfiles_backup
 mv -rf ~/.vim ~/dotfiles_backup
 mv -rf ~/bin ~/dotfiles_backup
+mv -rf ~/lib ~/dotfiles_backup
 
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.gdbinit ~/.gdbinit
@@ -28,6 +29,7 @@ ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.ctags ~/.ctags
 ln -s ~/dotfiles/.vim ~/.vim
 ln -s ~/dotfiles/bin ~/bin
+ln -s ~/dotfiles/lib ~/lib
 
 
 VIM_DIR=~/.vim
@@ -53,4 +55,4 @@ if [ ! -d ${ZSH_EASY_SETTING_DIR} ]; then
 fi
 
 sudo apt-get install command-not-found
-sudo apt-get install tig
+lib apt-get install tig

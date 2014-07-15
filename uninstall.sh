@@ -13,3 +13,4 @@ rm ~/.zshrc
 rm ~/.ctags
 rm -rf ~/.vim
 rm -rf ~/bin
+rm -rf ~/lib
