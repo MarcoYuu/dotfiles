@@ -180,4 +180,38 @@ nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
 " }}}
+
+" pyclewn.vim {{{
+cnoremap <expr> <SID>lineno line(".")
+
+" カーソル行にブレイクポイント設定/取消
+nnoremap <script> <C-b> :Cbreak <C-R><C-%>:<SID>lineno<CR>
+nnoremap <script> <C-c> :Cclear <C-R><C-%>:<SID>lineno<CR>
+
+nnoremap <F12> :Crun<CR>:Csymcompletion<CR>
+nnoremap <F5> :Cstep<CR>
+nnoremap <F6> :Cnext<CR>
+nnoremap <F8> :Ccontinue<CR>
+
+" finish current function
+nnoremap <F7> :Cfinish<CR>
+" finish current loop
+nnoremap <F4> :Cuntil<CR>
+" up stack trace
+nnoremap <F10> :Cup<CR>
+" down stack trace
+nnoremap <F11> :Cdown<CR>
+
+" カーソル位置の変数の値表示
+nnoremap PP :Cprint <C-R><C-W><CR>
+
+" カーソル位置の変数をwatch変数バッファに追加
+nnoremap WW :Cdbgvar <C-R><C-W><CR>
+" watch変数バッファのカーソル位置の情報を削除
+nnoremap WD :Cdelvar <C-R><C-W><CR>
+" watch変数バッファのカーソル行の折り畳みを開く/閉じる
+nnoremap <script> WZ :Cfoldvar <SID>lineno<CR>
+
+" }}}
+
 "}}}
