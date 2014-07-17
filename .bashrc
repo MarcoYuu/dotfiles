@@ -224,3 +224,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
 #curl -s get.gvmtool.net/selfupdate | bash
 #[[ -s "/home/momma/.gvm/bin/gvm-init.sh" ]] && source "/home/momma/.gvm/bin/gvm-init.sh"
+
+# pyclewn
+alias gdbvim='pyclewn -e vim --args'
