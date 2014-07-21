@@ -1,4 +1,11 @@
 
+
+if has('gui_running') && !has('unix')
+  set encoding=utf-8
+endif
+scriptencoding utf-8
+
+
 " 初期化処理 "{{{
 let s:is_windows = has('win16') || has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
@@ -26,7 +33,7 @@ endif
 "}}}
 
 " NeoBundleがなかったらclone "{{{
-if !isdirectory(expand("~/.vim/bundle/neobundle.vim"))
+if !isdirectory(expand("$HOME/.vim/bundle/neobundle.vim"))
 	echo "Please install neobundle.vim."
 	function! s:install_neobundle()
 		if input("Install neobundle.vim? [Y/N] : ") =="Y"
@@ -34,7 +41,7 @@ if !isdirectory(expand("~/.vim/bundle/neobundle.vim"))
 				call mkdir(s:neobundle_plugins_dir, "p")
 			endif
 			execute "!git clone git://github.com/Shougo/neobundle.vim "
-						\ . "~/.vim/bundle/neobundle.vim"
+						\ . "$HOME/.vim/bundle/neobundle.vim"
 			echo "neobundle installed. Please restart vim."
 		else
 			echo "Canceled."
@@ -49,13 +56,13 @@ endif
 "}}}
 
 " プラグインディレクトリの読み込み "{{{
-if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+if isdirectory(expand("$HOME/.vim/bundle/neobundle.vim/"))
 	filetype plugin indent off
 	if has('vim_starting')
-		set runtimepath+=~/.vim/bundle/neobundle.vim/
+		set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 	endif
 	try
-		call neobundle#rc(expand('~/.vim/bundle/'))
+		call neobundle#rc(expand('$HOME/.vim/bundle/'))
 	catch
 		echo "Error!"
 		echo "NeoBundle is not working."
@@ -73,15 +80,15 @@ endif
 " 設定の読み込み "{{{
 
 " プラグインの読み込み
-source ~/dotfiles/.vimrc.neobundle
+source $HOME/dotfiles/.vimrc.neobundle
 
 " Vim設定の読み込み
-source ~/dotfiles/.vimrc.basic
+source $HOME/dotfiles/.vimrc.basic
 
 " キーマッピング
-source ~/dotfiles/.vimrc.mapping
+source $HOME/dotfiles/.vimrc.mapping
 
 " 見た目の変更
-source ~/dotfiles/.vimrc.appearance
+source $HOME/dotfiles/.vimrc.appearance
 
 "}}}
