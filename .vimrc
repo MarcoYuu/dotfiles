@@ -1,3 +1,5 @@
+" vim内部で通常使用する文字エンコーディングを設定
+set encoding      =utf-8
 
 " 初期化処理 "{{{
 let s:is_windows = has('win16') || has('win32') || has('win64')

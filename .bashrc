@@ -226,4 +226,14 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #[[ -s "/home/momma/.gvm/bin/gvm-init.sh" ]] && source "/home/momma/.gvm/bin/gvm-init.sh"
 
 # pyclewn
+# alias gdbvim='pyclewn -e vim --gdb=async --args'
 alias gdbvim='pyclewn -e vim --args'
+
+# vi モードでコマンドライン編集する
+set -o vi
+
+# Bash powerline
+# function _update_ps1() {
+# export PS1="$(~/.powerline-shell.py $? 2> /dev/null)"
+# }
+# export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"

@@ -1,8 +1,8 @@
 #!/usr/bin/python
 
-import os 
-import sys 
-import glob 
+import os
+import sys
+import glob
 
 font_list = glob.glob('./*.otf')
 font_list += glob.glob('./*.ttf')

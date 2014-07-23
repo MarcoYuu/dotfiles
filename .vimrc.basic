@@ -21,7 +21,7 @@ set noswapfile                                             " スワップファ�
 set hidden                                                 " 編集中でも他のファイルを開けるようにする
 set formatoptions   =lmoq                                  " テキスト整形オプション，マルチバイト系を追加
 set vb t_vb         =                                      " ビープをならさない
-set clipboard       =autoselect                            " OSのクリップボードを使用する
+set clipboard      +=autoselect                            " OSのクリップボードを使用する
 set clipboard      +=unnamed                               "
 set clipboard      +=unnamedplus                           "
 set list                                                   " 不可視文字表示
@@ -139,7 +139,7 @@ augroup MyAutoCommands
 	autocmd FileType php    setlocal path+=/usr/local/share/pear
 	autocmd FileType apache setlocal path+=./,/
 	autocmd FileType c      setlocal path+=./,/usr/include/,/usr/local/include/
-	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,,**,/usr/include/**
+	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,**,/usr/include/**
 
 	" 保存時に行末の空白を除去する
 	autocmd BufWritePre * :%s/\s\+$//ge
