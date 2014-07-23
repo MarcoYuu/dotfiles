@@ -28,6 +28,14 @@ set list                                                   " 不可視文字表�
 set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
 set virtualedit    +=block                                 " 矩形選択で自由に移動する
 
+" Undo履歴をファイルに保存する
+let dir_for_undo=expand("$HOME/.vimundo")
+if !isdirectory("$HOME/.vimundo")
+	call mkdir("$HOME/.vimundo", 'p')
+endif
+set undodir=$HOME/.vimundo
+set undofile
+
 " カーソル行のハイライト "{{{
 set cursorline
 augroup cch
@@ -65,7 +73,7 @@ augroup Folding
 	hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 augroup END
 "}}}
-
+"
 "}}}
 
 " マウス設定 "{{{

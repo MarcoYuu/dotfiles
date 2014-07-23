@@ -418,7 +418,7 @@ unlet s:comment_leadings
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets,~/.vim/snippets'
+let g:neosnippet#snippets_directory='$HOME/.vim/bundle/vim-snippets/snippets,$HOME/.vim/snippets'
 
 " 補完 "{{{
 
@@ -704,7 +704,7 @@ NeoBundleLazy 'alpaca-tc/alpaca_tags', {
       \   'commands' : ['AlpacaTags', 'AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle', 'AlpacaTagsCleanCache'],
       \   'unite_sources' : ['tags']
       \ }}
-" ~/.ctagsにctagsの設定ファイルを設置します。現在無い人は、このディレクトリ内の.ctagsをコピーしてください。
+" $HOME/.ctagsにctagsの設定ファイルを設置します。現在無い人は、このディレクトリ内の.ctagsをコピーしてください。
 " 適切なlanguageは`ctags --list-maps=all`で見つけてください。人によりますので。
 let g:alpaca_update_tags_config = {
       \ '_' : '-R --sort=yes --languages=-js,html,css',
