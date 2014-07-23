@@ -27,6 +27,7 @@ set clipboard      +=unnamedplus                           "
 set list                                                   " 不可視文字表示
 set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
 set virtualedit    +=block                                 " 矩形選択で自由に移動する
+set undodir         =C:/Users/Yuu/vimundo
 
 " カーソル行のハイライト "{{{
 set cursorline

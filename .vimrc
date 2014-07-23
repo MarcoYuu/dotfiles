@@ -1,10 +1,8 @@
 
-
 if has('gui_running') && !has('unix')
   set encoding=utf-8
 endif
 scriptencoding utf-8
-
 
 " 初期化処理 "{{{
 let s:is_windows = has('win16') || has('win32') || has('win64')
