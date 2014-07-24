@@ -66,6 +66,10 @@ augroup Folding
 	autocmd FileType vim setlocal foldnestmax  =6      " どのレベルからデフォで折りたたむか
 	autocmd FileType vim setlocal foldmethod   =marker " どのレベルまで折りたたむか
 
+	"let g:foldCCtext_head = 'v:folddashes. " "'
+	"let g:foldCCtext_tail ='printf("   %s[%4d lines  Lv%-2d]%s",'.
+	"			\ ' v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
+	"set foldtext      =foldcc#foldtext() " 折りたたみテキスト
 	set foldtext      =FoldCCtext() " 折りたたみテキスト
 	set fillchars     =vert:\|
 
@@ -73,7 +77,6 @@ augroup Folding
 	hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 augroup END
 "}}}
-"
 "}}}
 
 " マウス設定 "{{{

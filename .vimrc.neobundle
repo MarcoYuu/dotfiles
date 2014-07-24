@@ -34,6 +34,19 @@ NeoBundle 'ujihisa/unite-colorscheme'
 " VCSのUnite
 NeoBundle 'hrsh7th/vim-versions'
 
+" help
+NeoBundle 'tsukkee/unite-help'
+" Execute help.
+nnoremap <C-h>  :<C-u>Unite -start-insert help<CR>
+" Execute help by cursor keyword.
+nnoremap <silent> g<C-h>  :<C-u>UniteWithCursorWord help<CR>
+
+" tag
+NeoBundle 'tsukkee/unite-tag'
+
+" script一覧
+NeoBundle 'zhaocai/unite-scriptnames'
+
 " QuickFixを見やすく
 NeoBundle 'osyo-manga/unite-quickfix'
 
@@ -41,30 +54,19 @@ NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundleLazy 'Shougo/unite-build', { 'autoload' : {
 			\ 'unite_sources' : 'build',
 			\ }}
-
-" ssh
-NeoBundleLazy 'Shougo/unite-ssh', { 'autoload' : {
-			\ 'filetypes' : 'vimfiler',
-			\ 'unite_sources' : 'ssh',
-			\ }}
-
-" font
-NeoBundleLazy 'ujihisa/unite-font', {
-			\ 'gui' : 1,
-			\ 'autoload' : {
-			\  'unite_sources' : 'font'
-			\ }}
 "}}}
 
 " QuickFix "{{{
-"
+
 " QuickFixから一気に置換
 NeoBundleLazy 'thinca/vim-qfreplace', { 'autoload' : {
 			\ 'filetypes' : ['unite', 'quickfix', 'qf'],
 			\ }}
 
 " その場で実行して試す
-NeoBundle 'thinca/vim-quickrun'
+NeoBundleLazy 'thinca/vim-quickrun' , { 'autoload' : {
+			\ 'commands': ['QuickRun'],
+			\}}
 let g:quickrun_config = {
 			\   "_" : {
 			\       "hook/unite_quickfix/enable_failure" : 1,
@@ -96,18 +98,19 @@ if executable("clang++")
 	let g:quickrun_config['cpp'] = {'type': 'cpp/clang++11'}
 endif
 
-" QuickRun Hooks
-NeoBundle 'osyo-manga/shabadou.vim'
-
 " }}}
 
 " 基礎ツール "{{{
 
-" バイナリ
-NeoBundle 'Shougo/vinarise.vim'
-
 " ファイラ
 NeoBundle 'Shougo/vimfiler'
+
+" シェル
+NeoBundle 'Shougo/vimshell'
+
+" バイナリ
+NeoBundle 'Shougo/vinarise.vim'
+let g:vinarise_enable_auto_detect=1
 
 " 非同期処理化プラグイン
 NeoBundle 'Shougo/vimproc', {
@@ -118,16 +121,6 @@ NeoBundle 'Shougo/vimproc', {
 			\     'unix' : 'make -f make_unix.mak',
 			\    },
 			\ }
-
-" シェル {{{
-NeoBundle 'Shougo/vimshell'
-
-" ssh
-NeoBundleLazy 'ujihisa/vimshell-ssh', { 'autoload' : {
-			\ 'filetypes' : 'vimshell',
-			\ }}
-"}}}
-
 "}}}
 
 " 基本機能拡張 "{{{
@@ -138,7 +131,10 @@ NeoBundleLazy 'buffet.vim', {
 			\ 'commands': ['Bufferlistsw', 'Bufferlist']}}
 
 " 置換操作をヴィジュアライズ
-NeoBundle 'osyo-manga/vim-over'
+NeoBundleLazy 'osyo-manga/vim-over', {'autoload': {
+			\'commands': ['OverCommandLineNoremap', 'OverCommandLineMap', 'OverCommandLine']
+			\}}
+
 "}}}
 
 " 表示 "{{{
@@ -163,18 +159,17 @@ NeoBundleLazy 'thinca/vim-fontzoom', {
 
 " ディレクトリをツリー表示
 NeoBundleLazy 'scrooloose/nerdtree', {
-			\'autoload': { 'commands': ['NERDTree, NERDTreeToggle']}}
+			\'autoload': { 'commands': ['NERDTree', 'NERDTreeToggle']}}
 
-" Tagをツリー表示
-NeoBundle 'taglist.vim'
+" Tagをツリー表示 :Tlist
+NeoBundleLazy 'taglist.vim', {
+			\'autoload': { 'commands': ['Tlist']}}
 set tags=tags
 
 " ステータスバーかっこ良く機能的に {{{
-" NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'itchyny/lightline.vim'
 " 常にタブラインを表示
 set showtabline=2
-" lightline.vim
 let g:lightline = {
 			\ 'mode_map': {'c': 'NORMAL'},
 			\ 'active': {
@@ -189,7 +184,7 @@ let g:lightline = {
 			\   ]
 			\ },
 			\ 'component': {
-			\   'lineinfo': ' %3l:%-2v',
+			\   'lineinfo': '⭡ %3l:%-2v',
 			\ },
 			\ 'component_function': {
 			\   'modified': 'MyModified',
@@ -659,9 +654,7 @@ endif
 "}}}
 
 " clangによるC/C++の補完
-" NeoBundle 'osyo-manga/neocomplcache-clang_complete'
 NeoBundle 'Rip-Rip/clang_complete'
-"NeoBundle "osyo-manga/vim-marching"
 "}}}
 
 " vim-operator "{{{
@@ -695,45 +688,36 @@ map R  <Plug>(operator-replace)
 "}}}
 
 " 開発ツール "{{{
-"
+
 " Tagsファイル生成(rubyとか向け)
 NeoBundleLazy 'alpaca-tc/alpaca_tags', {
-      \ 'rev' : 'development',
-      \ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
-      \ 'autoload' : {
-      \   'commands' : ['AlpacaTags', 'AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle', 'AlpacaTagsCleanCache'],
-      \   'unite_sources' : ['tags']
-      \ }}
+			\ 'rev' : 'development',
+			\ 'depends': ['Shougo/vimproc', 'Shougo/unite.vim'],
+			\ 'autoload' : {
+			\   'commands' : ['AlpacaTags', 'AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle', 'AlpacaTagsCleanCache'],
+			\   'unite_sources' : ['tags']
+			\ }}
 " $HOME/.ctagsにctagsの設定ファイルを設置します。現在無い人は、このディレクトリ内の.ctagsをコピーしてください。
 " 適切なlanguageは`ctags --list-maps=all`で見つけてください。人によりますので。
 let g:alpaca_update_tags_config = {
-      \ '_' : '-R --sort=yes --languages=-js,html,css',
-      \ 'ruby': '--languages=+Ruby',
-      \ }
+			\ '_' : '-R --sort=yes --languages=-js,html,css',
+			\ 'ruby': '--languages=+Ruby',
+			\ }
 augroup AlpacaTags
-  autocmd!
-  if exists(':Tags')
-    autocmd BufWritePost * TagsUpdate ruby
-    autocmd BufWritePost Gemfile TagsBundle
-    autocmd BufEnter * TagsSet
-  endif
+	autocmd!
+	if exists(':Tags')
+		autocmd BufWritePost * TagsUpdate ruby
+		autocmd BufWritePost Gemfile TagsBundle
+		autocmd BufEnter * TagsSet
+	endif
 augroup END
 nnoremap <expr>tt  ':Unite tags -horizontal -buffer-name=tags -input='.expand("<cword>").'<CR>'
 
-" Android開発
-" LogCat
-NeoBundleLazy 'thinca/vim-logcat', {
-			\ 'autoload': {
-			\ 'commands': ['LogcatClear', 'Logcat']}}
-NeoBundle 'hsanson/vim-android'
-let g:android_sdk_path='/opt/android-studio/sdk'
-
 " pythonのシンタックスチェック(QuickFix On/Off)
-NeoBundle 'mitechie/pyflakes-pathogen'
+NeoBundleLazy 'mitechie/pyflakes-pathogen', { 'autoload' : {
+			\ 'filetype' : 'python'
+			\ }}
 let pyflakes_use_quickfix = 0
-
-" ソースヘッダ切り替え
-NeoBundle 'a.vim'
 
 " 最新のC++シンタックス情報
 NeoBundle 'vim-jp/cpp-vim'
@@ -747,12 +731,6 @@ NeoBundle '5t111111/neat-json.vim'
 
 " ctags情報から型をハイライト
 NeoBundle 'TagHighlight'
-" augroup Highlight
-" 	autocmd!
-" 	au BufNewFile *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-" 	au BufRead *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-" 	au TabEnter *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-" augroup END
 
 " syntacs check "{{{
 NeoBundle 'scrooloose/syntastic'
@@ -810,16 +788,13 @@ NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {
 " リファレンス
 NeoBundle 'thinca/vim-ref'
 
-" excite翻訳
-NeoBundleLazy 'mattn/excitetranslate-vim', {
-			\ 'depends' : 'mattn/webapi-vim',
-			\ 'autoload': {'commands': ['ExciteTranslate']}}
-NeoBundle 'mattn/webapi-vim'
-
 " Markdown for vim
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tyru/open-browser.vim'
+
+" sudo
+NeoBundle 'sudo.vim'
 
 " TeX用Plugin "{{{
 NeoBundleLazy 'jcf/vim-latex', {

@@ -144,10 +144,10 @@ vmap <Leader>c <Plug>(caw:I:toggle)
 nmap <Leader>C <Plug>(caw:I:uncomment)
 vmap <Leader>C <Plug>(caw:I:uncomment)
 
-" <Space>m でカーソル下の単語、もしくは選択した範囲のハイライトを行う
-" 再度 <Space>m を行うとカーソル下のハイライトを解除する
+" <Leader>m でカーソル下の単語、もしくは選択した範囲のハイライトを行う
+" 再度 <Leader>m を行うとカーソル下のハイライトを解除する
 " これは複数の単語のハイライトを行う事もできる
-" <Space>M で全てのハイライトを解除する
+" <Leader>M で全てのハイライトを解除する
 nmap <Leader>m <Plug>(quickhl-manual-this)
 xmap <Leader>m <Plug>(quickhl-manual-this)
 nmap <Leader>M <Plug>(quickhl-manual-reset)
