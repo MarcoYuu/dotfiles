@@ -1,3 +1,4 @@
+
 " vim内部で通常使用する文字エンコーディングを設定
 set encoding      =utf-8
 
@@ -11,7 +12,6 @@ let s:is_mac = !s:is_windows && !s:is_cygwin
 let s:is_sudo = $SUDO_USER != '' && $USER !=# $SUDO_USER
 			\ && $HOME !=# expand('~'.$USER)
 			\ && $HOME ==# expand('~'.$SUDO_USER)
-
 if s:is_windows
 	" Exchange path separator.
 	set shellslash

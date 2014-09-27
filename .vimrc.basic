@@ -1,3 +1,4 @@
+
 " ------------------------------------------------------------
 " VIM本体の設定
 " ------------------------------------------------------------
@@ -29,11 +30,11 @@ set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の�
 set virtualedit    +=block                                 " 矩形選択で自由に移動する
 
 " Undo履歴をファイルに保存する
-let dir_for_undo=expand("$HOME/.vimundo")
-if !isdirectory("$HOME/.vimundo")
-	call mkdir("$HOME/.vimundo", 'p')
+let dir_for_undo=expand('$HOME/.vimundo')
+if !isdirectory(expand('$HOME/.vimundo'))
+	call mkdir(expand('$HOME/.vimundo'), 'p')
 endif
-set undodir=$HOME/.vimundo
+set undodir=dir_for_undo
 set undofile
 
 " カーソル行のハイライト "{{{

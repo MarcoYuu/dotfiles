@@ -154,13 +154,13 @@ nmap <Leader>M <Plug>(quickhl-manual-reset)
 xmap <Leader>M <Plug>(quickhl-manual-reset)
 
 " Unite "{{{
-nnoremap [unite] <Nop>
-xnoremap [unite] <Nop>
-nmap f [unite]
-xmap f [unite]
-
-nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
-xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
+" nnoremap [unite] <Nop>
+" xnoremap [unite] <Nop>
+" nmap f [unite]
+" xmap f [unite]
+"
+" nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
+" xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
 
 " アウトラインを表示
 nnoremap <silent><Leader>t :Unite -vertical -winwidth=30 -no-quit outline<CR>
