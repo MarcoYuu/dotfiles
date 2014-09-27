@@ -227,3 +227,4 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # pyclewn
 alias gdbvim='pyclewn -e vim --args'
+export PYTHONPATH=$HOME/lib/python:$PYTHONPATH

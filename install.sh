@@ -12,9 +12,9 @@ mv ~/.tmux-powerlinerc ~/dotfiles_backup
 mv ~/.vimrc ~/dotfiles_backup
 mv ~/.zshrc ~/dotfiles_backup
 mv ~/.ctags ~/dotfiles_backup
-mv -rf ~/.vim ~/dotfiles_backup
-mv -rf ~/bin ~/dotfiles_backup
-mv -rf ~/lib ~/dotfiles_backup
+mv ~/.vim ~/dotfiles_backup
+mv ~/bin ~/dotfiles_backup
+mv ~/lib ~/dotfiles_backup
 
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.gdbinit ~/.gdbinit
