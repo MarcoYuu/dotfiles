@@ -226,5 +226,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #[[ -s "/home/momma/.gvm/bin/gvm-init.sh" ]] && source "/home/momma/.gvm/bin/gvm-init.sh"
 
 # pyclewn
+# alias gdbvim='pyclewn -e vim --gdb=async --args'
 alias gdbvim='pyclewn -e vim --args'
 export PYTHONPATH=$HOME/lib/python:$PYTHONPATH

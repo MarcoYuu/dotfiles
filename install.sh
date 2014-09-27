@@ -55,4 +55,4 @@ if [ ! -d ${ZSH_EASY_SETTING_DIR} ]; then
 fi
 
 sudo apt-get install command-not-found
-lib apt-get install tig
+sudo apt-get install tig
