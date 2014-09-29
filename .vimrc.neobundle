@@ -732,6 +732,9 @@ NeoBundle '5t111111/neat-json.vim'
 " ctags情報から型をハイライト
 NeoBundle 'TagHighlight'
 
+" tag tree
+NeoBundle 'majutsushi/tagbar'
+
 " syntacs check "{{{
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_check_on_open=1
@@ -741,6 +744,8 @@ let g:syntastic_c_include_dirs = ['./','/usr/include/','/usr/local/include/','/u
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_include_dirs = ['./','/usr/include/','/usr/local/include/','/usr/include/c++/4.8/']
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
 if executable("clang++")
 	let g:syntastic_cpp_compiler = 'clang++'
 	let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
