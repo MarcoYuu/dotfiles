@@ -25,34 +25,27 @@ if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
 		#"tmux_session_info 148 234" \
 		"pwd 96 255" \
-		#"ifstat 30 255" \
-		#"ifstat_sys 30 255" \
+		#"ifstat 96 255" \
 		"vcs_branch 29 253" \
 		"vcs_compare 60 255" \
 		"vcs_staged 64 255" \
-		"vcs_modified 9 255" \
+		"vcs_modified 67 255" \
 		"vcs_others 245 0" \
 	)
 fi
 
 if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-		#"earthquake 3 0" \
-		#"mailcount 9 255" \
-		#"now_playing 234 37" \
 		#"cpu 240 136" \
 		#"load 237 167" \
 		#"tmux_mem_cpu_load 255 0" \
 		#"battery 137 127" \
-		#"rainbarf 0 0" \
-		#"xkb_layout 125 117" \
-		"hostname 33 255" \
-		"lan_ip 24 255" \
-		"wan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
-		#"weather 37 255" \
+		#"hostname 33 255" \
+		"tmux_mem_cpu_load 245 0" \
+		#"lan_ip 24 255" \
+		#"wan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 		"date_day 95 255" \
 		"date 95 255 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 		"time 95 255 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
-		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 	)
 fi
