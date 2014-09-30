@@ -229,3 +229,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # alias gdbvim='pyclewn -e vim --gdb=async --args'
 alias gdbvim='pyclewn -e vim --args'
 export PYTHONPATH=$HOME/lib/python:$PYTHONPATH
+
+# for pretty gdb
+export PYTHONPATH=$HOME/bin/gdb/python:$PYTHONPATH
+export PYTHONPATH=$HOME/bin/gdb/Boost-Pretty-Printer:$PYTHONPATH

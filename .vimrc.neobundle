@@ -54,6 +54,9 @@ NeoBundle 'osyo-manga/unite-quickfix'
 NeoBundleLazy 'Shougo/unite-build', { 'autoload' : {
 			\ 'unite_sources' : 'build',
 			\ }}
+
+" git viewer
+NeoBundle 'Kocha/vim-unite-tig'
 "}}}
 
 " QuickFix "{{{
