@@ -417,7 +417,8 @@ int main(int argc, char** argv)
     return EXIT_FAILURE;
     }
 
-  std::cout << mem_string( use_colors ) << ' ' << cpu_string( cpu_usage_delay, graph_lines, use_colors ) << ' ' << load_string( use_colors );
+  // std::cout << mem_string( use_colors ) << ' ' << cpu_string( cpu_usage_delay, graph_lines, use_colors ) << ' ' << load_string( use_colors );
+  std::cout << mem_string( use_colors ) << ' ' << cpu_string( cpu_usage_delay, graph_lines, use_colors );
 
   return EXIT_SUCCESS;
 }

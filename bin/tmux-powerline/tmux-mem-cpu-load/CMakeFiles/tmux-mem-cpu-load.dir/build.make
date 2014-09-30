@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/momma/bin/tmux-mem-cpu-load
+CMAKE_SOURCE_DIR = /home/momma/bin/tmux-powerline/tmux-mem-cpu-load
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/momma/bin/tmux-mem-cpu-load
+CMAKE_BINARY_DIR = /home/momma/bin/tmux-powerline/tmux-mem-cpu-load
 
 # Include any dependencies generated for this target.
 include CMakeFiles/tmux-mem-cpu-load.dir/depend.make
@@ -51,17 +51,17 @@ include CMakeFiles/tmux-mem-cpu-load.dir/flags.make
 
 CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.o: CMakeFiles/tmux-mem-cpu-load.dir/flags.make
 CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.o: tmux-mem-cpu-load.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/momma/bin/tmux-mem-cpu-load/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/momma/bin/tmux-powerline/tmux-mem-cpu-load/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.o -c /home/momma/bin/tmux-mem-cpu-load/tmux-mem-cpu-load.cpp
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.o -c /home/momma/bin/tmux-powerline/tmux-mem-cpu-load/tmux-mem-cpu-load.cpp
 
 CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/momma/bin/tmux-mem-cpu-load/tmux-mem-cpu-load.cpp > CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/momma/bin/tmux-powerline/tmux-mem-cpu-load/tmux-mem-cpu-load.cpp > CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.i
 
 CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/momma/bin/tmux-mem-cpu-load/tmux-mem-cpu-load.cpp -o CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/momma/bin/tmux-powerline/tmux-mem-cpu-load/tmux-mem-cpu-load.cpp -o CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.s
 
 CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.o.requires:
 .PHONY : CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.o.requires
@@ -97,6 +97,6 @@ CMakeFiles/tmux-mem-cpu-load.dir/clean:
 .PHONY : CMakeFiles/tmux-mem-cpu-load.dir/clean
 
 CMakeFiles/tmux-mem-cpu-load.dir/depend:
-	cd /home/momma/bin/tmux-mem-cpu-load && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/momma/bin/tmux-mem-cpu-load /home/momma/bin/tmux-mem-cpu-load /home/momma/bin/tmux-mem-cpu-load /home/momma/bin/tmux-mem-cpu-load /home/momma/bin/tmux-mem-cpu-load/CMakeFiles/tmux-mem-cpu-load.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/momma/bin/tmux-powerline/tmux-mem-cpu-load && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/momma/bin/tmux-powerline/tmux-mem-cpu-load /home/momma/bin/tmux-powerline/tmux-mem-cpu-load /home/momma/bin/tmux-powerline/tmux-mem-cpu-load /home/momma/bin/tmux-powerline/tmux-mem-cpu-load /home/momma/bin/tmux-powerline/tmux-mem-cpu-load/CMakeFiles/tmux-mem-cpu-load.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/tmux-mem-cpu-load.dir/depend
 

@@ -4,7 +4,7 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/momma/bin/tmux-mem-cpu-load/tmux-mem-cpu-load.cpp" "/home/momma/bin/tmux-mem-cpu-load/CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.o"
+  "/home/momma/bin/tmux-powerline/tmux-mem-cpu-load/tmux-mem-cpu-load.cpp" "/home/momma/bin/tmux-powerline/tmux-mem-cpu-load/CMakeFiles/tmux-mem-cpu-load.dir/tmux-mem-cpu-load.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 

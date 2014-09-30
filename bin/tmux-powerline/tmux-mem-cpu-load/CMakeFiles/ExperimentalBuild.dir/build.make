@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/momma/bin/tmux-mem-cpu-load
+CMAKE_SOURCE_DIR = /home/momma/bin/tmux-powerline/tmux-mem-cpu-load
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/momma/bin/tmux-mem-cpu-load
+CMAKE_BINARY_DIR = /home/momma/bin/tmux-powerline/tmux-mem-cpu-load
 
 # Utility rule file for ExperimentalBuild.
 
@@ -61,6 +61,6 @@ CMakeFiles/ExperimentalBuild.dir/clean:
 .PHONY : CMakeFiles/ExperimentalBuild.dir/clean
 
 CMakeFiles/ExperimentalBuild.dir/depend:
-	cd /home/momma/bin/tmux-mem-cpu-load && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/momma/bin/tmux-mem-cpu-load /home/momma/bin/tmux-mem-cpu-load /home/momma/bin/tmux-mem-cpu-load /home/momma/bin/tmux-mem-cpu-load /home/momma/bin/tmux-mem-cpu-load/CMakeFiles/ExperimentalBuild.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/momma/bin/tmux-powerline/tmux-mem-cpu-load && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/momma/bin/tmux-powerline/tmux-mem-cpu-load /home/momma/bin/tmux-powerline/tmux-mem-cpu-load /home/momma/bin/tmux-powerline/tmux-mem-cpu-load /home/momma/bin/tmux-powerline/tmux-mem-cpu-load /home/momma/bin/tmux-powerline/tmux-mem-cpu-load/CMakeFiles/ExperimentalBuild.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ExperimentalBuild.dir/depend
 

@@ -4,8 +4,8 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/momma/bin/tmux-mem-cpu-load
-BuildDirectory: /home/momma/bin/tmux-mem-cpu-load
+SourceDirectory: /home/momma/bin/tmux-powerline/tmux-mem-cpu-load
+BuildDirectory: /home/momma/bin/tmux-powerline/tmux-mem-cpu-load
 
 # Where to place the cost data store
 CostDataFile: 
@@ -33,7 +33,7 @@ ScpCommand: /usr/bin/scp
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/usr/bin/cmake" "/home/momma/bin/tmux-mem-cpu-load"
+ConfigureCommand: "/usr/bin/cmake" "/home/momma/bin/tmux-powerline/tmux-mem-cpu-load"
 MakeCommand: /usr/bin/make -i
 DefaultCTestConfigurationType: Release
 
