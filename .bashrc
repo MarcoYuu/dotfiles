@@ -149,7 +149,7 @@ export PATH=${PATH}:/opt/android-studio/sdk/platform-tools:/opt/android-studio/s
 
 
 # aliases
-alias ls='ls -pF --color=auto --group-directories-first'
+alias ls='ls -vpF --color=auto --group-directories-first'
 alias ll='ls -alF'
 alias la='ls -AF'
 alias l='ls -CF'
