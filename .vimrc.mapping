@@ -126,6 +126,8 @@ map ,x <Plug>(operator-clang-format)
 " ファイラーを起動
 nnoremap <silent><C-x><C-f> :VimFiler<CR>
 
+" Quickrunする
+nnoremap <Leader>Q :QuickRun<CR>
 " ツリーをトグル
 nmap <Leader>n :NERDTreeToggle<CR>
 
