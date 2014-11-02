@@ -142,6 +142,10 @@ NeoBundleLazy 'osyo-manga/vim-over', {'autoload': {
 
 " 表示 "{{{
 
+" CSV操作
+NeoBundle 'rbtnn/rabbit-ui.vim'
+NeoBundle 'rbtnn/rabbit-ui-collection.vim'
+
 " カーソル下の単語をハイライト
 NeoBundle 't9md/vim-quickhl'
 
