@@ -24,6 +24,7 @@ TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SE
 if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
 		#"tmux_session_info 148 234" \
+		"hostname 33 255" \
 		"pwd 96 255" \
 		#"ifstat 96 255" \
 		"vcs_branch 29 253" \
@@ -40,7 +41,6 @@ if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 		#"load 237 167" \
 		#"tmux_mem_cpu_load 255 0" \
 		#"battery 137 127" \
-		#"hostname 33 255" \
 		"tmux_mem_cpu_load 245 0" \
 		#"lan_ip 24 255" \
 		#"wan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
