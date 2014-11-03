@@ -744,18 +744,9 @@ NeoBundle '5t111111/neat-json.vim'
 
 " ctags情報から型をハイライト
 NeoBundle 'TagHighlight'
-<<<<<<< HEAD
-"augroup Highlight
-"	autocmd!
-"	au BufNewFile *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-"	au BufRead *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-"	au TabEnter *.php,*.py,*.pyc,*.h,*.c,*.cc,*.cpp,*.ipp,*.hpp UpdateTypesFile
-"augroup END
-=======
 
 " tag tree
 NeoBundle 'majutsushi/tagbar'
->>>>>>> origin/master
 
 " syntacs check "{{{
 NeoBundle 'scrooloose/syntastic'
