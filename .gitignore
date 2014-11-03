@@ -4,6 +4,8 @@
 *.log
 *.dvi
 *.aux
+tags
+*.taghl
 
 .oh-my-zsh
 .vim/tags

@@ -13,7 +13,7 @@
 "-------------------------------------------------------------------------------"
 
 " Leaderを,に変更
-let mapleader = ","
+"let mapleader = ","
 " ,のデフォルトの機能は、\で使えるように退避
 "noremap \ ,
 
@@ -49,8 +49,7 @@ nnoremap <silent><S-b> :bp<CR>
 nnoremap <silent><S-n> :bn<CR>
 " バッファを閉じる
 nnoremap <Leader>xx :bdelete<CR>
-
-" CTRL-hjklでウィンドウ移動
+" Shift-hjklでウィンドウ移動
 nnoremap <S-j> <C-w>j
 nnoremap <S-k> <C-w>k
 nnoremap <S-l> <C-w>l
@@ -66,7 +65,8 @@ nnoremap <C-q> <ESC>:q!<CR>
 inoremap <C-q> <ESC>:q!<CR>
 
 " Spaceでページ送り
-nnoremap <Space> <C-f>
+nnoremap <C-p> 30k
+nnoremap <Space> 30j
 
 " ノーマルモードエンターで改行挿入
 nnoremap <CR> i<CR><ESC>^^
@@ -126,6 +126,8 @@ map ,x <Plug>(operator-clang-format)
 " ファイラーを起動
 nnoremap <silent><C-x><C-f> :VimFiler<CR>
 
+" Quickrunする
+nnoremap <Leader>Q :QuickRun<CR>
 " ツリーをトグル
 nmap <Leader>n :NERDTreeToggle<CR>
 
@@ -144,23 +146,23 @@ vmap <Leader>c <Plug>(caw:I:toggle)
 nmap <Leader>C <Plug>(caw:I:uncomment)
 vmap <Leader>C <Plug>(caw:I:uncomment)
 
-" <Space>m でカーソル下の単語、もしくは選択した範囲のハイライトを行う
-" 再度 <Space>m を行うとカーソル下のハイライトを解除する
+" <Leader>m でカーソル下の単語、もしくは選択した範囲のハイライトを行う
+" 再度 <Leader>m を行うとカーソル下のハイライトを解除する
 " これは複数の単語のハイライトを行う事もできる
-" <Space>M で全てのハイライトを解除する
+" <Leader>M で全てのハイライトを解除する
 nmap <Leader>m <Plug>(quickhl-manual-this)
 xmap <Leader>m <Plug>(quickhl-manual-this)
 nmap <Leader>M <Plug>(quickhl-manual-reset)
 xmap <Leader>M <Plug>(quickhl-manual-reset)
 
 " Unite "{{{
-nnoremap [unite] <Nop>
-xnoremap [unite] <Nop>
-nmap f [unite]
-xmap f [unite]
-
-nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
-xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
+" nnoremap [unite] <Nop>
+" xnoremap [unite] <Nop>
+" nmap f [unite]
+" xmap f [unite]
+"
+" nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
+" xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
 
 " アウトラインを表示
 nnoremap <silent><Leader>t :Unite -vertical -winwidth=30 -no-quit outline<CR>
@@ -168,5 +170,56 @@ nnoremap <silent><Leader>t :Unite -vertical -winwidth=30 -no-quit outline<CR>
 " Uniteでビルド
 nnoremap <Leader>bb :Unite -no-quit -direction=botright -winheight=14 build<CR>
 "}}}
+
+" over.vim {{{
+
+" over.vimの起動
+nnoremap <silent> <Leader>o :OverCommandLine<CR>
+
+" カーソル下の単語をハイライト付きで置換
+nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+
+" コピーした文字列をハイライト付きで置換
+nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
+" }}}
+
+" pyclewn.vim {{{
+cnoremap <expr> <SID>lineno line(".")
+
+" カーソル行にブレイクポイント設定/取消
+nnoremap <script> <C-b> :Cbreak <C-R><C-%>:<SID>lineno<CR>
+nnoremap <script> <C-c> :Cclear <C-R><C-%>:<SID>lineno<CR>
+
+" finish current loop
+nnoremap <F4> :Cuntil<CR>
+" step in
+nnoremap <F5> :Cstep<CR>
+" step out
+nnoremap <F6> :Cnext<CR>
+" finish current function
+nnoremap <F7> :Cfinish<CR>
+" continue next break point
+nnoremap <F8> :Ccontinue<CR>
+" breaking main and run
+nnoremap <F9> :Cbreak main <Bar> Crun<CR>
+" up stack trace
+nnoremap <F10> :Cup<CR>
+" down stack trace
+nnoremap <F11> :Cdown<CR>
+" run
+nnoremap <F12> :Crun<CR>
+
+" カーソル位置の変数の値表示
+nnoremap PP :Cprint <C-R><C-W><CR>
+
+" カーソル位置の変数をwatch変数バッファに追加
+nnoremap WW :Cdbgvar <C-R><C-W><CR>
+" watch変数バッファのカーソル位置の情報を削除
+nnoremap WD :Cdelvar <C-R><C-W><CR>
+" watch変数バッファのカーソル行の折り畳みを開く/閉じる
+nnoremap <script> WZ :Cfoldvar <SID>lineno<CR>
+
+" }}}
 
 "}}}

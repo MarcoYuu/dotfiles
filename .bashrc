@@ -145,9 +145,11 @@ fi
 
 # PATH
 export PATH=~/bin:/usr/local/bin:${PATH}
+export PATH=${PATH}:/opt/android-studio/sdk/platform-tools:/opt/android-studio/sdk/tools
+
 
 # aliases
-alias ls='ls -pF --color=auto --group-directories-first'
+alias ls='ls -vpF --color=auto --group-directories-first'
 alias ll='ls -alF'
 alias la='ls -AF'
 alias l='ls -CF'
@@ -168,16 +170,6 @@ fi
 #alias cd=cdls
 alias pd=pushd
 alias bd=popd
-
-# less syntax hightlight
-export LESS='-R'
-export LESSOPEN='| $HOME/bin/src-hilite-lesspipe.sh %s'
-
-# ssh X forwarding aliases
-alias sshosore='ssh -X -Y momma@osore'
-alias sshhome='ssh -X -Y yuumomma@beafjerkyoishi.hobby.jp'
-alias sshtesla='ssh -X -Y momma@tesla'
-alias sshlab='ssh -X -Y momma@gate0.comp.sd.keio.ac.jp'
 
 # cuda 64bit
 export MANPATH=$MANPATH:/usr/local/cuda/man
@@ -219,6 +211,25 @@ man() {
 		man "$@"
 }
 
+# ruby env
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# make のデフォオプション
+export MAKEOPTS=-j4
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
 #THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
-#curl -s get.gvmtool.net/selfupdate | bash > /dev/null
-#[[ -s "/home/yuumomma/.gvm/bin/gvm-init.sh" ]] && source "/home/yuumomma/.gvm/bin/gvm-init.sh"
+#curl -s get.gvmtool.net/selfupdate | bash
+#[[ -s "/home/momma/.gvm/bin/gvm-init.sh" ]] && source "/home/momma/.gvm/bin/gvm-init.sh"
+
+# pyclewn
+# alias gdbvim='pyclewn -e vim --gdb=async --args'
+alias gdbvim='pyclewn -e vim --args'
+export PYTHONPATH=$HOME/lib/python:$PYTHONPATH
+
+# for pretty gdb
+export PYTHONPATH=$HOME/bin/gdb/python:$PYTHONPATH
+export PYTHONPATH=$HOME/bin/gdb/Boost-Pretty-Printer:$PYTHONPATH

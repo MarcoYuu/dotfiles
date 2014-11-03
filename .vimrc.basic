@@ -1,3 +1,4 @@
+
 " ------------------------------------------------------------
 " VIM本体の設定
 " ------------------------------------------------------------
@@ -21,12 +22,20 @@ set noswapfile                                             " スワップファ�
 set hidden                                                 " 編集中でも他のファイルを開けるようにする
 set formatoptions   =lmoq                                  " テキスト整形オプション，マルチバイト系を追加
 set vb t_vb         =                                      " ビープをならさない
-set clipboard       =autoselect                            " OSのクリップボードを使用する
+set clipboard      +=autoselect                            " OSのクリップボードを使用する
 set clipboard      +=unnamed                               "
 set clipboard      +=unnamedplus                           "
 set list                                                   " 不可視文字表示
 set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
 set virtualedit    +=block                                 " 矩形選択で自由に移動する
+
+" Undo履歴をファイルに保存する
+let dir_for_undo=expand('$HOME/.vimundo')
+if !isdirectory(dir_for_undo)
+	call mkdir(dir_for_undo, 'p')
+endif
+set undodir=dir_for_undo
+set undofile
 
 " カーソル行のハイライト "{{{
 set cursorline
@@ -58,6 +67,10 @@ augroup Folding
 	autocmd FileType vim setlocal foldnestmax  =6      " どのレベルからデフォで折りたたむか
 	autocmd FileType vim setlocal foldmethod   =marker " どのレベルまで折りたたむか
 
+	"let g:foldCCtext_head = 'v:folddashes. " "'
+	"let g:foldCCtext_tail ='printf("   %s[%4d lines  Lv%-2d]%s",'.
+	"			\ ' v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
+	"set foldtext      =foldcc#foldtext() " 折りたたみテキスト
 	set foldtext      =FoldCCtext() " 折りたたみテキスト
 	set fillchars     =vert:\|
 
@@ -65,7 +78,6 @@ augroup Folding
 	hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 augroup END
 "}}}
-
 "}}}
 
 " マウス設定 "{{{
@@ -139,7 +151,7 @@ augroup MyAutoCommands
 	autocmd FileType php    setlocal path+=/usr/local/share/pear
 	autocmd FileType apache setlocal path+=./,/
 	autocmd FileType c      setlocal path+=./,/usr/include/,/usr/local/include/
-	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,,**,/usr/include/**
+	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,**,/usr/include/**
 
 	" 保存時に行末の空白を除去する
 	autocmd BufWritePre * :%s/\s\+$//ge
@@ -148,9 +160,9 @@ augroup MyAutoCommands
 	"autocmd BufWritePre * :%s/\t/  /ge
 
 	" 拡張子で読み込みタグ変更
-	"au BufNewFile,BufRead *.php setl tags+=$HOME/.vim/tags/php.tags
-	"au BufNewFile,BufRead *.py,*.pyc setl tags+=$HOME/.vim/tags/python.tags
-	"au BufNewFile,BufRead *.h,*.c,*.cc,*.cpp,*.ipp,*.hpp setl tags+=$HOME/.vim/tags/cpp.tags
+	" au BufNewFile,BufRead *.php setl tags+=$HOME/.vim/tags/php.tags
+	" au BufNewFile,BufRead *.py,*.pyc setl tags+=$HOME/.vim/tags/python.tags
+	" au BufNewFile,BufRead *.h,*.c,*.cc,*.cpp,*.ipp,*.hpp setl tags+=$HOME/.vim/tags/cpp.tags
 
 	" 標準ライブラリでfiletype が設定されていない場合に filetype=cpp を設定する
 	augroup vimrc-set_filetype_cpp

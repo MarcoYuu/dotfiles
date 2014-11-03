@@ -3,6 +3,7 @@
 rm ~/.bashrc
 rm ~/.gdbinit
 rm ~/.gitconfig
+rm ~/.git-completion.bash
 rm ~/.gvimrc
 rm ~/.inputrc
 rm ~/.tmux.conf
@@ -12,3 +13,4 @@ rm ~/.zshrc
 rm ~/.ctags
 rm -rf ~/.vim
 rm -rf ~/bin
+rm -rf ~/lib
