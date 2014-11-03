@@ -218,3 +218,7 @@ man() {
 		LESS_TERMCAP_us=$(printf "\e[1;32m") \
 		man "$@"
 }
+
+#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
+#curl -s get.gvmtool.net/selfupdate | bash > /dev/null
+#[[ -s "/home/yuumomma/.gvm/bin/gvm-init.sh" ]] && source "/home/yuumomma/.gvm/bin/gvm-init.sh"

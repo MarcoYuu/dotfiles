@@ -31,10 +31,10 @@ DEPENDS += $(addprefix $(DEPEND_DIR)/,$(SOURCES_CC:.cc=.d))
 DEPENDS += $(addprefix $(DEPEND_DIR)/,$(SOURCES_C:.c=.d))
 
 # compiler
-PACKAGES := gtkmm-2.4
+PACKAGES :=
 CXX := g++
-CXXFLAGS := -O2 -Wall $(shell pkg-config $(PACKAGES) --cflags)
-LIBS := $(shell pkg-config $(PACKAGES) --libs)
+CXXFLAGS := -O2 -Wall $(shell if [ -n "$(PACKAGES)" ] ; then pkg-config $(PACKAGES) --cflags; fi)
+LIBS := -lGL -lGLU -lglut $(shell if [ -n "$(PACKAGES)" ] ; then pkg-config $(PACKAGES) --libs; fi)
 
 vpath %.cpp src
 vpath %.cc src

@@ -15,7 +15,7 @@
 " Leaderを,に変更
 let mapleader = ","
 " ,のデフォルトの機能は、\で使えるように退避
-noremap \ ,
+"noremap \ ,
 
 " 標準 "{{{
 

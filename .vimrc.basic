@@ -148,11 +148,11 @@ augroup MyAutoCommands
 	"autocmd BufWritePre * :%s/\t/  /ge
 
 	" 拡張子で読み込みタグ変更
-	au BufNewFile,BufRead *.php setl tags+=$HOME/.vim/tags/php.tags
-	au BufNewFile,BufRead *.py,*.pyc setl tags+=$HOME/.vim/tags/python.tags
-	au BufNewFile,BufRead *.h,*.c,*.cc,*.cpp,*.ipp,*.hpp setl tags+=$HOME/.vim/tags/cpp.tags
+	"au BufNewFile,BufRead *.php setl tags+=$HOME/.vim/tags/php.tags
+	"au BufNewFile,BufRead *.py,*.pyc setl tags+=$HOME/.vim/tags/python.tags
+	"au BufNewFile,BufRead *.h,*.c,*.cc,*.cpp,*.ipp,*.hpp setl tags+=$HOME/.vim/tags/cpp.tags
 
-	" filetype が設定されていない場合に filetype=cpp を設定する
+	" 標準ライブラリでfiletype が設定されていない場合に filetype=cpp を設定する
 	augroup vimrc-set_filetype_cpp
 		autocmd!
 		autocmd BufReadPost /usr/include/c++/4.8/* if empty(&filetype) | set filetype=cpp | endif
