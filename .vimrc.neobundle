@@ -112,8 +112,8 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 
 " バイナリ
-NeoBundle 'Shougo/vinarise.vim'
-let g:vinarise_enable_auto_detect=1
+" NeoBundle 'Shougo/vinarise.vim'
+" let g:vinarise_enable_auto_detect=1
 
 " 非同期処理化プラグイン
 NeoBundle 'Shougo/vimproc', {
