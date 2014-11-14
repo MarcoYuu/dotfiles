@@ -57,7 +57,10 @@ if isdirectory(expand("$HOME/.vim/bundle/neobundle.vim/"))
 		set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 	endif
 	try
-		call neobundle#rc(expand('$HOME/.vim/bundle/'))
+		" プラグインの読み込み
+		call neobundle#begin(expand('$HOME/.vim/bundle/'))
+		source $HOME/dotfiles/.vimrc.neobundle
+		call neobundle#end()
 	catch
 		echo "Error!"
 		echo "NeoBundle is not working."
@@ -73,9 +76,6 @@ endif
 "}}}
 
 " 設定の読み込み "{{{
-
-" プラグインの読み込み
-source $HOME/dotfiles/.vimrc.neobundle
 
 " Vim設定の読み込み
 source $HOME/dotfiles/.vimrc.basic
