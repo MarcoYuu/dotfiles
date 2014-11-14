@@ -142,60 +142,33 @@ fi
 # --------------------------------------------------------------------------------
 # ここより下は各自
 # --------------------------------------------------------------------------------
-
-# PATH
+# ------------- PATH --------------
 export PATH=~/bin:/usr/local/bin:${PATH}
 export PATH=${PATH}:/opt/android-studio/sdk/platform-tools:/opt/android-studio/sdk/tools
 
-
-# aliases
+# -------------- aliases --------------
 alias ls='ls -vpF --color=auto --group-directories-first'
 alias ll='ls -alF'
 alias la='ls -AF'
 alias l='ls -CF'
 alias diff=colordiff
-alias emacs='XMODIFIERS=@im=none emacs'
-function cdls() {
-if [ -z "$1" ]; then
-	\cd;
-	ls;
-elif [ -z "$2" ]; then
-	\cd $1;
-	ls;
-else
-	\pushd $1;
-	ls;
-fi
-}
-#alias cd=cdls
 alias pd=pushd
 alias bd=popd
 
-# cuda 64bit
-export MANPATH=$MANPATH:/usr/local/cuda/man
-export PATH=$PATH:/usr/local/cuda/bin
-export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda-5.0/lib64:/usr/local/cuda/cudaprof/bin:$LD_LIBRARY_PATH"
 
-# gcc切り替え
-alias switchgcc='sudo update-alternatives --config gcc'
-
-# plant uml
-export GRAPHVIZ_DOT=/usr/bin/dot
-alias plantuml='java -jar ~/bin/plantuml.jar'
-
-# vim キーバインド用
-stty -ixon -ixoff
-
-# ※とかを普通に表示させる
-export VTE_CJK_WIDTH=auto
-
-# Gitブランチ表示
-source ~/bin/git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=true
-export PS1='\[\033[1;32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ \n>'
-
-# tmux用
-PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+# -------------- functions --------------
+cdls() {
+	if [ -z "$1" ]; then
+		\cd;
+		ls;
+	elif [ -z "$2" ]; then
+		\cd $1;
+		ls;
+	else
+		\pushd $1;
+		ls;
+	fi
+}
 
 # man color view
 export MANPAGER='less -R'
@@ -211,19 +184,22 @@ man() {
 		man "$@"
 }
 
+csv_view() {
+	if [ -p /dev/stdin ]; then
+		column -s, -t </dev/stdin | lv -c
+	elif [ -z "$1" ]; then
+		echo "no file specified."
+	else
+		column -s, -t < $1 | lv
+	fi
+}
+alias tless='csv_view()'
+
+
+# -------------- 開発系 -------------------
 # ruby env
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
-
-# make のデフォオプション
-export MAKEOPTS=-j4
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
-#curl -s get.gvmtool.net/selfupdate | bash
-#[[ -s "/home/momma/.gvm/bin/gvm-init.sh" ]] && source "/home/momma/.gvm/bin/gvm-init.sh"
 
 # pyclewn
 # alias gdbvim='pyclewn -e vim --gdb=async --args'
@@ -233,3 +209,28 @@ export PYTHONPATH=$HOME/lib/python:$PYTHONPATH
 # for pretty gdb
 export PYTHONPATH=$HOME/bin/gdb/python:$PYTHONPATH
 export PYTHONPATH=$HOME/bin/gdb/Boost-Pretty-Printer:$PYTHONPATH
+
+# make のデフォオプション
+export MAKEOPTS=-j4
+
+# gcc切り替え
+alias switchgcc='sudo update-alternatives --config gcc'
+
+# vim キーバインド用
+stty -ixon -ixoff
+
+# ※とかを普通に表示させる
+export VTE_CJK_WIDTH=auto
+
+# emacsのなんか
+alias emacs='XMODIFIERS=@im=none emacs'
+
+# -------------- プロンプト表示 -------------------
+# Gitブランチ表示
+source ~/bin/git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=true
+export PS1='\[\033[1;32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ \n>'
+
+# tmux用
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+
