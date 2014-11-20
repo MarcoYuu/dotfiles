@@ -163,6 +163,7 @@ augroup MyAutoCommands
 	" au BufNewFile,BufRead *.php setl tags+=$HOME/.vim/tags/php.tags
 	" au BufNewFile,BufRead *.py,*.pyc setl tags+=$HOME/.vim/tags/python.tags
 	" au BufNewFile,BufRead *.h,*.c,*.cc,*.cpp,*.ipp,*.hpp setl tags+=$HOME/.vim/tags/cpp.tags
+	autocmd BufRead,BufNewFile *.{txt,text} set filetype=markdown
 
 	" 標準ライブラリでfiletype が設定されていない場合に filetype=cpp を設定する
 	augroup vimrc-set_filetype_cpp

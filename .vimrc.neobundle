@@ -808,8 +808,13 @@ NeoBundle 'thinca/vim-ref'
 
 " Markdown for vim
 NeoBundle 'kannokanno/previm'
-NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'joker1007/vim-markdown-quote-syntax'
+NeoBundle 'rcmdnk/vim-markdown'
+let g:vim_markdown_liquid=1
+let g:vim_markdown_frontmatter=1
+let g:vim_markdown_math=1
 
 " sudo
 NeoBundle 'sudo.vim'

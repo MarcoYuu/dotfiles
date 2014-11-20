@@ -1,3 +1,5 @@
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
 
 " vim内部で通常使用する文字エンコーディングを設定
 set encoding      =utf-8
@@ -54,6 +56,7 @@ endif
 if isdirectory(expand("$HOME/.vim/bundle/neobundle.vim/"))
 	filetype plugin indent off
 	if has('vim_starting')
+		set nocompatible " Be iMproved
 		set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 	endif
 	try
@@ -61,6 +64,8 @@ if isdirectory(expand("$HOME/.vim/bundle/neobundle.vim/"))
 		call neobundle#begin(expand('$HOME/.vim/bundle/'))
 		source $HOME/dotfiles/.vimrc.neobundle
 		call neobundle#end()
+		filetype plugin indent on
+		NeoBundleCheck
 	catch
 		echo "Error!"
 		echo "NeoBundle is not working."
