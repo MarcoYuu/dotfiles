@@ -1,23 +1,38 @@
 #!/bin/bash
 
-mkdir ~/dotfiles_backup
+if [ -e $HOME/.dotfiles_backup ]; then
+	echo "There is backup directory."
+	echo "Do you want to install dotfiles anyway? [y/N]"
 
-mv ~/.bashrc ~/dotfiles_backup
-mv ~/.gdbinit ~/dotfiles_backup
-mv ~/.gitconfig ~/dotfiles_backup
-mv ~/.gvimrc ~/dotfiles_backup
-mv ~/.inputrc ~/dotfiles_backup
-mv ~/.tmux.conf ~/dotfiles_backup
-mv ~/.tmux-powerlinerc ~/dotfiles_backup
-mv ~/.vimrc ~/dotfiles_backup
-mv ~/.zshrc ~/dotfiles_backup
-mv ~/.ctags ~/dotfiles_backup
-mv ~/.vim ~/dotfiles_backup
-mv ~/bin ~/dotfiles_backup
-mv ~/lib ~/dotfiles_backup
+	read ANSWER
+
+	ANSWER=`echo $ANSWER | tr y Y | tr -d '[\[\]]'`
+	case $ANSWER in
+		""|Y* ) echo "";;
+		*  ) exit;;
+	esac
+fi
+mkdir ~/.dotfiles_backup
+
+mv ~/.bashrc ~/.dotfiles_backup
+mv ~/.ctags ~/.dotfiles_backup
+mv ~/.gdbinit ~/.dotfiles_backup
+mv ~/.gemrc ~/.dotfiles_backup
+mv ~/.gitconfig ~/.dotfiles_backup
+mv ~/.gvimrc ~/.dotfiles_backup
+mv ~/.inputrc ~/.dotfiles_backup
+mv ~/.tmux.conf ~/.dotfiles_backup
+mv ~/.tmux-powerlinerc ~/.dotfiles_backup
+mv ~/.vimrc ~/.dotfiles_backup
+mv ~/.zshrc ~/.dotfiles_backup
+mv ~/.vim ~/.dotfiles_backup
+mv ~/bin ~/.dotfiles_backup
+mv ~/lib ~/.dotfiles_backup
 
 ln -s ~/dotfiles/.bashrc ~/.bashrc
+ln -s ~/dotfiles/.ctags ~/.ctags
 ln -s ~/dotfiles/.gdbinit ~/.gdbinit
+ln -s ~/dotfiles/.gemrc ~/.gemrc
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.git-completion.bash ~/.git-completion.bash
 ln -s ~/dotfiles/.gvimrc ~/.gvimrc
@@ -26,7 +41,6 @@ ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.tmux-powerlinerc ~/.tmux-powerlinerc
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.ctags ~/.ctags
 ln -s ~/dotfiles/.vim ~/.vim
 ln -s ~/dotfiles/bin ~/bin
 ln -s ~/dotfiles/lib ~/lib
