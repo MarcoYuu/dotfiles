@@ -59,9 +59,15 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# Whenever displaying the prompt, write the previous line to disk
+export PROMPT_COMMAND="history -a"
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
+# history にコマンド実行時刻を記録する
+HISTTIMEFORMAT='%Y-%m-%dT%T%z '
+export HISTTIMEFORMAT
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -146,6 +152,7 @@ fi
 export PATH=~/bin:/usr/local/bin:${PATH}
 export PATH=${PATH}:/opt/android-studio/sdk/platform-tools:/opt/android-studio/sdk/tools
 
+
 # -------------- aliases --------------
 alias ls='ls -vpF --color=auto --group-directories-first'
 alias ll='ls -alF'
@@ -225,6 +232,29 @@ export VTE_CJK_WIDTH=auto
 # emacsのなんか
 alias emacs='XMODIFIERS=@im=none emacs'
 
+# tmuxinator
+_tmuxinator() {
+	COMPREPLY=()
+	local word="${COMP_WORDS[COMP_CWORD]}"
+
+	if [ "$COMP_CWORD" -eq 1 ]; then
+		local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
+		local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
+
+		COMPREPLY=( $commands $projects )
+	else
+		local words=("${COMP_WORDS[@]}")
+		unset words[0]
+		unset words[$COMP_CWORD]
+		local completions=$(tmuxinator completions "${words[@]}")
+		COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+	fi
+}
+complete -F _tmuxinator tmuxinator mux
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+export EDITOR=vim
+
+
 # -------------- プロンプト表示 -------------------
 # Gitブランチ表示
 source ~/bin/git-prompt.sh
@@ -233,4 +263,3 @@ export PS1='\[\033[1;32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps
 
 # tmux用
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
-
