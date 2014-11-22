@@ -112,8 +112,8 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/vimshell'
 
 " バイナリ
-NeoBundle 'Shougo/vinarise.vim'
-let g:vinarise_enable_auto_detect=1
+" NeoBundle 'Shougo/vinarise.vim'
+" let g:vinarise_enable_auto_detect=1
 
 " 非同期処理化プラグイン
 NeoBundle 'Shougo/vimproc', {
@@ -337,6 +337,13 @@ NeoBundle 'ujihisa/neco-look'
 
 " ZenCoding記法
 NeoBundle 'mattn/emmet-vim'
+
+" f 移動を便利に
+NeoBundle 'rhysd/clever-f.vim'
+let g:clever_f_smart_case=1
+let g:clever_f_use_migemo=1
+let g:clever_f_fix_key_direction=1
+let g:clever_f_chars_match_any_signs = ';'
 
 " Doxygenコメントを追加する
 NeoBundleLazy 'DoxygenToolkit.vim', {
@@ -650,7 +657,6 @@ else
 	" clang_complete 側の設定
 	" clang_complete の自動呼び出しは必ず切っておいて下さい
 	" これを設定しておかなければ補完がおかしくなります
-
 	let g:clang_complete_auto = 0
 	let g:clang_use_library   = 1
 	let g:clang_library_path  = '/usr/lib/llvm-3.5/lib/'
@@ -802,8 +808,13 @@ NeoBundle 'thinca/vim-ref'
 
 " Markdown for vim
 NeoBundle 'kannokanno/previm'
-NeoBundle 'tpope/vim-markdown'
 NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'joker1007/vim-markdown-quote-syntax'
+NeoBundle 'rcmdnk/vim-markdown'
+let g:vim_markdown_liquid=1
+let g:vim_markdown_frontmatter=1
+let g:vim_markdown_math=1
 
 " sudo
 NeoBundle 'sudo.vim'
