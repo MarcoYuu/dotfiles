@@ -28,6 +28,10 @@ NeoBundle 'Shougo/unite-sudo'
 " アウトライン表示
 NeoBundle 'Shougo/unite-outline'
 
+" 最近のファイル
+NeoBundle 'Shougo/neomru.vim'
+let g:neomru#time_format = "(%Y/%m/%d %H:%M:%S) "
+
 " カラースキーム一覧表示に Unite.vim を使う
 NeoBundle 'ujihisa/unite-colorscheme'
 

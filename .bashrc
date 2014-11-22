@@ -24,6 +24,26 @@ if [ -f ~/.git-completion.bash ]; then
 	. ~/.git-completion.bash
 fi
 
+#hg用
+if [ -f ~/.hg-completion ]; then
+	. ~/.hg-completion.bash
+fi
+#hg_dirty() {
+#	hg status --no-color 2> /dev/null \
+#		| awk '$1 == "?" { print "?" } $1 != "?" { print "!" }' \
+#		| sort | uniq | head -c1
+#	[[ `hg branch 2> /dev/null` ]] && echo ')'
+#}
+#
+#hg_in_repo() {
+#	[[ `hg branch 2> /dev/null` ]] && echo ' (on '
+#}
+#
+#hg_branch() {
+#	hg branch 2> /dev/null
+#}
+
+
 # If running interactively, then:
 if [ "$PS1" ]; then
 	set -o ignoreeof
