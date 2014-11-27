@@ -66,8 +66,12 @@ export PROMPT_COMMAND="history -a"
 HISTSIZE=10000
 HISTFILESIZE=20000
 # history にコマンド実行時刻を記録する
-HISTTIMEFORMAT='%Y-%m-%dT%T%z '
+# HISTTIMEFORMAT='%Y-%m-%dT%T%z '
+HISTTIMEFORMAT='%Y%m%d %T';
 export HISTTIMEFORMAT
+
+# よく使うコマンドは記録しない
+HISTIGNORE="fg*:bg*:history*:ls*:la*:ll*"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
