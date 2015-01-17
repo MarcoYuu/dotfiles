@@ -142,9 +142,24 @@ NeoBundleLazy 'osyo-manga/vim-over', {'autoload': {
 			\'commands': ['OverCommandLineNoremap', 'OverCommandLineMap', 'OverCommandLine']
 			\}}
 
+NeoBundle 'YankRing.vim'
+" YankRing.vim
+" [,],[y]でヤンク履歴
+" http://nanasi.jp/articles/vim/yankring_vim.html
+" https://github.com/yuroyoro/dotfiles/blob/master/.vimrc.plugins_setting
+nmap ,p :YRShow<CR>
 "}}}
 
 " 表示 "{{{
+
+" インデントに色を付けて見やすくする
+NeoBundle 'nathanaelkane/vim-indent-guides'
+" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size=1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=238
 
 " CSV操作
 NeoBundle 'rbtnn/rabbit-ui.vim'
