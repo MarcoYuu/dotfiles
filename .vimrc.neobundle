@@ -890,7 +890,39 @@ NeoBundle 'abudden/EasyColour' , { 'rev' : '9d683aec8' }
 "}}}
 
 
+" others
+command! -nargs=? -range=% -bang FSort :<line1>,<line2>call s:FSort(<bang>0, <q-args>)
 
+function! s:FComp(lhs, rhs)
+	let l:lhs = str2float(substitute(a:lhs, s:pat, "", ""))
+	let l:rhs = str2float(substitute(a:rhs, s:pat, "", ""))
+	return l:lhs == l:rhs ? 0 : l:lhs < l:rhs ? -1 : 1
+endfunction
+
+function! s:FCompBang(lhs, rhs)
+	return -s:FComp(a:lhs, a:rhs)
+endfunction
+
+function! s:FSort(bang, ...) range
+	if (a:1 != "")
+		let s:pat = matchstr(a:1, '/\@<=.*/\@=')
+	else
+		let s:pat = '.\{-}\%\(\d\|-\)\@='
+	endif
+
+	let lines = []
+	for i in range(a:firstline, a:lastline)
+		call add(lines, getline(i))
+	endfor
+	if (a:bang)
+		call sort(lines, "s:FCompBang")
+	else
+		call sort(lines, "s:FComp")
+	endif
+	for i in range(a:firstline, a:lastline)
+		call setline(i, lines[i - a:firstline])
+	endfor
+endfunction
 
 
 
