@@ -17,6 +17,9 @@
 " ,のデフォルトの機能は、\で使えるように退避
 "noremap \ ,
 
+nnoremap <C-[> <Esc>
+inoremap <C-[> <Esc>
+
 " 標準 "{{{
 
 " カーソル移動 "{{{
@@ -30,10 +33,10 @@ nnoremap <Down> gj
 nnoremap <Up>   gk
 
 " 挿入モードでのカーソル移動
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+"inoremap <C-j> <Down>
+"inoremap <C-k> <Up>
+"inoremap <C-h> <Left>
+"inoremap <C-l> <Right>
 "}}}
 
 " 検索結果に移動したとき、その位置を画面の中央にします。
@@ -95,7 +98,7 @@ command! -count -nargs=1 ContinuousNumber let c = col('.')|
 " タブ "{{{
 " The prefix key.
 nnoremap [Tab] <Nop>
-nmap t [Tab]
+nmap T [Tab]
 
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
 for n in range(1, 9)
@@ -168,7 +171,7 @@ xmap <Leader>M <Plug>(quickhl-manual-reset)
 nnoremap <silent><Leader>t :Unite -vertical -winwidth=30 -no-quit outline<CR>
 
 " Uniteでビルド
-nnoremap <Leader>bb :Unite -no-quit -direction=botright -winheight=14 build<CR>
+nnoremap <Leader>bb :Unite build<CR>:q<CR>
 "}}}
 
 " over.vim {{{

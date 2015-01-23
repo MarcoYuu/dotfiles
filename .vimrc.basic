@@ -22,9 +22,9 @@ set noswapfile                                             " スワップファ�
 set hidden                                                 " 編集中でも他のファイルを開けるようにする
 set formatoptions   =lmoq                                  " テキスト整形オプション，マルチバイト系を追加
 set vb t_vb         =                                      " ビープをならさない
-set clipboard      +=autoselect                            " OSのクリップボードを使用する
-set clipboard      +=unnamed                               "
-set clipboard      +=unnamedplus                           "
+set clipboard&                                             " OSのクリップボードを使用する
+set clipboard      ^=unnamed                               "
+set clipboard      ^=unnamedplus                           "
 set list                                                   " 不可視文字表示
 set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
 set virtualedit    +=block                                 " 矩形選択で自由に移動する
@@ -50,9 +50,27 @@ highlight CursorLine ctermbg=black guibg=black
 "}}}
 
 " insertモードを抜けるとIMEオフしてくれるらしい "{{{
-set noimdisable
-set iminsert=0 imsearch=0
-set noimcmdline
+" for im_control.vim
+" 「日本語入力固定モード」の動作モード
+let IM_CtrlMode = 1
+" 「日本語入力固定モード」切替キー
+"inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+let IMState=2
+
+" IBus 1.5以降
+function! IMCtrl(cmd)
+	let cmd = a:cmd
+	if cmd == 'On'
+		let res = system('ibus engine "mozc-jp"')
+	elseif cmd == 'Off'
+		let res = system('ibus engine "xkb:jp::jpn"')
+	endif
+	return ''
+endfunction
+
+" <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定してみてください。
+" IMCtrl()のsystem()コマンド実行時に&を付けて非同期で実行するという方法でも体感速度が上がる場合があります。
+set timeout timeoutlen=3000 ttimeoutlen=100
 "}}}
 
 " 折りたたみ設定 "{{{
