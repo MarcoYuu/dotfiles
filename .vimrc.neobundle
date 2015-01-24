@@ -148,12 +148,22 @@ NeoBundleLazy 'osyo-manga/vim-over', {'autoload': {
 			\'commands': ['OverCommandLineNoremap', 'OverCommandLineMap', 'OverCommandLine']
 			\}}
 
-NeoBundle 'YankRing.vim'
+NeoBundle "LeafCage/yankround.vim"
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+
+"NeoBundle 'YankRing.vim'
 " YankRing.vim
 " [,],[y]でヤンク履歴
 " http://nanasi.jp/articles/vim/yankring_vim.html
 " https://github.com/yuroyoro/dotfiles/blob/master/.vimrc.plugins_setting
-nmap ,p :YRShow<CR>
+"nmap ,p :YRShow<CR>
 "}}}
 
 " 表示 "{{{
@@ -177,7 +187,7 @@ NeoBundle 'rbtnn/rabbit-ui-collection.vim'
 NeoBundle 't9md/vim-quickhl'
 
 " 折りたたみ支援
-NeoBundle 'LeafCage/foldCC'
+NeoBundle 'LeafCage/foldCC.vim'
 
 " エラーのハイライト,
 NeoBundle "jceb/vim-hier"
@@ -890,7 +900,7 @@ NeoBundle 'abudden/EasyColour' , { 'rev' : '9d683aec8' }
 "}}}
 
 
-" others
+" others {{{
 command! -nargs=? -range=% -bang FSort :<line1>,<line2>call s:FSort(<bang>0, <q-args>)
 
 function! s:FComp(lhs, rhs)
@@ -923,7 +933,7 @@ function! s:FSort(bang, ...) range
 		call setline(i, lines[i - a:firstline])
 	endfor
 endfunction
-
+"}}}
 
 
 

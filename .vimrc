@@ -62,7 +62,7 @@ endif
 if isdirectory(expand("$HOME/.vim/bundle/neobundle.vim/"))
 	filetype plugin indent off
 	if has('vim_starting')
-		set nocompatible " Be iMproved
+		"set nocompatible " Be iMproved
 		set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 	endif
 	try
