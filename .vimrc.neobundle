@@ -142,6 +142,8 @@ NeoBundleLazy 'osyo-manga/vim-over', {'autoload': {
 			\'commands': ['OverCommandLineNoremap', 'OverCommandLineMap', 'OverCommandLine']
 			\}}
 
+NeoBundle 'deris/vim-shot-f'
+
 "}}}
 
 " 表示 "{{{
@@ -431,6 +433,7 @@ unlet s:comment_leadings
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
+let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='$HOME/.vim/bundle/vim-snippets/snippets,$HOME/.vim/snippets'
 
 " 補完 "{{{
