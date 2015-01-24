@@ -173,8 +173,12 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size=1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=236
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=238
+
+augroup VimIndentGuide
+	autocmd!
+	autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=236
+	autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=238
+augroup END
 
 " ログファイルを色づけしてくれる
 NeoBundle 'vim-scripts/AnsiEsc.vim'
@@ -849,36 +853,40 @@ let g:vim_markdown_math=1
 NeoBundle 'sudo.vim'
 
 " TeX用Plugin "{{{
-NeoBundleLazy 'jcf/vim-latex', {
+NeoBundleLazy 'lervag/vim-latex', {
 			\ 'autoload': {	'filetypes': [ 'latex', 'tex' ] }}
-"------------------------------------------------------
-" TeX用設定
-"------------------------------------------------------
-"-------------------------------------------------
-" \ll 				:compile and generate dvi or pdf
-" :TTarget pdf		:switch target to pdf
-" \lv				:view dvi or pdf
-"-------------------------------------------------
+let g:latex_latexmk_enabled = 1
+let g:latex_latexmk_options = '-pdfdvi'
 
-set shellslash
-set grepprg=grep\ -nH\ $*
-let g:Tex_SmartKeyQuote 			  = 0
-let g:tex_flavor                      = 'latex'
-let g:Imap_UsePlaceHolders            = 1
-let g:Imap_DeleteEmptyPlaceHolders    = 1
-let g:Imap_StickyPlaceHolders         = 0
-let g:Tex_DefaultTargetFormat         = 'pdf'
-let g:Tex_FormatDependency_ps         = 'dvi,ps'
-let g:Tex_FormatDependency_pdf        = 'dvi,pdf'
-let g:Tex_CompileRule_dvi             = 'platex -synctex=1 -src-specials -interaction=nonstopmode $*'
-let g:Tex_CompileRule_ps              = 'dvips -Ppdf -t a4 -o $*.ps $*.dvi'
-let g:Tex_CompileRule_pdf             = 'dvipdfmx $*.dvi'
-let g:Tex_BibtexFlavor                = 'pbibtex'
-let g:Tex_MakeIndexFlavor             = 'mendex $*.idx'
-let g:Tex_UseEditorSettingInDVIViewer = 1
-let g:Tex_ViewRule_dvi                = 'evince'
-let g:Tex_ViewRule_ps                 = 'evince'
-let g:Tex_ViewRule_pdf                = 'evince'
+let g:latex_view_method = 'general'
+let g:latex_view_general_viewer = 'evince'
+
+" fold
+let g:latex_fold_parts = [
+			\ "appendix",
+			\ "frontmatter",
+			\ "mainmatter",
+			\ "backmatter",
+			\ ]
+let g:latex_fold_sections = [
+			\ "part",
+			\ "chapter",
+			\ "section",
+			\ "subsection",
+			\ "subsubsection",
+			\ ]
+let g:latex_fold_enabled = 1
+let g:latex_fold_automatic = 1
+let g:latex_fold_envs = 0
+
+" for neocomplete
+if !exists('g:neocomplete#sources#omni#input_patterns')
+	let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"\ref補完(*.aux必須)
+"let g:neocomplete#sources#omni#input_patterns.tex = '\\ref{\s*[0-9A-Za-z_:]*'
+"\citeも自動補完するなら(時間かかる)
+let g:neocomplete#sources#omni#input_patterns.tex = '\\cite{\s*[0-9A-Za-z_:]*\|\\ref{\s*[0-9A-Za-z_:]*'
 "}}}
 
 "}}}
