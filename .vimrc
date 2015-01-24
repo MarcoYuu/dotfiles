@@ -1,8 +1,14 @@
+
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
 " vim内部で通常使用する文字エンコーディングを設定
 set encoding      =utf-8
+
+" $HOME/dotfiles/.vimrc.neobundle
+" $HOME/dotfiles/.vimrc.basic
+" $HOME/dotfiles/.vimrc.mapping
+" $HOME/dotfiles/.vimrc.appearance
 
 " 初期化処理 "{{{
 let s:is_windows = has('win16') || has('win32') || has('win64')
