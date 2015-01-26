@@ -6,27 +6,30 @@
 filetype indent plugin on
 
 " 表示・動作設定 "{{{
-set number                                                 " 行番号の表示
-set noexpandtab                                            " タブをタブとして扱う(スペースに展開しない)
-set tabstop         =4                                     " タブを表示するときの幅
-set shiftwidth      =4                                     " タブを挿入するときの幅
-set softtabstop     =0                                     " タブを押したとききっちりタブストップ分だけ進める
-set backspace       =indent,eol,start                      " バックスペース有効化
-set whichwrap       =b,s,h,l,<,>,[,],~                     " 左右移動で行跨ぎ
-set ttyfast                                                " もしかしたらスクロールがなめらかになるかも
-set scrolloff       =5                                     " スクロール時の余白確保
-set nobackup                                               " バックアップ取らない
-set autoread                                               " 他で書き換えられたら自動で読み直す
-set noswapfile                                             " スワップファイル作らない
-set hidden                                                 " 編集中でも他のファイルを開けるようにする
-set formatoptions   =lmoq                                  " テキスト整形オプション，マルチバイト系を追加
-set vb t_vb         =                                      " ビープをならさない
-set clipboard&                                             " OSのクリップボードを使用する
-set clipboard      ^=unnamed                               "
-set clipboard      ^=unnamedplus                           "
-set list                                                   " 不可視文字表示
-set listchars       =tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
-set virtualedit    +=block                                 " 矩形選択で自由に移動する
+set number												   " 行番号の表示
+
+" set expandtab											   " タブをスペースとして扱う(スペースに展開する)
+set noexpandtab											  " タブをタブとして扱う(スペースに展開しない)
+set tabstop			=4									   " タブを表示するときの幅
+set shiftwidth		=4									   " タブを挿入するときの幅
+set softtabstop		=0									   " タブを押したとききっちりタブストップ分だけ進める
+
+set backspace		=indent,eol,start					   " バックスペース有効化
+set whichwrap		=b,s,h,l,<,>,[,],~					   " 左右移動で行跨ぎ
+set ttyfast												   " もしかしたらスクロールがなめらかになるかも
+set scrolloff		=5									   " スクロール時の余白確保
+set nobackup											   " バックアップ取らない
+set autoread											   " 他で書き換えられたら自動で読み直す
+set noswapfile											   " スワップファイル作らない
+set hidden												   " 編集中でも他のファイルを開けるようにする
+set formatoptions	=lmoq								   " テキスト整形オプション，マルチバイト系を追加
+set vb t_vb			=									   " ビープをならさない
+set clipboard&											   " OSのクリップボードを使用する
+set clipboard	   ^=unnamed							   "
+set clipboard	   ^=unnamedplus						   "
+set list												   " 不可視文字表示
+set listchars		=tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
+set virtualedit    +=block								   " 矩形選択で自由に移動する
 
 " Undo履歴をファイルに保存する
 let dir_for_undo=expand('$HOME/.vimundo')
@@ -49,12 +52,21 @@ highlight CursorLine ctermbg=black guibg=black
 "}}}
 
 " insertモードを抜けるとIMEオフしてくれるらしい "{{{
+
 " for im_control.vim
-" 「日本語入力固定モード」の動作モード
-let IM_CtrlMode = 1
+augroup JpnFixMode
+	autocmd!
+	" 「日本語入力固定モード」の動作モード
+	autocmd BufNewFile,BufRead *.tex let IM_CtrlMode = 1
+	" 「日本語入力固定モード」強制
+	autocmd BufNewFile,BufRead *.tex let IMState=2
+augroup END
+
 " 「日本語入力固定モード」切替キー
 "inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
-let IMState=2
+
+" 「日本語入力固定モード」の全バッファローカルモード
+" let IM_CtrlBufLocalMode = 1
 
 " IBus 1.5以降
 function! IMCtrl(cmd)
@@ -66,6 +78,10 @@ function! IMCtrl(cmd)
 	endif
 	return ''
 endfunction
+command! MozcOn :call IMCtrl('On')
+" 強制mozcさん起動
+nnoremap <C-j> :MozcOn<CR>
+inoremap <C-j> <Esc>:MozcOn<CR>i
 
 " <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定してみてください。
 " IMCtrl()のsystem()コマンド実行時に&を付けて非同期で実行するという方法でも体感速度が上がる場合があります。
@@ -76,22 +92,22 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 augroup Folding
 	autocmd!
 
-	autocmd FileType * setl foldmethod    =syntax
-	autocmd FileType * setl foldlevel     =6
+	autocmd FileType * setl foldmethod	  =syntax
+	autocmd FileType * setl foldlevel	  =6
 	autocmd FileType * setl foldnestmax   =8
 
-	autocmd FileType vim setlocal foldlevel    =0      " 折りたたみ
-	autocmd FileType vim setlocal foldnestmax  =6      " どのレベルからデフォで折りたたむか
+	autocmd FileType vim setlocal foldlevel    =0	   " 折りたたみ
+	autocmd FileType vim setlocal foldnestmax  =6	   " どのレベルからデフォで折りたたむか
 	autocmd FileType vim setlocal foldmethod   =marker " どのレベルまで折りたたむか
 
 	"let g:foldCCtext_head = 'v:folddashes. " "'
-	"let g:foldCCtext_tail ='printf("   %s[%4d lines  Lv%-2d]%s",'.
+	"let g:foldCCtext_tail ='printf("	%s[%4d lines  Lv%-2d]%s",'.
 	"			\ ' v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
-	"set foldtext      =foldcc#foldtext() " 折りたたみテキスト
-	let g:foldCCtext_tail = 'printf("   %s[%4d lines  Lv%-2d]%s",
-	  \ v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
-	set foldtext      =FoldCCtext() " 折りたたみテキスト
-	set fillchars     =vert:\|
+	"set foldtext	   =foldcc#foldtext() " 折りたたみテキスト
+	let g:foldCCtext_tail = 'printf("	%s[%4d lines  Lv%-2d]%s",
+				\ v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
+	set foldtext	  =FoldCCtext() " 折りたたみテキスト
+	set fillchars	  =vert:\|
 
 	hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
 	hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
@@ -116,24 +132,24 @@ endif
 " ☆や□や○の文字があってもカーソル位置がずれないようにする
 " ambiwidthの設定のみでは, 解決しない場合がある
 " Ubuntuでは, gnome-terminal, terminatorを以下のコマンドに貼り替えると解決する
-"   /bin/sh -c "VTE_CJK_WIDTH=1 terminator -m"
-"   /bin/sh -c "VTE_CJK_WIDTH=1 gnome-terminal --disable-factory"
+"	/bin/sh -c "VTE_CJK_WIDTH=1 terminator -m"
+"	/bin/sh -c "VTE_CJK_WIDTH=1 gnome-terminal --disable-factory"
 " MacのiTermでは, Profiles>Text>Double-Width Characters>Treat ambiguous-width characters as double widthにチェック
-set ambiwidth     =double                        " ○や※をちゃんと表示
-set encoding      =utf-8                         " vim内部で通常使用する文字エンコーディングを設定
-set charconvert   =utf-8                         " 文字エンコーディングに使われるexpressionを定める
-set fileencoding  =utf-8                         " バッファのファイルエンコーディングを指定
+set ambiwidth	  =double						 " ○や※をちゃんと表示
+set encoding	  =utf-8						 " vim内部で通常使用する文字エンコーディングを設定
+set charconvert   =utf-8						 " 文字エンコーディングに使われるexpressionを定める
+set fileencoding  =utf-8						 " バッファのファイルエンコーディングを指定
 set fileencodings =utf-8,sjis,euc-jp,iso-2022-jp,jis,cp932,latin " 既存ファイルを開く際の文字コード自動判別
 "}}}
 
 " 検索設定 "{{{
-set hlsearch         " 検索結果強調-:nohで解除
-set incsearch        " インクリメンタルサーチを有効
+set hlsearch		 " 検索結果強調-:nohで解除
+set incsearch		 " インクリメンタルサーチを有効
 set helplang =ja,en  " ヘルプ検索で日本語を優先
 "}}}
 
 " Java設定 "{{{
-let java_highlight_all       =1
+let java_highlight_all		 =1
 let java_highlight_functions ="style"
 let java_allow_cpp_keywords  =1
 "}}}
@@ -166,17 +182,17 @@ augroup MyAutoCommands
 	autocmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
 	" パスの設定
-	autocmd FileType html   setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=./,/
-	autocmd FileType php    setlocal path+=/usr/local/share/pear
+	autocmd FileType html	setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=./,/
+	autocmd FileType php	setlocal path+=/usr/local/share/pear
 	autocmd FileType apache setlocal path+=./,/
-	autocmd FileType c      setlocal path+=./,/usr/include/,/usr/local/include/
-	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,**,/usr/include/**
+	autocmd FileType c		setlocal path+=./,/usr/include/,/usr/local/include/
+	autocmd FileType cpp	setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,**,/usr/include/**
 
 	" 保存時に行末の空白を除去する
 	autocmd BufWritePre * :%s/\s\+$//ge
 
 	" 保存時にtabをスペースに変換する
-	"autocmd BufWritePre * :%s/\t/  /ge
+	"autocmd BufWritePre * :%s/\t/	/ge
 
 	" 拡張子で読み込みタグ変更
 	" au BufNewFile,BufRead *.php setl tags+=$HOME/.vim/tags/php.tags

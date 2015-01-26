@@ -40,7 +40,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby gem command-not-found git-flow python rails rails3 rbenv rsync svn vi-mode extract)
+plugins=(git ruby gem command-not-found git-flow python rails rbenv rsync svn vi-mode extract)
 
 source $ZSH/oh-my-zsh.sh
 
