@@ -2,7 +2,6 @@
 HISTSIZE=50000
 SAVEHIST=50000
 
-
 # Version Control System(vcs)の情報を出すようにする
 autoload -Uz add-zsh-hook
 autoload -Uz colors
@@ -17,12 +16,12 @@ zstyle ':vcs_info:bzr:*' use-simple true
 
 autoload -Uz is-at-least
 if is-at-least 4.3.10; then
-	# この check-for-changes が今回の設定するところ
-	zstyle ':vcs_info:git:*' check-for-changes true
-	zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
-	zstyle ':vcs_info:git:*' unstagedstr "*"  # 適当の文字列に変更する
-	zstyle ':vcs_info:git:*' formats ' (%s:%b%u%c)'
-	zstyle ':vcs_info:git:*' actionformats ' (%s:%b|%a%u%c)'
+    # この check-for-changes が今回の設定するところ
+    zstyle ':vcs_info:git:*' check-for-changes true
+    zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
+    zstyle ':vcs_info:git:*' unstagedstr "*"  # 適当の文字列に変更する
+    zstyle ':vcs_info:git:*' formats ' (%s:%b%u%c)'
+    zstyle ':vcs_info:git:*' actionformats ' (%s:%b|%a%u%c)'
 fi
 
 function _update_vcs_info_msg() {
@@ -41,11 +40,11 @@ alias diff=colordiff
 alias emacs='XMODIFIERS=@im=none emacs'
 function cdls() {
 if [ -z "$1" ]; then
-	\cd;
-	ls;
+    \cd;
+    ls;
 else
-	\pushd $1;
-	ls;
+    \pushd $1;
+    ls;
 fi
 }
 alias cd=cdls
@@ -59,27 +58,27 @@ alias ex='extract'
 #
 # extract http://d.hatena.ne.jp/jeneshicc/20110215/1297778049
 # extract () {
-  # if [ -f $1 ] ; then
-      # case $1 in
-          # *.tar.bz2)   tar xvjf $1    ;;
-          # *.tar.gz)    tar xvzf $1    ;;
-          # *.tar.xz)    tar xvJf $1    ;;
-          # *.bz2)       bunzip2 $1     ;;
-          # *.rar)       unrar x $1     ;;
-          # *.gz)        gunzip $1      ;;
-          # *.tar)       tar xvf $1     ;;
-          # *.tbz2)      tar xvjf $1    ;;
-          # *.tgz)       tar xvzf $1    ;;
-          # *.zip)       unzip $1       ;;
-          # *.Z)         uncompress $1  ;;
-          # *.7z)        7z x $1        ;;
-          # *.lzma)      lzma -dv $1    ;;
-          # *.xz)        xz -dv $1      ;;
-          # *)           echo "don't know how to extract '$1'..." ;;
-      # esac
-  # else
-      # echo "'$1' is not a valid file!"
-  # fi
+# if [ -f $1 ] ; then
+# case $1 in
+# *.tar.bz2)   tar xvjf $1    ;;
+# *.tar.gz)    tar xvzf $1    ;;
+# *.tar.xz)    tar xvJf $1    ;;
+# *.bz2)       bunzip2 $1     ;;
+# *.rar)       unrar x $1     ;;
+# *.gz)        gunzip $1      ;;
+# *.tar)       tar xvf $1     ;;
+# *.tbz2)      tar xvjf $1    ;;
+# *.tgz)       tar xvzf $1    ;;
+# *.zip)       unzip $1       ;;
+# *.Z)         uncompress $1  ;;
+# *.7z)        7z x $1        ;;
+# *.lzma)      lzma -dv $1    ;;
+# *.xz)        xz -dv $1      ;;
+# *)           echo "don't know how to extract '$1'..." ;;
+# esac
+# else
+# echo "'$1' is not a valid file!"
+# fi
 # }
 
 

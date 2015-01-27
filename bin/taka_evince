@@ -1,0 +1,3 @@
+#!/bin/bash
+PWD=`pwd`
+ssh -X -Y momma@takatsuka "cd $PWD; evince $1"

@@ -3,7 +3,7 @@
 if !1 | finish | endif
 
 " vim内部で通常使用する文字エンコーディングを設定
-set encoding      =utf-8
+set encoding	  =utf-8
 
 " $HOME/dotfiles/.vimrc.neobundle
 " $HOME/dotfiles/.vimrc.basic
@@ -15,8 +15,8 @@ let s:is_windows = has('win16') || has('win32') || has('win64')
 let s:is_cygwin = has('win32unix')
 let s:is_mac = !s:is_windows && !s:is_cygwin
 			\ && (has('mac') || has('macunix') || has('gui_macvim') ||
-			\   (!executable('xdg-open') &&
-			\     system('uname') =~? '^darwin'))
+			\	(!executable('xdg-open') &&
+			\	  system('uname') =~? '^darwin'))
 let s:is_sudo = $SUDO_USER != '' && $USER !=# $SUDO_USER
 			\ && $HOME !=# expand('~'.$USER)
 			\ && $HOME ==# expand('~'.$SUDO_USER)
@@ -62,7 +62,7 @@ endif
 if isdirectory(expand("$HOME/.vim/bundle/neobundle.vim/"))
 	filetype plugin indent off
 	if has('vim_starting')
-		set nocompatible " Be iMproved
+		"set nocompatible " Be iMproved
 		set runtimepath+=$HOME/.vim/bundle/neobundle.vim/
 	endif
 	try
