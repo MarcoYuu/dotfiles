@@ -1,9 +1,10 @@
+set encoding =utf-8
+scriptencoding utf-8
+
+" vim内部で通常使用する文字エンコーディングを設定
 
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
-
-" vim内部で通常使用する文字エンコーディングを設定
-set encoding	  =utf-8
 
 " $HOME/dotfiles/.vimrc.neobundle
 " $HOME/dotfiles/.vimrc.basic
@@ -17,7 +18,7 @@ let s:is_mac = !s:is_windows && !s:is_cygwin
 			\ && (has('mac') || has('macunix') || has('gui_macvim') ||
 			\	(!executable('xdg-open') &&
 			\	  system('uname') =~? '^darwin'))
-let s:is_sudo = $SUDO_USER != '' && $USER !=# $SUDO_USER
+let s:is_sudo = $SUDO_USER !=# '' && $USER !=# $SUDO_USER
 			\ && $HOME !=# expand('~'.$USER)
 			\ && $HOME ==# expand('~'.$SUDO_USER)
 if s:is_windows
@@ -29,25 +30,29 @@ endif
 " NeoBundleの読み込み "{{{
 
 " git ある? "{{{
-if !executable("git")
-	echo "Please install git."
+if !executable('git')
+	echo 'Please install git.'
 	finish
 endif
 "}}}
 
 " NeoBundleがなかったらclone "{{{
-if !isdirectory(expand("$HOME/.vim/bundle/neobundle.vim"))
-	echo "Please install neobundle.vim."
+if !isdirectory(expand('$HOME/.vim/bundle/neobundle.vim'))
+	echo 'Please install neobundle.vim.'
 	function! s:install_neobundle()
-		if input("Install neobundle.vim? [Y/N] : ") =="Y"
+		if input('Install neobundle.vim? [Y/N] :' ) ==? 'Y'
+			let s:neobundle_plugins_dir =
+						\expand(exists('$VIM_NEOBUNDLE_PLUGIN_DIR')
+						\? $VIM_NEOBUNDLE_PLUGIN_DIR
+						\: '~/.vim/bundle')
 			if !isdirectory(s:neobundle_plugins_dir)
-				call mkdir(s:neobundle_plugins_dir, "p")
+				call mkdir(s:neobundle_plugins_dir, 'p')
 			endif
-			execute "!git clone git://github.com/Shougo/neobundle.vim "
-						\ . "$HOME/.vim/bundle/neobundle.vim"
-			echo "neobundle installed. Please restart vim."
+			execute '!git clone git://github.com/Shougo/neobundle.vim'
+						\ . '$HOME/.vim/bundle/neobundle.vim'
+			echo 'neobundle installed. Please restart vim.'
 		else
-			echo "Canceled."
+			echo 'Canceled.'
 		endif
 	endfunction
 	augroup install-neobundle
@@ -59,7 +64,7 @@ endif
 "}}}
 
 " プラグインディレクトリの読み込み "{{{
-if isdirectory(expand("$HOME/.vim/bundle/neobundle.vim/"))
+if isdirectory(expand('$HOME/.vim/bundle/neobundle.vim/'))
 	filetype plugin indent off
 	if has('vim_starting')
 		"set nocompatible " Be iMproved
@@ -73,14 +78,14 @@ if isdirectory(expand("$HOME/.vim/bundle/neobundle.vim/"))
 		filetype plugin indent on
 		NeoBundleCheck
 	catch
-		echo "Error!"
-		echo "NeoBundle is not working."
+		echo 'Error!'
+		echo 'NeoBundle is not working.'
 		finish
 	endtry
 else
 	" NeoBundle がインストールされていない時、
 	" もしくは、プラグインの初期化に失敗した時の処理
-	echo "NeoBundle directory is not found."
+	echo 'NeoBundle directory is not found.'
 	finish
 endif
 "}}}
