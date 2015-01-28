@@ -1,4 +1,5 @@
-"-----------------------------------------------------------
+scriptencoding utf-8
+" -----------------------------------------------------------
 " NeoBundle よるプラグインのロード
 " ------------------------------------------------------------
 
@@ -7,7 +8,7 @@
 " 日本語ヘルプ
 NeoBundle 'vim-jp/vimdoc-ja'
 
-" NeoBundle "{{{
+" NeoBundle {{{
 "
 " Neobundle自体を更新
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -32,7 +33,7 @@ nnoremap <silent>,by	:<C-u>NebulaYankOptions<CR>
 nnoremap <silent>,bp	:<C-u>NebulaPutFromClipboard<CR>
 "}}}
 
-" Unite "{{{
+" Unite {{{
 " 本体
 NeoBundleLazy 'Shougo/unite.vim',
 			\{
@@ -183,7 +184,7 @@ NeoBundleLazy 'Shougo/neomru.vim',
 			\        ]
 			\    }
 			\}
-let g:neomru#time_format = "(%Y/%m/%d %H:%M:%S) "
+let g:neomru#time_format = '(%Y/%m/%d %H:%M:%S)'
 
 " カラースキーム一覧表示に Unite.vim を使う
 NeoBundleLazy 'ujihisa/unite-colorscheme',
@@ -257,15 +258,15 @@ NeoBundleLazy 'osyo-manga/unite-quickfix',
 " ビルド(make)を行う
 NeoBundleLazy 'Shougo/unite-build',
 			\{
-			\    "autoload": {
-			\        "unite_sources": "build"
+			\    'autoload': {
+			\        'unite_sources': 'build'
 			\    }
 			\}
 " Uniteでビルド
 nnoremap <Leader>bb :Unite build<CR>:q<CR>
 "}}}
 
-" QuickFix "{{{
+" QuickFix {{{
 
 " QuickFixから一気に置換
 NeoBundleLazy 'thinca/vim-qfreplace',
@@ -290,28 +291,28 @@ NeoBundleLazy 'thinca/vim-quickrun' ,
 			\}
 let g:quickrun_config =
 			\{
-			\    "_": {
-			\        "hook/close_buffer/enable_empty_data": 1,
-			\        "hook/close_buffer/enable_failure": 1,
-			\        "hook/close_quickfix/enable_exit": 1,
-			\        "hook/close_unite_quickfix/enable_hook_loaded": 1,
-			\        "hook/shabadoubi_touch_henshin/enable": 1,
-			\        "hook/shabadoubi_touch_henshin/wait": 20,
-			\        "hook/unite_quickfix/enable_failure": 1,
-			\        "outputter": "multi:buffer:quickfix",
-			\        "outputter/buffer/close_on_empty": 1,
-			\        "outputter/buffer/split": ":botright",
-			\        "runner": "vimproc",
-			\        "runner/vimproc/updatetime": 60
+			\    '_': {
+			\        'hook/close_buffer/enable_empty_data': 1,
+			\        'hook/close_buffer/enable_failure': 1,
+			\        'hook/close_quickfix/enable_exit': 1,
+			\        'hook/close_unite_quickfix/enable_hook_loaded': 1,
+			\        'hook/shabadoubi_touch_henshin/enable': 1,
+			\        'hook/shabadoubi_touch_henshin/wait': 20,
+			\        'hook/unite_quickfix/enable_failure': 1,
+			\        'outputter': 'multi:buffer:quickfix',
+			\        'outputter/buffer/close_on_empty': 1,
+			\        'outputter/buffer/split': ':botright',
+			\        'runner': 'vimproc',
+			\        'runner/vimproc/updatetime': 60
 			\    },
-			\    "make": {
-			\        "command": "make",
-			\        "exec": "%c %o",
-			\        "outputter": "error:buffer:quickfix",
-			\        "runner": "vimproc"
+			\    'make': {
+			\        'command': 'make',
+			\        'exec': '%c %o',
+			\        'outputter': 'error:buffer:quickfix',
+			\        'runner': 'vimproc'
 			\    }
 			\}
-if executable("clang++")
+if executable('clang++')
 	let g:quickrun_config = {}
 	let g:quickrun_config['cpp/clang++11'] = {
 				\ 'cmdopt': '--std=c++11 --stdlib=libc++',
@@ -322,7 +323,7 @@ endif
 
 " }}}
 
-" 基礎ツール "{{{
+" 基礎ツール {{{
 
 " ファイラ
 NeoBundleLazy 'Shougo/vimfiler',
@@ -475,9 +476,9 @@ NeoBundle 'Shougo/vimproc',
 			\}
 "}}}
 
-" 基本機能拡張 "{{{
+" 基本機能拡張 {{{
 " 起動時に履歴表示
-NeoBundle "mhinz/vim-startify"
+NeoBundle 'mhinz/vim-startify'
 " startifyのヘッダー部分に表示する文字列を設定する(dateコマンドを実行して日付を設定している)
 let g:startify_custom_header =
 			\ map(split(system('date'), '\n'), '"	". v:val') + ['','']
@@ -607,7 +608,6 @@ nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 " コピーした文字列をハイライト付きで置換
 nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
-NeoBundle 'LeafCage/yankround.vim'
 NeoBundleLazy 'LeafCage/yankround.vim',
 			\{
 			\    'autoload': {
@@ -633,19 +633,18 @@ nmap <C-n> <Plug>(yankround-next)
 
 "}}}
 
-" 表示 "{{{
+" 表示 {{{
 
 " インデントに色を付けて見やすくする
-NeoBundle 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size=1
-
-augroup VimIndentGuide
-	autocmd!
-	autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=236
-	autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=238
-augroup END
+NeoBundle 'Yggdroot/indentLine'
+" tab:\|\ ←最後にスペース
+" set list lcs=tab:\¦\
+" .vimrc.basicにて
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#708090'
+let g:indentLine_char = '¦'
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'tweetvim']
+let g:indentLine_showFirstIndentLevel=1
 
 " ログファイルを色づけしてくれる
 NeoBundleLazy 'vim-scripts/AnsiEsc.vim',
@@ -829,11 +828,7 @@ let g:lightline = {
 			\ }
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
-" 表示関数 "{{{
-function! MyIMStatus()
-	return IMStatus('[JP Fixed]')
-endfunction
-
+" 表示関数 {{{
 function! s:syntastic()
 	SyntasticCheck
 	call lightline#update()
@@ -944,10 +939,10 @@ endfunction
 
 "}}}
 
-" 入力補助 "{{{
+" 入力補助 {{{
 
 " コメントアウト
-NeoBundle "tyru/caw.vim"
+NeoBundle 'tyru/caw.vim'
 " \c でカーソル行をコメントアウト
 " 再度 \c でコメントアウトを解除
 " 選択してから複数行の \c も可能
@@ -998,12 +993,12 @@ NeoBundleLazy 'rhysd/vim-clang-format',
 			\}
 map ,x <Plug>(operator-clang-format)
 
-" 一気にジャンプ "{{{
+" 一気にジャンプ {{{
 NeoBundle 'Lokaltog/vim-easymotion'
 " ホームポジションに近いキーを使う
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 " 「'」 + 何かにマッピング
-let g:EasyMotion_leader_key=","
+let g:EasyMotion_leader_key=','
 " 1 ストローク選択を優先する
 let g:EasyMotion_grouping=1
 " カラー設定変更
@@ -1011,7 +1006,7 @@ hi EasyMotionTarget ctermbg=none ctermfg=red
 hi EasyMotionShade	ctermbg=none ctermfg=blue
 "}}}
 
-" 位置揃え "{{{
+" 位置揃え {{{
 NeoBundleLazy 'h1mesuke/vim-alignta',
 			\{
 			\    'autoload': {
@@ -1061,21 +1056,22 @@ let g:unite_source_alignta_preset_options = [
 unlet s:comment_leadings
 "}}}
 
-" 補完とスニペット "{{{
+" 補完とスニペット {{{
 
 " スニペット
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
+let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory='$HOME/.vim/bundle/vim-snippets/snippets,$HOME/.vim/snippets'
 
-" 補完 "{{{
+" 補完 {{{
 
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " 補完ウィンドウの設定
 set completeopt=menuone
 
-" 補完プラグインの対応判定 "{{{
+" 補完プラグインの対応判定 {{{
 function! s:meet_neocomplete_requirements()
 	return has('lua') && (v:version > 703 || (v:version == 703 && has('patch885')))
 endfunction
@@ -1088,9 +1084,9 @@ else
 endif
 "}}}
 
-" LUA サポートあり "{{{
+" LUA サポートあり {{{
 if s:meet_neocomplete_requirements()
-	" 環境設定 "{{{
+	" 環境設定 {{{
 
 	" Disable AutoComplPop.
 	let g:acp_enableAtStartup = 0
@@ -1123,7 +1119,7 @@ if s:meet_neocomplete_requirements()
 	let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 	"}}}
 
-	" キーマッピング "{{{
+	" キーマッピング {{{
 	" 前回行われた補完をキャンセルします
 	inoremap <expr><C-g> neocomplete#undo_completion()
 	" 補完候補のなかから、共通する部分を補完します
@@ -1144,7 +1140,7 @@ if s:meet_neocomplete_requirements()
 	smap <C-e> <Plug>(neosnippet_expand_or_jump)
 	"}}}
 
-	" オムニ補完 "{{{
+	" オムニ補完 {{{
 	augroup SetOmniFunc
 		autocmd!
 		autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -1185,9 +1181,9 @@ if s:meet_neocomplete_requirements()
 	let g:clang_user_options  = '-std=c++11'
 	"}}}
 	"}}}
-	" LUA サポートなし "{{{
+	" LUA サポートなし {{{
 else
-	" 環境設定 "{{{
+	" 環境設定 {{{
 	" Disable AutoComplPop.
 	let g:acp_enableAtStartup = 0
 	" 起動時に有効化
@@ -1222,7 +1218,7 @@ else
 	let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 	"}}}
 
-	" キーマッピング "{{{
+	" キーマッピング {{{
 	" 前回行われた補完をキャンセルします
 	inoremap <expr><C-g> neocomplcache#undo_completion()
 	" 補完候補のなかから、共通する部分を補完します
@@ -1247,7 +1243,7 @@ else
 	smap <C-e> <Plug>(neosnippet_expand_or_jump)
 	"}}}
 
-	" オムニ補完 "{{{
+	" オムニ補完 {{{
 	augroup SetOmniFunc
 		autocmd!
 		autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -1273,7 +1269,7 @@ else
 	let g:neocomplcache_force_overwrite_completefunc=1
 	let g:neocomplcache_clang_use_library=1
 
-	if !exists("g:neocomplcache_force_omni_patterns")
+	if !exists('g:neocomplcache_force_omni_patterns')
 		let g:neocomplcache_force_omni_patterns = {}
 	endif
 
@@ -1296,7 +1292,7 @@ endif
 NeoBundle 'Rip-Rip/clang_complete'
 "}}}
 
-" vim-operator "{{{
+" vim-operator {{{
 NeoBundle 'kana/vim-operator-user',
 			\{
 			\    'autoload': {
@@ -1418,7 +1414,7 @@ endif
 
 "}}}
 
-" 開発ツール "{{{
+" 開発ツール {{{
 
 " pythonのシンタックスチェック(QuickFix On/Off)
 NeoBundleLazy 'mitechie/pyflakes-pathogen',
@@ -1481,7 +1477,7 @@ NeoBundleLazy 'majutsushi/tagbar',
 			\    }
 			\}
 
-" syntacs check "{{{
+" syntacs check {{{
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
@@ -1492,7 +1488,7 @@ let g:syntastic_cpp_remove_include_errors = 1
 let g:syntastic_cpp_include_dirs = ['./','/usr/include/','/usr/local/include/','/usr/include/c++/4.8/']
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
-if executable("clang++")
+if executable('clang++')
 	let g:syntastic_cpp_compiler = 'clang++'
 	let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
 endif
@@ -1504,7 +1500,7 @@ augroup END
 
 "}}}
 
-" バージョン管理 "{{{
+" バージョン管理 {{{
 
 " Gitのいろいろ
 NeoBundle 'tpope/vim-fugitive'
@@ -1573,7 +1569,6 @@ NeoBundleLazy 'Kocha/vim-unite-tig',
 			\        ]
 			\    }
 			\}
-NeoBundle 'cohama/agit.vim'
 NeoBundleLazy 'cohama/agit.vim',
 			\{
 			\    'autoload': {
@@ -1605,7 +1600,29 @@ NeoBundleLazy 'cohama/agit.vim',
 			\}
 "}}}
 
-" その他独立ツール "{{{
+" その他独立ツール {{{
+
+" カレンダー
+NeoBundleLazy 'itchyny/calendar.vim',
+			\{
+			\    'autoload': {
+			\        'commands': [
+			\            {
+			\                'complete': 'customlist,calendar#argument#complete',
+			\                'name': 'Calendar'
+			\            }
+			\        ],
+			\        'mappings': [
+			\            [
+			\                'sxn',
+			\                '<Plug>(calendar)'
+			\            ]
+			\        ]
+			\    }
+			\}
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+let g:calendar_frame = 'default'
 
 " vimrcのベンチマーク
 NeoBundleLazy 'mattn/benchvimrc-vim',
@@ -1768,7 +1785,7 @@ let g:vim_markdown_liquid=1
 let g:vim_markdown_frontmatter=1
 let g:vim_markdown_math=1
 
-" TeX用Plugin "{{{
+" TeX用Plugin {{{
 NeoBundleLazy 'lervag/vim-latex',
 			\{
 			\    'autoload': {
@@ -1805,23 +1822,23 @@ let g:latex_view_general_viewer = 'evince'
 
 " fold
 let g:latex_fold_parts = [
-			\ "appendix",
-			\ "frontmatter",
-			\ "mainmatter",
-			\ "backmatter",
+			\ 'appendix',
+			\ 'frontmatter',
+			\ 'mainmatter',
+			\ 'backmatter',
 			\ ]
 let g:latex_fold_sections = [
-			\ "part",
-			\ "chapter",
-			\ "section",
-			\ "subsection",
-			\ "subsubsection",
+			\ 'part',
+			\ 'chapter',
+			\ 'section',
+			\ 'subsection',
+			\ 'subsubsection',
 			\ ]
 let g:latex_fold_enabled = 1
 let g:latex_fold_automatic = 1
 let g:latex_fold_envs = 0
 
-let g:latex_toc_split_pos = "topleft"
+let g:latex_toc_split_pos = 'topleft'
 let g:latex_toc_width = 10
 
 " for neocomplete
@@ -1836,7 +1853,7 @@ let g:neocomplete#sources#omni#input_patterns.tex = '\\cite{\s*[0-9A-Za-z_:]*\|\
 
 "}}}
 
-" カラースキーマ "{{{
+" カラースキーマ {{{
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'cschlueter/vim-wombat'
 NeoBundle 'croaker/mustang-vim'
@@ -1849,7 +1866,9 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'bandit.vim'
-NeoBundle 'abudden/EasyColour' , { 'rev' : '9d683aec8' }
+NeoBundle 'itchyny/landscape.vim'
+"NeoBundle 'abudden/EasyColour' , { 'rev' : '9d683aec8' }
+NeoBundle 'skroll/vim-easycolour'
 "}}}
 
 
@@ -1887,6 +1906,3 @@ function! s:FSort(bang, ...) range
 	endfor
 endfunction
 "}}}
-
-
-

@@ -33,3 +33,11 @@
 [tig "bind"]
 	generic = g move-first-line
 	generic = G move-last-line
+[mergetool]
+	keepBackup = false
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[mergetool "vimdiff"]
+	cmd = git_vimdiff_wrapper \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
