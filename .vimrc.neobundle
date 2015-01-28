@@ -1547,6 +1547,8 @@ let g:gitgutter_max_signs = 2000
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
+NeoBundle 'rhysd/committia.vim'
+
 NeoBundleLazy 'Shougo/vim-vcs',
 			\{
 			\    'autoload': {
