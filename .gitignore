@@ -4,8 +4,11 @@
 *.log
 *.dvi
 *.aux
+tags
+*.taghl
 
 .oh-my-zsh
+.vim/tags
 .vim/bundle
 .vim/bundle/*
 .vim/.netrwhist

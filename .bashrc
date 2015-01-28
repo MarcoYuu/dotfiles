@@ -24,6 +24,26 @@ if [ -f ~/.git-completion.bash ]; then
 	. ~/.git-completion.bash
 fi
 
+#hg用
+if [ -f ~/.hg-completion ]; then
+	. ~/.hg-completion.bash
+fi
+#hg_dirty() {
+#	hg status --no-color 2> /dev/null \
+	#		| awk '$1 == "?" { print "?" } $1 != "?" { print "!" }' \
+	#		| sort | uniq | head -c1
+#	[[ `hg branch 2> /dev/null` ]] && echo ')'
+#}
+#
+#hg_in_repo() {
+#	[[ `hg branch 2> /dev/null` ]] && echo ' (on '
+#}
+#
+#hg_branch() {
+#	hg branch 2> /dev/null
+#}
+
+
 # If running interactively, then:
 if [ "$PS1" ]; then
 	set -o ignoreeof
@@ -59,9 +79,19 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# Whenever displaying the prompt, write the previous line to disk
+export PROMPT_COMMAND="history -a"
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
+# history にコマンド実行時刻を記録する
+# HISTTIMEFORMAT='%Y-%m-%dT%T%z '
+HISTTIMEFORMAT='%Y%m%d %T';
+export HISTTIMEFORMAT
+
+# よく使うコマンドは記録しない
+HISTIGNORE="fg*:bg*:history*:ls*:la*:ll*"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -142,60 +172,34 @@ fi
 # --------------------------------------------------------------------------------
 # ここより下は各自
 # --------------------------------------------------------------------------------
-
-# PATH
+# ------------- PATH --------------
 export PATH=~/bin:/usr/local/bin:${PATH}
 export PATH=${PATH}:/opt/android-studio/sdk/platform-tools:/opt/android-studio/sdk/tools
 
 
-# aliases
-alias ls='ls -pF --color=auto --group-directories-first'
+# -------------- aliases --------------
+alias ls='ls -vpF --color=auto --group-directories-first'
 alias ll='ls -alF'
 alias la='ls -AF'
 alias l='ls -CF'
 alias diff=colordiff
-alias emacs='XMODIFIERS=@im=none emacs'
-function cdls() {
-if [ -z "$1" ]; then
-	\cd;
-	ls;
-elif [ -z "$2" ]; then
-	\cd $1;
-	ls;
-else
-	\pushd $1;
-	ls;
-fi
-}
-#alias cd=cdls
 alias pd=pushd
 alias bd=popd
 
-# cuda 64bit
-export MANPATH=$MANPATH:/usr/local/cuda/man
-export PATH=$PATH:/usr/local/cuda/bin
-export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/local/cuda-5.0/lib64:/usr/local/cuda/cudaprof/bin:$LD_LIBRARY_PATH"
 
-# gcc切り替え
-alias switchgcc='sudo update-alternatives --config gcc'
-
-# plant uml
-export GRAPHVIZ_DOT=/usr/bin/dot
-alias plantuml='java -jar ~/bin/plantuml.jar'
-
-# vim キーバインド用
-stty -ixon -ixoff
-
-# ※とかを普通に表示させる
-export VTE_CJK_WIDTH=auto
-
-# Gitブランチ表示
-source ~/bin/git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=true
-export PS1='\[\033[1;32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ \n>'
-
-# tmux用
-PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+# -------------- functions --------------
+cdls() {
+	if [ -z "$1" ]; then
+		\cd;
+		ls;
+	elif [ -z "$2" ]; then
+		\cd $1;
+		ls;
+	else
+		\pushd $1;
+		ls;
+	fi
+}
 
 # man color view
 export MANPAGER='less -R'
@@ -211,19 +215,75 @@ man() {
 		man "$@"
 }
 
+csv_view() {
+	if [ -p /dev/stdin ]; then
+		column -s, -t </dev/stdin | lv -c
+	elif [ -z "$1" ]; then
+		echo "no file specified."
+	else
+		column -s, -t < $1 | lv
+	fi
+}
+alias tless='csv_view()'
+
+
+# -------------- 開発系 -------------------
 # ruby env
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+# pyclewn
+# alias gdbvim='pyclewn -e vim --gdb=async --args'
+alias gdbvim='pyclewn -e vim --args'
+export PYTHONPATH=$HOME/lib/python:$PYTHONPATH
+
+# for pretty gdb
+export PYTHONPATH=$HOME/bin/gdb/python:$PYTHONPATH
+export PYTHONPATH=$HOME/bin/gdb/Boost-Pretty-Printer:$PYTHONPATH
+
 # make のデフォオプション
 export MAKEOPTS=-j4
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# gcc切り替え
+alias switchgcc='sudo update-alternatives --config gcc'
 
-#THIS MUST BE AT THE END OF THE FILE FOR GVM TO WORK!!!
-#curl -s get.gvmtool.net/selfupdate | bash
-#[[ -s "/home/momma/.gvm/bin/gvm-init.sh" ]] && source "/home/momma/.gvm/bin/gvm-init.sh"
+# vim キーバインド用
+stty -ixon -ixoff
 
-# pyclewn
-alias gdbvim='pyclewn -e vim --args'
+# ※とかを普通に表示させる
+export VTE_CJK_WIDTH=auto
+
+# emacsのなんか
+alias emacs='XMODIFIERS=@im=none emacs'
+
+# tmuxinator
+_tmuxinator() {
+	COMPREPLY=()
+	local word="${COMP_WORDS[COMP_CWORD]}"
+
+	if [ "$COMP_CWORD" -eq 1 ]; then
+		local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
+		local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
+
+		COMPREPLY=( $commands $projects )
+	else
+		local words=("${COMP_WORDS[@]}")
+		unset words[0]
+		unset words[$COMP_CWORD]
+		local completions=$(tmuxinator completions "${words[@]}")
+		COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+	fi
+}
+complete -F _tmuxinator tmuxinator mux
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+export EDITOR=vim
+
+
+# -------------- プロンプト表示 -------------------
+# Gitブランチ表示
+source ~/bin/git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=true
+export PS1='\[\033[1;32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ \n>'
+
+# tmux用
+PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'

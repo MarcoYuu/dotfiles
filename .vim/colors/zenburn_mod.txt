@@ -13,4 +13,7 @@ Light:
 	LocalVariable:grey65
 	GlobalConstant:LightCoral
 
+	Search:Yellow,Style=Bold
+	IncSearch:Yellow,Style=Bold
+
 # vim: ff=unix:noet:ft=EasyColour

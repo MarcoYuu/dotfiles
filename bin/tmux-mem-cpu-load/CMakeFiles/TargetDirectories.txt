@@ -1,0 +1,1 @@
+/home/yuumomma/bin/tmux-mem-cpu-load/CMakeFiles/tmux-mem-cpu-load.dir

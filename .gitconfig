@@ -17,11 +17,12 @@
 	co = checkout
 	bra = branch
 	oneline = log --pretty=oneline
+	logfull = log --pretty=full
 	logstat = log --stat
 	graph = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
 	graph-all = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
 [merge]
-	tool = meld
+	tool = vimdiff
 [color]
 	diff = auto
 	ui = auto
@@ -32,3 +33,11 @@
 [tig "bind"]
 	generic = g move-first-line
 	generic = G move-last-line
+[mergetool]
+	keepBackup = false
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[mergetool "vimdiff"]
+	cmd = git_vimdiff_wrapper \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
