@@ -16,4 +16,7 @@ Light:
 	Search:Yellow,Style=Bold
 	IncSearch:Yellow,Style=Bold
 
+	SpecialKey:grey27,Style=Bold
+	CursorLine:BG=grey27
+
 # vim: ff=unix:noet:ft=EasyColour

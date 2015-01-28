@@ -1,46 +1,37 @@
-
+scriptencoding utf-8
 
 "-------------------------------------------------------------------------------"
 " Mapping
 "-------------------------------------------------------------------------------"
-" コマンド       ノーマルモード 挿入モード コマンドラインモード ビジュアルモード
-" map  / noremap         @            -              -                  @
-" nmap / nnoremap        @            -              -	                -
-" imap / inoremap        -            @              -                  -
-" cmap / cnoremap        -            -              @                  -
-" vmap / vnoremap        -            -              -                  @
-" map! / noremap!        -            @              @                  -
+" コマンド		 ノーマルモード 挿入モード コマンドラインモード ビジュアルモード
+" map  / noremap		 @			  -				 -					@
+" nmap / nnoremap		 @			  -				 -					-
+" imap / inoremap		 -			  @				 -					-
+" cmap / cnoremap		 -			  -				 @					-
+" vmap / vnoremap		 -			  -				 -					@
+" map! / noremap!		 -			  @				 @					-
 "-------------------------------------------------------------------------------"
 
-" Leaderを,に変更
-"let mapleader = ","
-" ,のデフォルトの機能は、\で使えるように退避
-"noremap \ ,
-
 " 標準 "{{{
+
+nnoremap Y y$
 
 " カーソル移動 "{{{
 " 行移動を見た目上に行うようにしています。wrap指定している場合、
 " 見た目上は数行に改行されていても内部的には1行なので。
-nnoremap h      <Left>
-nnoremap l      <Right>zo
-noremap  j      gj
-noremap  k      gk
+nnoremap h		<Left>
+nnoremap l		<Right>zo
+noremap  j		gj
+noremap  k		gk
 nnoremap <Down> gj
-nnoremap <Up>   gk
-
-" 挿入モードでのカーソル移動
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
-"inoremap <C-h> <Left>
-"inoremap <C-l> <Right>
+nnoremap <Up>	gk
 "}}}
 
 " 検索結果に移動したとき、その位置を画面の中央にします。
-nnoremap n  nzz
-nnoremap N  Nzz
-nnoremap *  *zz
-nnoremap #  #zz
+nnoremap n	nzz
+nnoremap N	Nzz
+nnoremap *	*zz
+nnoremap #	#zz
 nnoremap g* g*zz
 nnoremap g# g#zz
 
@@ -58,7 +49,7 @@ nnoremap <S-h> <C-w>h
 " 一行追加
 nnoremap <silent><C-o> o<ESC>
 
-" Ctrl s で保存などWindows系キーバインド(.bashrcなんかで$stty -ixon　-ixoffが必要)
+" Ctrl s で保存などWindows系キーバインド(.bashrcなんかで$stty -ixon -ixoffが必要)
 nnoremap <C-s> <ESC>:w<CR>
 inoremap <C-s> <ESC><ESC>:w<CR>i
 nnoremap <C-q> <ESC>:q!<CR>
@@ -73,7 +64,7 @@ nnoremap <CR> i<CR><ESC>^^
 " ノーマルモードBSで削除
 nnoremap  i<ESC>l
 
-"Escの2回押しでハイライト消去
+" Escの2回押しでハイライト消去
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
 " カーソル下のキーワードをヘルプでひく
@@ -90,12 +81,14 @@ vnoremap <silent> co :ContinuousNumber <C-a><CR>
 command! -count -nargs=1 ContinuousNumber let c = col('.')|
 			\ for n in range(1, <count>?<count>-line('.'):1)|
 			\ exec 'normal! j' . n . <q-args>|call cursor('.', c)|endfor
+
+nnoremap Y y$
 "}}}
 
 " タブ "{{{
 " The prefix key.
 nnoremap [Tab] <Nop>
-nmap T [Tab]
+nmap t [Tab]
 
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
 for n in range(1, 9)
@@ -111,78 +104,6 @@ map <silent> [Tab]n :tabnext<CR>
 " tp 前のタブ
 map <silent> [Tab]p :tabprevious<CR>
 "}}}
-
-" Plugins "{{{
-"
-" UNDO履歴表示
-nmap U :<C-u>GundoToggle<CR>
-
-" Doxygenコメントの追加
-nnoremap <C-d><C-x> :Dox<CR>
-
-" Clangでフォーマット
-map ,x <Plug>(operator-clang-format)
-
-" ファイラーを起動
-nnoremap <silent><C-x><C-f> :VimFiler<CR>
-
-" Quickrunする
-nnoremap <Leader>Q :QuickRun<CR>
-" ツリーをトグル
-nmap <Leader>n :NERDTreeToggle<CR>
-
-" gitの変更箇所をマークする
-nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
-nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
-
-" コメントアウトを切り替えるマッピング
-" \c でカーソル行をコメントアウト
-" 再度 \c でコメントアウトを解除
-" 選択してから複数行の \c も可能
-nmap <Leader>c <Plug>(caw:I:toggle)
-vmap <Leader>c <Plug>(caw:I:toggle)
-
-" \C でコメントアウトの解除
-nmap <Leader>C <Plug>(caw:I:uncomment)
-vmap <Leader>C <Plug>(caw:I:uncomment)
-
-" <Leader>m でカーソル下の単語、もしくは選択した範囲のハイライトを行う
-" 再度 <Leader>m を行うとカーソル下のハイライトを解除する
-" これは複数の単語のハイライトを行う事もできる
-" <Leader>M で全てのハイライトを解除する
-nmap <Leader>m <Plug>(quickhl-manual-this)
-xmap <Leader>m <Plug>(quickhl-manual-this)
-nmap <Leader>M <Plug>(quickhl-manual-reset)
-xmap <Leader>M <Plug>(quickhl-manual-reset)
-
-" Unite "{{{
-" nnoremap [unite] <Nop>
-" xnoremap [unite] <Nop>
-" nmap f [unite]
-" xmap f [unite]
-"
-" nnoremap <silent> [unite]a :<C-u>Unite alignta:options<CR>
-" xnoremap <silent> [unite]a :<C-u>Unite alignta:arguments<CR>
-
-" アウトラインを表示
-nnoremap <silent><Leader>t :Unite -vertical -winwidth=30 -no-quit outline<CR>
-
-" Uniteでビルド
-nnoremap <Leader>bb :Unite build<CR>:q<CR>
-"}}}
-
-" over.vim {{{
-
-" over.vimの起動
-nnoremap <silent> <Leader>o :OverCommandLine<CR>
-
-" カーソル下の単語をハイライト付きで置換
-nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
-
-" コピーした文字列をハイライト付きで置換
-nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
-
-" }}}
 
 " pyclewn.vim {{{
 cnoremap <expr> <SID>lineno line(".")
@@ -221,5 +142,3 @@ nnoremap WD :Cdelvar <C-R><C-W><CR>
 nnoremap <script> WZ :Cfoldvar <SID>lineno<CR>
 
 " }}}
-
-"}}}
