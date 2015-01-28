@@ -214,7 +214,7 @@ let g:lightline = {
 			\   'right': [
 			\     ['lineinfo', 'syntastic'],
 			\     ['percent'],
-			\     ['imestate', 'charcode', 'fileformat', 'fileencoding', 'filetype'],
+			\     ['charcode', 'fileformat', 'fileencoding', 'filetype'],
 			\   ]
 			\ },
 			\ 'component': {
@@ -246,9 +246,6 @@ let g:lightline = {
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
 " 表示関数 "{{{
-function! MyIMStatus()
-	return IMStatus('[JP Fixed]')
-endfunction
 
 function! s:syntastic()
 	SyntasticCheck
