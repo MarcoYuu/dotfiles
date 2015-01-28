@@ -1838,16 +1838,19 @@ let g:latex_fold_enabled = 1
 let g:latex_fold_automatic = 1
 let g:latex_fold_envs = 0
 
-let g:latex_toc_split_pos = 'topleft'
-let g:latex_toc_width = 10
+let g:latex_build_dir = '.'
+
+function! s:syncTexForward()
+  let cmd = 'evince_forward_search ' . g:latex#data[b:latex.id].out() . line(".") . ' ' . expand("%:p")
+  let output = system(cmd)
+endfunction
+autocmd FileType tex nnoremap <buffer> <localleader>ls :call <SID>syncTexForward()<CR>
 
 " for neocomplete
 if !exists('g:neocomplete#sources#omni#input_patterns')
 	let g:neocomplete#sources#omni#input_patterns = {}
 endif
 "\ref補完(*.aux必須)
-"let g:neocomplete#sources#omni#input_patterns.tex = '\\ref{\s*[0-9A-Za-z_:]*'
-"\citeも自動補完するなら(時間かかる)
 let g:neocomplete#sources#omni#input_patterns.tex = '\\cite{\s*[0-9A-Za-z_:]*\|\\ref{\s*[0-9A-Za-z_:]*\|\\eqref{\s*[0-9A-Za-z_:]*'
 "}}}
 
