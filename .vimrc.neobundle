@@ -802,7 +802,6 @@ let g:lightline = {
 			\ },
 			\ 'component': {
 			\	'lineinfo': '⭡ %3l:%-2v',
-			\	'imstate': '⭡ %3l:%-2v',
 			\ },
 			\ 'component_function': {
 			\	'modified': 'MyModified',
@@ -829,6 +828,10 @@ let g:lightline = {
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
 " 表示関数 {{{
+function! MyIMStatus()
+	return IMStatus('[JP Fixed]')
+endfunction
+
 function! s:syntastic()
 	SyntasticCheck
 	call lightline#update()
@@ -1841,8 +1844,8 @@ let g:latex_fold_envs = 0
 let g:latex_build_dir = '.'
 
 function! s:syncTexForward()
-  let cmd = 'evince_forward_search ' . g:latex#data[b:latex.id].out() . line(".") . ' ' . expand("%:p")
-  let output = system(cmd)
+	let cmd = 'evince_forward_search ' . g:latex#data[b:latex.id].out() . line(".") . ' ' . expand("%:p")
+	let output = system(cmd)
 endfunction
 autocmd FileType tex nnoremap <buffer> <localleader>ls :call <SID>syncTexForward()<CR>
 
