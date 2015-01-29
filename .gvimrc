@@ -2,8 +2,8 @@ source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8
 source $VIMRUNTIME/menu.vim
 
-set guifont=Consolas:h11.5
-set guifontwide=MeiryoKe_Console:h11.5
+set guifont=Consolas:h10.5
+set guifontwide=MeiryoKe_Console:h10.5
 
 set novisualbell
 set noerrorbells

@@ -263,6 +263,8 @@ NeoBundleLazy 'Shougo/unite-build',
 			\}
 " Uniteでビルド
 nnoremap <Leader>bb :Unite -winheight=5 build<CR>
+
+NeoBundle 'thinca/vim-editvar'
 "}}}
 
 " QuickFix "{{{
@@ -1815,9 +1817,66 @@ let g:latex_latexmk_enabled = 1
 let g:latex_latexmk_options = '-pdfdvi'
 let g:latex_build_dir = '.'
 
-let g:latex_view_method = 'general'
-let g:latex_view_general_viewer = "C:\\Program Files (x86)\\SumatraPDF\\SumatraPDF.exe"
-nmap <leader>ls :call SyncTexForward()<cr>
+if !has('win32') || !has('win64')
+	let g:latex_view_method = 'general'
+	let g:latex_view_general_viewer = 'evince'
+else
+	let g:latex_view_enabled = 0
+end
+
+function! SumatraPDF() "{{{
+	if &ft != 'tex'
+		echo "calling SumatraPDF from a non-tex file"
+		return ''
+	end
+
+	let tex_root_dir = g:latex#data[b:latex.id].root
+	let tex_current_file = expand("%:t")
+	let tex_master_file = g:latex#data[b:latex.id].tex
+	let tex_output_pdf = g:latex#data[b:latex.id].out()
+	if has('win32') || has('win64')
+		if glob('C:/Program Files/SumatraPDF/SumatraPDF.exe') != ''
+			let viewer = '"' . glob('C:/Program Files/SumatraPDF/SumatraPDF.exe') . '"'
+		elseif glob('C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe') != ''
+			let viewer = '"' . glob('C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe') . '"'
+		else
+			let viewer = 'rundll32 shell32,ShellExec_RunDLL SumatraPDF'
+		endif
+		let tex_view_cmd = 'cd /d ' . tex_root_dir . ' && echo '
+					\ . viewer . ' -reuse-instance -inverse-search "\"'
+					\ . $VIM . '\gvim.exe\" -n --remote-silent +\%l \"\%f\"" "'
+					\ . tex_output_pdf . '" -forward-search "'
+					\ . tex_current_file . '" ' . line(".") . ' | cmd'
+	endif
+
+	execute 'lcd ' . tex_root_dir
+	execute 'silent! !' tex_view_cmd
+	redraw!
+	return ''
+endfunction "}}}
+function! FwdSumatraPDF() "{{{
+	if &ft != 'tex'
+		echo "calling FwdSumatraPDF from a non-tex file"
+		return ''
+	end
+
+	let tex_root_dir = g:latex#data[b:latex.id].root
+	let tex_current_file = expand("%:t")
+	let tex_master_file = g:latex#data[b:latex.id].tex
+	let tex_output_pdf = g:latex#data[b:latex.id].out()
+
+	if has('win32') || has('win64')
+		let viewer = 'fwdsumatrapdf'
+		let tex_view_cmd = 'cd /d ' . tex_root_dir . ' && '
+					\ . viewer . ' "' . tex_output_pdf . '" "'
+					\ . tex_current_file . '" ' . line(".")
+	endif
+
+	execute 'lcd ' . tex_root_dir
+	execute 'silent! !' tex_view_cmd
+	redraw!
+	return ''
+endfunction "}}}
 
 " fold
 let g:latex_fold_parts = [
@@ -1844,11 +1903,18 @@ endif
 
 "\ref補完(*.aux必須)
 "\citeも自動補完するなら(時間かかる)
-let g:neocomplete#sources#omni#input_patterns.tex = '\\cite{\s*[0-9A-Za-z_:]*\|\\ref{\s*[0-9A-Za-z_:]*\|\\eqref{\s*[0-9A-Za-z_:]*'
+let g:neocomplete#sources#omni#input_patterns.tex =
+			\'\\cite{\s*[0-9A-Za-z_:]*\|\\ref{\s*[0-9A-Za-z_:]*\|\\eqref{\s*[0-9A-Za-z_:]*'
 
 augroup VimLaTeXKeyMap
 	autocmd!
-    autocmd BufNewFile,BufRead *.tex,*.bib nnoremap tt <Esc>vi{y:tag <C-R>"<CR>
+	autocmd BufNewFile,BufRead *.tex,*.bib nnoremap <buffer> tt <Esc>vi{y:tag <C-R>"<CR>
+	autocmd BufNewFile,BufRead call latex#init()
+	autocmd FileType tex nnoremap <buffer> <localleader>ls :call FwdSumatraPDF()<CR>
+	autocmd FileType tex nnoremap <buffer> <localleader>lv :call FwdSumatraPDF()<CR>
+	if has('win32') || has('win64')
+		autocmd BufNewFile,BufRead *.tex,*.bib nnoremap <buffer> gf <Esc>vi{gf
+	end
 augroup END
 
 "}}}

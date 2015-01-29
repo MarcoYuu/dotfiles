@@ -4,6 +4,7 @@ if !1 | finish | endif
 " vim内部で通常使用する文字エンコーディングを設定
 set encoding	  =utf-8
 
+" $HOME/dotfiles/.gvimrc
 " $HOME/dotfiles/.vimrc.neobundle
 " $HOME/dotfiles/.vimrc.basic
 " $HOME/dotfiles/.vimrc.mapping
