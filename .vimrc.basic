@@ -1,4 +1,4 @@
-
+scriptencoding utf-8
 " ------------------------------------------------------------
 " VIM本体の設定
 " ------------------------------------------------------------
@@ -6,30 +6,33 @@
 filetype indent plugin on
 
 " 表示・動作設定 "{{{
-set number												   " 行番号の表示
+set number                                                 " 行番号の表示
 
-" set expandtab											   " タブをスペースとして扱う(スペースに展開する)
-set noexpandtab											  " タブをタブとして扱う(スペースに展開しない)
-set tabstop			=4									   " タブを表示するときの幅
-set shiftwidth		=4									   " タブを挿入するときの幅
-set softtabstop		=0									   " タブを押したとききっちりタブストップ分だけ進める
+set noexpandtab                                            " タブをタブとして扱う(スペースに展開しない)
+set tabstop         =4                                     " タブを表示するときの幅
+set shiftwidth      =4                                     " タブを挿入するときの幅
+set softtabstop     =0                                     " タブを押したとききっちりタブストップ分だけ進める
 
-set backspace		=indent,eol,start					   " バックスペース有効化
-set whichwrap		=b,s,h,l,<,>,[,],~					   " 左右移動で行跨ぎ
-set ttyfast												   " もしかしたらスクロールがなめらかになるかも
-set scrolloff		=5									   " スクロール時の余白確保
-set nobackup											   " バックアップ取らない
-set autoread											   " 他で書き換えられたら自動で読み直す
-set noswapfile											   " スワップファイル作らない
-set hidden												   " 編集中でも他のファイルを開けるようにする
-set formatoptions	=lmoq								   " テキスト整形オプション，マルチバイト系を追加
-set vb t_vb			=									   " ビープをならさない
-set clipboard&											   " OSのクリップボードを使用する
-set clipboard	   ^=unnamed							   "
-set clipboard	   ^=unnamedplus						   "
-set list												   " 不可視文字表示
-set listchars		=tab:\ \ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
-set virtualedit    +=block								   " 矩形選択で自由に移動する
+set backspace       =indent,eol,start                      " バックスペース有効化
+set whichwrap       =b,s,h,l,<,>,[,],~                     " 左右移動で行跨ぎ
+set ttyfast                                                " もしかしたらスクロールがなめらかになるかも
+set scrolloff       =5                                     " スクロール時の余白確保
+set nobackup                                               " バックアップ取らない
+set autoread                                               " 他で書き換えられたら自動で読み直す
+set noswapfile                                             " スワップファイル作らない
+set hidden                                                 " 編集中でも他のファイルを開けるようにする
+set formatoptions   =lmoq                                  " テキスト整形オプション，マルチバイト系を追加
+set vb t_vb         =                                      " ビープをならさない
+set clipboard&                                             " OSのクリップボードを使用する
+set clipboard      ^=unnamed                               "
+set clipboard      ^=unnamedplus                           "
+set list                                                   " 不可視文字表示
+set listchars       =eol:<,tab:\¦\ ,trail:_,extends:>,precedes:< " 不可視文字の表示形式
+set virtualedit    +=block                                 " 矩形選択で自由に移動する
+set display         =lastline                              " 長い行で@@@@にならない
+set pumheight       =15                                    " 補完Windowの行数
+set showmatch                                              " 対応するカッコに一瞬飛ぶ
+set matchtime       =1                                     " 対応するカッコを表示する時間
 
 " Undo履歴をファイルに保存する
 let dir_for_undo=expand('$HOME/.vimundo')
@@ -135,17 +138,16 @@ endif
 "	/bin/sh -c "VTE_CJK_WIDTH=1 terminator -m"
 "	/bin/sh -c "VTE_CJK_WIDTH=1 gnome-terminal --disable-factory"
 " MacのiTermでは, Profiles>Text>Double-Width Characters>Treat ambiguous-width characters as double widthにチェック
-set ambiwidth	  =double						 " ○や※をちゃんと表示
-set encoding	  =utf-8						 " vim内部で通常使用する文字エンコーディングを設定
-set charconvert   =utf-8						 " 文字エンコーディングに使われるexpressionを定める
-set fileencoding  =utf-8						 " バッファのファイルエンコーディングを指定
+set ambiwidth     =double                                        " ○や※をちゃんと表示
+set charconvert   =utf-8                                         " 文字エンコーディングに使われるexpressionを定める
+set fileencoding  =utf-8                                         " バッファのファイルエンコーディングを指定
 set fileencodings =utf-8,sjis,euc-jp,iso-2022-jp,jis,cp932,latin " 既存ファイルを開く際の文字コード自動判別
 "}}}
 
 " 検索設定 "{{{
-set hlsearch		 " 検索結果強調-:nohで解除
-set incsearch		 " インクリメンタルサーチを有効
-set helplang =ja,en  " ヘルプ検索で日本語を優先
+set hlsearch        " 検索結果強調-:nohで解除
+set incsearch       " インクリメンタルサーチを有効
+set helplang =ja,en " ヘルプ検索で日本語を優先
 "}}}
 
 " Java設定 "{{{
@@ -170,6 +172,21 @@ augroup VimrcEdit
 augroup END
 command! EditVimrc :edit $MYVIMRC
 "}}}
+"
+" カーソル下のハイライト情報 {{{
+function! s:get_syn_id(transparent)
+	let synid = synID(line('.'), col('.'), 1)
+	return a:transparent ? synIDtrans(synid) : synid
+endfunction
+function! s:get_syn_name(synid)
+	return synIDattr(a:synid, 'name')
+endfunction
+function! s:get_highlight_info()
+	execute "highlight " . s:get_syn_name(s:get_syn_id(0))
+	execute "highlight " . s:get_syn_name(s:get_syn_id(1))
+endfunction
+command! HighlightInfo call s:get_highlight_info()
+"}}}
 
 " オートコマンド設定 "{{{
 augroup MyAutoCommands
@@ -182,11 +199,11 @@ augroup MyAutoCommands
 	autocmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
 	" パスの設定
-	autocmd FileType html	setlocal includeexpr=substitute(v:fname,'^\\/','','') | setlocal path+=./,/
-	autocmd FileType php	setlocal path+=/usr/local/share/pear
+	autocmd FileType html   setlocal includeexpr=substitute(v:fname,'^\\/','','') |setlocal path+=./,/
+	autocmd FileType php    setlocal path+=/usr/local/share/pear
 	autocmd FileType apache setlocal path+=./,/
-	autocmd FileType c		setlocal path+=./,/usr/include/,/usr/local/include/
-	autocmd FileType cpp	setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,**,/usr/include/**
+	autocmd FileType c      setlocal path+=./,/usr/include/,/usr/local/include/
+	autocmd FileType cpp    setlocal path+=./,/usr/include/,/usr/local/include/,/usr/include/c++/4.8/,**,/usr/include/**
 
 	" 保存時に行末の空白を除去する
 	autocmd BufWritePre * :%s/\s\+$//ge
@@ -226,6 +243,9 @@ augroup MyAutoCommands
 		en
 		return cindent(v:lnum)
 	endf
-	autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
+	augroup CppIndent
+		autocmd!
+		autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
+	augroup END
 augroup END
 "}}}
