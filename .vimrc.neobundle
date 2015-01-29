@@ -858,7 +858,11 @@ let g:syntastic_mode_map = { 'mode': 'passive' }
 
 " 表示関数 {{{
 function! MyIMStatus()
-	return IMStatus('[JP Fixed]')
+	if exists('IMStatus')
+		return IMStatus('[JP Fixed]')
+	else
+		return ''
+	endif
 endfunction
 
 function! s:syntastic()
@@ -1940,8 +1944,8 @@ let g:neocomplete#sources#omni#input_patterns.tex =
 
 augroup VimLaTeXKeyMap
 	autocmd!
-	autocmd BufNewFile,BufRead *.tex,*.bib nnoremap <buffer> tt <Esc>vi{y:tag <C-R>"<CR>
-	autocmd BufNewFile,BufRead call latex#init()
+	autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib nnoremap <buffer> tt <Esc>vi{y:tag <C-R>"<CR>
+	autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib call latex#init() | execute 'lcd ' . g:latex#data[b:latex.id].root
 	autocmd FileType tex nnoremap <buffer> <localleader>ls :call FwdSumatraPDF()<CR>
 	autocmd FileType tex nnoremap <buffer> <localleader>lv :call FwdSumatraPDF()<CR>
 	if has('win32') || has('win64')
