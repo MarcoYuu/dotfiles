@@ -13,7 +13,9 @@ set t_Co=256
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
 " カラースキーマ
-colorscheme zenburn_mod
+if !has('win32') || !has('win64')
+	colorscheme zenburn_mod
+endif
 
 " tmuxの背景色が変になるの回避
 " http://sunaku.github.io/vim-256color-bce.html

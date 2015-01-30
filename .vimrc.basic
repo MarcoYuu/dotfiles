@@ -188,6 +188,30 @@ endfunction
 command! HighlightInfo call s:get_highlight_info()
 "}}}
 
+" diffのコマンド"{{{
+let g:git_diff_normal="git-diff-normal"
+let g:git_diff_normal_opts=["--diff-algorithm=histogram"]
+
+function! GitDiffNormal()
+	let args=[g:git_diff_normal]
+	if &diffopt =~ "iwhite"
+		call add(args, "--ignore-all-space")
+	endif
+	call extend(args, g:git_diff_normal_opts)
+	call extend(args, [v:fname_in, v:fname_new])
+	let cmd="!" . join(args, " ") . ">" . v:fname_out
+	silent execute cmd
+	redraw!
+endfunction
+
+if executable(g:git_diff_normal)
+	call system(g:git_diff_normal)
+	if v:shell_error == 0
+		set diffexpr=GitDiffNormal()
+	endif
+endif
+"}}}
+
 " オートコマンド設定 "{{{
 augroup MyAutoCommands
 	autocmd!
