@@ -46,6 +46,12 @@ nnoremap <S-k> <C-w>k
 nnoremap <S-l> <C-w>l
 nnoremap <S-h> <C-w>h
 
+" 差分移動
+nnoremap <C-j> ]c
+nnoremap <C-k> [c
+nnoremap <C-h> do
+nnoremap <C-l> dp
+
 " 一行追加
 nnoremap <silent><C-o> o<ESC>
 

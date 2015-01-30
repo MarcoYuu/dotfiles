@@ -9,7 +9,7 @@ else
 	" Consolas\ for\ Powerline\ 11
 	" ああああああああ
 	set guifont=Consolas\ for\ Powerline\ 11
-	set guifontwide=Ricty\ for\ Powerline\ 12
+	set guifontwide=Ricty\ for\ Powerline\ 11.5
 	set linespace=1
 endif
 

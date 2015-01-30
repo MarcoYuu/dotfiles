@@ -263,7 +263,11 @@ NeoBundleLazy 'Shougo/unite-build',
 			\    }
 			\}
 " Uniteでビルド
-nnoremap <Leader>bb :Unite -winheight=5 build<CR>
+if has('win32') || has('win64')
+	nnoremap <Leader>bb :Unite -winheight=5 build<CR>
+else
+	nnoremap <Leader>bb :Unite build<CR>:q<CR>
+endif
 
 NeoBundle 'thinca/vim-editvar'
 "}}}
@@ -1927,12 +1931,12 @@ augroup VimLaTeXKeyMap
 	if has('win32') || has('win64')
 		autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib
 					\ call latex#init() | execute 'lcd ' . g:latex#data[b:latex.id].root
-		autocmd FileType tex nnoremap <buffer> <localleader>ls :call FwdSumatraPDF()<CR>
-		autocmd FileType tex nnoremap <buffer> <localleader>lv :call FwdSumatraPDF()<CR>
+		autocmd FileType tex nnoremap <buffer> <silent><localleader>ls :call FwdSumatraPDF()<CR>
+		autocmd FileType tex nnoremap <buffer> <silent><localleader>lv :call FwdSumatraPDF()<CR>
 		autocmd BufNewFile,BufRead *.tex,*.bib nnoremap <buffer> gf <Esc>vi{gf
 	else
-		autocmd FileType tex nnoremap <buffer> <localleader>ls :call FwdEvince()<CR>
-		autocmd FileType tex nnoremap <buffer> <localleader>lb :call InvEvince()<CR>
+		autocmd FileType tex nnoremap <buffer> <silent><localleader>ls :call FwdEvince()<CR>
+		autocmd FileType tex nnoremap <buffer> <silent><localleader>lb :call InvEvince()<CR>
 	end
 augroup END
 
