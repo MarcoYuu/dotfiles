@@ -82,9 +82,6 @@ function! IMCtrl(cmd)
 	return ''
 endfunction
 command! MozcOn :call IMCtrl('On')
-" 強制mozcさん起動
-nnoremap <C-j> :MozcOn<CR>
-inoremap <C-j> <Esc>:MozcOn<CR>i
 
 " <ESC>押下後のIM切替開始までの反応が遅い場合はttimeoutlenを短く設定してみてください。
 " IMCtrl()のsystem()コマンド実行時に&を付けて非同期で実行するという方法でも体感速度が上がる場合があります。
