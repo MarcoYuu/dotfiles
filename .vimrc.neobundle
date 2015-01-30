@@ -467,15 +467,15 @@ NeoBundleLazy 'Shougo/vimshell',
 			\}
 
 " 非同期処理化プラグイン
-" NeoBundle 'Shougo/vimproc',
-" 			\{
-" 			\    'build': {
-" 			\        'cygwin': 'make -f make_cygwin.mak',
-" 			\        'mac': 'make -f make_mac.mak',
-" 			\        'unix': 'make -f make_unix.mak',
-" 			\        'windows': 'make -f make_mingw32.mak'
-" 			\    }
-" 			\}
+NeoBundle 'Shougo/vimproc',
+			\{
+			\    'build': {
+			\        'cygwin': 'make -f make_cygwin.mak',
+			\        'mac': 'make -f make_mac.mak',
+			\        'unix': 'make -f make_unix.mak',
+			\        'windows': 'make -f make_mingw32.mak'
+			\    }
+			\}
 "}}}
 
 " 基本機能拡張 {{{
@@ -484,7 +484,7 @@ NeoBundle 'mhinz/vim-startify'
 " startifyのヘッダー部分に表示する文字列を設定する(dateコマンドを実行して日付を設定している)
 if !has('win32') || !has('win64')
 	let g:startify_custom_header =
-			\ map(split(system('date'), '\n'), '"	". v:val') + ['','']
+				\ map(split(system('date'), '\n'), '"	". v:val') + ['','']
 end
 
 " デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定
@@ -787,30 +787,9 @@ NeoBundleLazy 'taglist.vim',
 			\    }
 			\}
 set tags=tags
-"--regex-latex=/^\\tableofcontents/TABLE OF CONTENTS/s,toc/
-"--regex-latex=/^\\frontmatter/FRONTMATTER/s,frontmatter/
-"--regex-latex=/^\\mainmatter/MAINMATTER/s,mainmatter/
-"--regex-latex=/^\\backmatter/BACKMATTER/s,backmatter/
-"--regex-latex=/^\\bibliography\{/BIBLIOGRAPHY/s,bibliography/
-"--regex-latex=/^\\part[[:space:]]*(\[[^]]*\])?[[:space:]]*\{([^}]+)\}/PART \2/s,part/
-"--regex-latex=/^\\part[[:space:]]*\*[[:space:]]*\{([^}]+)\}/PART \1/s,part/
-"--regex-latex=/^\\chapter[[:space:]]*(\[[^]]*\])?[[:space:]]*\{([^}]+)\}/CHAP \2/s,chapter/
-"--regex-latex=/^\\chapter[[:space:]]*\*[[:space:]]*\{([^}]+)\}/CHAP \1/s,chapter/
-"--regex-latex=/^\\section[[:space:]]*(\[[^]]*\])?[[:space:]]*\{([^}]+)\}/\. \2/s,section/
-"--regex-latex=/^\\section[[:space:]]*\*[[:space:]]*\{([^}]+)\}/\. \1/s,section/
-"--regex-latex=/^\\subsection[[:space:]]*(\[[^]]*\])?[[:space:]]*\{([^}]+)\}/\.\. \2/s,subsection/
-"--regex-latex=/^\\subsection[[:space:]]*\*[[:space:]]*\{([^}]+)\}/\.\. \1/s,subsection/
-"--regex-latex=/^\\subsubsection[[:space:]]*(\[[^]]*\])?[[:space:]]*\{([^}]+)\}/\.\.\. \2/s,subsubsection/
-"--regex-latex=/^\\subsubsection[[:space:]]*\*[[:space:]]*\{([^}]+)\}/\.\.\. \1/s,subsubsection/
-"--regex-latex=/^\\includegraphics[[:space:]]*(\[[^]]*\])?[[:space:]]*(\[[^]]*\])?[[:space:]]*\{([^}]+)\}/\3/g,graphic+listing/
-"--regex-latex=/^\\lstinputlisting[[:space:]]*(\[[^]]*\])?[[:space:]]*(\[[^]]*\])?[[:space:]]*\{([^}]+)\}/\3/g,graphic+listing/
-"--regex-latex=/\\label[[:space:]]*\{([^}]+)\}/\1/l,label/
-"--regex-latex=/\\ref[[:space:]]*\{([^}]+)\}/\1/r,ref/
-"--regex-latex=/\\pageref[[:space:]]*\{([^}]+)\}/\1/p,pageref/
 let tlist_tex_settings = 'latex;s:toc,s:frontmatter,s:mainmatter,s:backmatter,s:bibliography,'
 			\. 's:part,s:chapter,s:section,s:subsection,s:subsubsection,g:graphic+listing,'
 			\. 'l:label,r:ref,p:pageref'
-set iskeyword=@,48-57,_,-,:,192-255
 
 " ステータスバーかっこ良く機能的に {{{
 NeoBundle 'itchyny/lightline.vim'
@@ -1852,68 +1831,66 @@ NeoBundleLazy 'lervag/vim-latex',
 			\}
 let g:latex_latexmk_enabled = 1
 let g:latex_latexmk_options = '-pdfdvi'
-let g:latex_build_dir = '.'
 
 if !has('win32') || !has('win64')
 	let g:latex_view_method = 'general'
 	let g:latex_view_general_viewer = 'evince'
 else
+	let g:latex_build_dir = '.'
 	let g:latex_view_enabled = 0
 end
 
-function! SumatraPDF() "{{{
-	if &ft != 'tex'
-		echo "calling SumatraPDF from a non-tex file"
-		return ''
-	end
+if has('win32') || has('win64')
+	function! FwdSumatraPDF() "{{{
+		if &ft != 'tex'
+			echo "calling FwdSumatraPDF from a non-tex file"
+			return ''
+		end
 
-	let tex_root_dir = g:latex#data[b:latex.id].root
-	let tex_current_file = expand("%:t")
-	let tex_master_file = g:latex#data[b:latex.id].tex
-	let tex_output_pdf = g:latex#data[b:latex.id].out()
-	if has('win32') || has('win64')
-		if glob('C:/Program Files/SumatraPDF/SumatraPDF.exe') != ''
-			let viewer = '"' . glob('C:/Program Files/SumatraPDF/SumatraPDF.exe') . '"'
-		elseif glob('C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe') != ''
-			let viewer = '"' . glob('C:/Program Files (x86)/SumatraPDF/SumatraPDF.exe') . '"'
-		else
-			let viewer = 'rundll32 shell32,ShellExec_RunDLL SumatraPDF'
+		let tex_root_dir = g:latex#data[b:latex.id].root
+		let tex_current_file = expand("%:t")
+		let tex_master_file = g:latex#data[b:latex.id].tex
+		let tex_output_pdf = g:latex#data[b:latex.id].out()
+
+		if has('win32') || has('win64')
+			let viewer = 'fwdsumatrapdf'
+			let tex_view_cmd = 'cd /d ' . tex_root_dir . ' && '
+						\ . viewer . ' "' . tex_output_pdf . '" "'
+						\ . tex_current_file . '" ' . line(".")
 		endif
-		let tex_view_cmd = 'cd /d ' . tex_root_dir . ' && echo '
-					\ . viewer . ' -reuse-instance -inverse-search "\"'
-					\ . $VIM . '\gvim.exe\" -n --remote-silent +\%l \"\%f\"" "'
-					\ . tex_output_pdf . '" -forward-search "'
-					\ . tex_current_file . '" ' . line(".") . ' | cmd'
-	endif
 
-	execute 'lcd ' . tex_root_dir
-	execute 'silent! !' tex_view_cmd
-	redraw!
-	return ''
-endfunction "}}}
-function! FwdSumatraPDF() "{{{
-	if &ft != 'tex'
-		echo "calling FwdSumatraPDF from a non-tex file"
+		execute 'lcd ' . tex_root_dir
+		execute 'silent! !' tex_view_cmd
+		redraw!
 		return ''
-	end
+	endfunction "}}}
+else
+	function! FwdEvince() "{{{
+		if &ft != 'tex'
+			echo "calling FwdEvince() from a non-tex file"
+			return ''
+		end
 
-	let tex_root_dir = g:latex#data[b:latex.id].root
-	let tex_current_file = expand("%:t")
-	let tex_master_file = g:latex#data[b:latex.id].tex
-	let tex_output_pdf = g:latex#data[b:latex.id].out()
+		call system('fwdevince '
+					\ . g:latex#data[b:latex.id].out() . " "
+					\ . line(".") . " "
+					\ . expand('%:p'))
 
-	if has('win32') || has('win64')
-		let viewer = 'fwdsumatrapdf'
-		let tex_view_cmd = 'cd /d ' . tex_root_dir . ' && '
-					\ . viewer . ' "' . tex_output_pdf . '" "'
-					\ . tex_current_file . '" ' . line(".")
-	endif
+		let tex_view_cmd = 'gvim -n --remote-silent +%l %f'
+		return ''
+	endfunction "}}}
+	function! InvEvince() "{{{
+		if &ft != 'tex'
+			echo "calling FwdEvince() from a non-tex file"
+			return ''
+		end
 
-	execute 'lcd ' . tex_root_dir
-	execute 'silent! !' tex_view_cmd
-	redraw!
-	return ''
-endfunction "}}}
+		call system('invevince '
+					\ . g:latex#data[b:latex.id].out() . " "
+					\ . "gvim -n --remote-silent +%l %f")
+		return ''
+	endfunction "}}}
+end
 
 " fold
 let g:latex_fold_parts = [
@@ -1944,12 +1921,18 @@ let g:neocomplete#sources#omni#input_patterns.tex =
 
 augroup VimLaTeXKeyMap
 	autocmd!
-	autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib nnoremap <buffer> tt <Esc>vi{y:tag <C-R>"<CR>
-	autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib call latex#init() | execute 'lcd ' . g:latex#data[b:latex.id].root
-	autocmd FileType tex nnoremap <buffer> <localleader>ls :call FwdSumatraPDF()<CR>
-	autocmd FileType tex nnoremap <buffer> <localleader>lv :call FwdSumatraPDF()<CR>
+	autocmd BufNewFile,BufRead,BufEnter *.tex set iskeyword=@,48-57,_,-,:,192-255
+	"autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib nnoremap <buffer> tt <Esc>vi{y:tag <C-R>"<CR>
+
 	if has('win32') || has('win64')
+		autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib
+					\ call latex#init() | execute 'lcd ' . g:latex#data[b:latex.id].root
+		autocmd FileType tex nnoremap <buffer> <localleader>ls :call FwdSumatraPDF()<CR>
+		autocmd FileType tex nnoremap <buffer> <localleader>lv :call FwdSumatraPDF()<CR>
 		autocmd BufNewFile,BufRead *.tex,*.bib nnoremap <buffer> gf <Esc>vi{gf
+	else
+		autocmd FileType tex nnoremap <buffer> <localleader>ls :call FwdEvince()<CR>
+		autocmd FileType tex nnoremap <buffer> <localleader>lb :call InvEvince()<CR>
 	end
 augroup END
 
