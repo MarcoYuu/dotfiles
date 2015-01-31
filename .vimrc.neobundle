@@ -824,7 +824,7 @@ let g:lightline = {
 			\	  ['fugitive', 'gitgutter', 'filename'],
 			\	],
 			\	'right': [
-			\	  ['lineinfo', 'syntastic'],
+			\	  ['lineinfo'],
 			\	  ['percent'],
 			\	  ['imestate', 'charcode', 'fileformat', 'fileencoding', 'filetype'],
 			\	]
@@ -845,16 +845,9 @@ let g:lightline = {
 			\	'gitgutter': 'MyGitGutter',
 			\	'imestate': 'MyIMStatus',
 			\ },
-			\ 'componet_expand': {
-			\	'syntastic': 'SyntasticStatuslineFlag'
-			\ },
-			\ 'componet_type': {
-			\	'syntastic': 'error'
-			\ },
 			\ 'separator': {'left': '⮀', 'right': '⮂'},
 			\ 'subseparator': {'left': '⮁', 'right': '⮃'}
 			\ }
-let g:syntastic_mode_map = { 'mode': 'passive' }
 
 " 表示関数 {{{
 function! MyIMStatus()
@@ -863,11 +856,6 @@ function! MyIMStatus()
 	else
 		return ''
 	endif
-endfunction
-
-function! s:syntastic()
-	SyntasticCheck
-	call lightline#update()
 endfunction
 
 function! MyModified()
@@ -1512,27 +1500,6 @@ NeoBundleLazy 'majutsushi/tagbar',
 			\        ]
 			\    }
 			\}
-
-" syntacs check {{{
-NeoBundle 'scrooloose/syntastic'
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-let g:syntastic_c_include_dirs = ['./','/usr/include/','/usr/local/include/','/usr/include/c++/4.8/']
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_remove_include_errors = 1
-let g:syntastic_cpp_include_dirs = ['./','/usr/include/','/usr/local/include/','/usr/include/c++/4.8/']
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
-if executable('clang++')
-	let g:syntastic_cpp_compiler = 'clang++'
-	let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
-endif
-augroup AutoSyntastic
-	autocmd!
-	autocmd BufWritePost *.c,*.cpp,*.cc,*.h,*.hpp,*.ipp,*.hh call s:syntastic()
-augroup END
-"}}}
 
 "}}}
 
