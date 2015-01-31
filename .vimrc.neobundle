@@ -1871,7 +1871,7 @@ if has('win32') || has('win64')
 else
 	function! FwdEvince() "{{{
 		if &ft != 'tex'
-			echo "calling FwdEvince() from a non-tex file"
+			echo "calling from a non-tex file"
 			return ''
 		end
 
@@ -1879,13 +1879,11 @@ else
 					\ . g:latex#data[b:latex.id].out() . " "
 					\ . line(".") . " "
 					\ . expand('%:p'))
-
-		let tex_view_cmd = 'gvim -n --remote-silent +%l %f'
 		return ''
 	endfunction "}}}
 	function! InvEvince() "{{{
 		if &ft != 'tex'
-			echo "calling FwdEvince() from a non-tex file"
+			echo "calling from a non-tex file"
 			return ''
 		end
 
@@ -1926,7 +1924,6 @@ let g:neocomplete#sources#omni#input_patterns.tex =
 augroup VimLaTeXKeyMap
 	autocmd!
 	autocmd BufNewFile,BufRead,BufEnter *.tex set iskeyword=@,48-57,_,-,:,192-255
-	"autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib nnoremap <buffer> tt <Esc>vi{y:tag <C-R>"<CR>
 
 	if has('win32') || has('win64')
 		autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib
