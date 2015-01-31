@@ -38,6 +38,9 @@ nnoremap <silent>,bp	:<C-u>NebulaPutFromClipboard<CR>
 NeoBundleLazy 'Shougo/unite.vim',
 			\{
 			\    'autoload': {
+			\        'functions': [
+			\            "unite#custom#profile",
+			\        ],
 			\        'commands': [
 			\            {
 			\                'complete': 'customlist,unite#complete#source',
@@ -128,11 +131,14 @@ NeoBundleLazy 'Shougo/unite.vim',
 			\            'source',
 			\            'tab',
 			\            'vimgrep',
+			\            'colorscheme',
 			\            'window',
 			\            'window_gui'
 			\        ]
 			\    }
 			\}
+" Set "-no-quit" automatically in grep unite source.
+" call unite#custom#profile('source/grep', 'context', {'no_quit' : 1})
 
 " sudo
 NeoBundleLazy 'Shougo/unite-sudo',
@@ -195,6 +201,12 @@ NeoBundleLazy 'ujihisa/unite-colorscheme',
 			\        ]
 			\    }
 			\}
+" Set "-no-quit" automatically in grep unite source.
+" call unite#custom#profile(
+" 			\ 'source/colorscheme',
+" 			\ 'context', {
+" 			\   'no_quit' : 1
+" 			\ })
 
 " VCSのUnite
 NeoBundleLazy 'hrsh7th/vim-versions',
@@ -264,7 +276,7 @@ NeoBundleLazy 'Shougo/unite-build',
 			\}
 " Uniteでビルド
 if has('win32') || has('win64')
-	nnoremap <Leader>bb :Unite -winheight=5 build<CR>
+	nnoremap <Leader>bb :Unite -winheight=5 build -auto-quit<CR>
 else
 	nnoremap <Leader>bb :Unite build<CR>:q<CR>
 endif
@@ -1858,13 +1870,12 @@ if has('win32') || has('win64')
 
 		if has('win32') || has('win64')
 			let viewer = 'fwdsumatrapdf'
-			let tex_view_cmd = 'cd /d ' . tex_root_dir . ' && '
-						\ . viewer . ' "' . tex_output_pdf . '" "'
+			let tex_view_cmd = viewer . ' "' . tex_output_pdf . '" "'
 						\ . tex_current_file . '" ' . line(".")
 		endif
 
 		execute 'lcd ' . tex_root_dir
-		execute 'silent! !' tex_view_cmd
+		call vimproc#system2(tex_view_cmd)
 		redraw!
 		return ''
 	endfunction "}}}
