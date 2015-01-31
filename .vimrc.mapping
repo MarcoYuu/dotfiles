@@ -46,14 +46,24 @@ nnoremap <S-k> <C-w>k
 nnoremap <S-l> <C-w>l
 nnoremap <S-h> <C-w>h
 
+" 差分移動
+nnoremap <C-j> ]c
+nnoremap <C-k> [c
+nnoremap <C-h> do
+nnoremap <C-l> dp
+
+" 強制mozcさん起動
+nnoremap <Leader>j :MozcOn<CR>
+inoremap <Leader>j <Esc>:MozcOn<CR>i
+
 " 一行追加
 nnoremap <silent><C-o> o<ESC>
 
 " Ctrl s で保存などWindows系キーバインド(.bashrcなんかで$stty -ixon -ixoffが必要)
-nnoremap <C-s> <ESC>:w<CR>
-inoremap <C-s> <ESC><ESC>:w<CR>i
-nnoremap <C-q> <ESC>:q!<CR>
-inoremap <C-q> <ESC>:q!<CR>
+nnoremap <silent><C-s> <ESC>:w<CR>
+inoremap <silent><C-s> <ESC><ESC>:w<CR>i
+nnoremap <silent><C-q> <ESC>:q!<CR>
+inoremap <silent><C-q> <ESC>:q!<CR>
 
 " Spaceでページ送り
 nnoremap <C-p> 30k
@@ -65,7 +75,7 @@ nnoremap <CR> i<CR><ESC>^^
 nnoremap  i<ESC>l
 
 " Escの2回押しでハイライト消去
-nmap <ESC><ESC> :nohlsearch<CR><ESC>
+nmap <silent><ESC><ESC> :nohlsearch<CR><ESC>
 
 " カーソル下のキーワードをヘルプでひく
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><CR>

@@ -19,4 +19,9 @@ Light:
 	SpecialKey:grey27,Style=Bold
 	CursorLine:BG=grey27
 
+	DiffAdd:#709080,#313c36,Style=Bold
+	DiffDelete:#333333,#764646
+	DiffChange:BG=#333333,Style=Bold
+	DiffText:#ecbcbc,#41363c,Style=Bold
+
 # vim: ff=unix:noet:ft=EasyColour
