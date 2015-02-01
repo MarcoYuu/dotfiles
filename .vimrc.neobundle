@@ -275,11 +275,7 @@ NeoBundleLazy 'Shougo/unite-build',
 			\    }
 			\}
 " Uniteでビルド
-if has('win32') || has('win64')
-	nnoremap <Leader>bb :Unite -winheight=5 build -auto-quit<CR>
-else
-	nnoremap <Leader>bb :Unite build<CR>:q<CR>
-endif
+nnoremap <Leader>bb :Unite -winheight=5 build -auto-quit<CR>
 
 NeoBundle 'thinca/vim-editvar'
 "}}}
@@ -1856,6 +1852,9 @@ else
 	let g:latex_view_enabled = 0
 end
 
+"" texのconceal(\sumとかをΣに置き換えるような処理)を無効化（#^ω^）
+" let g:tex_conceal=''
+
 if has('win32') || has('win64')
 	function! FwdSumatraPDF() "{{{
 		if &ft != 'tex'
@@ -1921,7 +1920,7 @@ let g:latex_fold_sections = [
 			\ ]
 let g:latex_fold_enabled = 1
 let g:latex_fold_automatic = 1
-let g:latex_fold_envs = 0
+let g:latex_fold_envs = 1
 
 " for neocomplete
 if !exists('g:neocomplete#sources#omni#input_patterns')

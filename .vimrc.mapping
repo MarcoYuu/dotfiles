@@ -47,10 +47,12 @@ nnoremap <S-l> <C-w>l
 nnoremap <S-h> <C-w>h
 
 " 差分移動
-nnoremap <C-j> ]c
-nnoremap <C-k> [c
-nnoremap <C-h> do
-nnoremap <C-l> dp
+if &diff
+	nnoremap <C-j> ]c
+	nnoremap <C-k> [c
+	nnoremap <C-h> do
+	nnoremap <C-l> dp
+end
 
 " 強制mozcさん起動
 nnoremap <Leader>j :MozcOn<CR>
@@ -75,7 +77,7 @@ nnoremap <CR> i<CR><ESC>^^
 nnoremap  i<ESC>l
 
 " Escの2回押しでハイライト消去
-nmap <silent><ESC><ESC> :nohlsearch<CR><ESC>
+nmap <silent><ESC><ESC> :nohlsearch<CR>:HierClear<CR><ESC>
 
 " カーソル下のキーワードをヘルプでひく
 nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><CR>
