@@ -58,7 +58,7 @@ class EvinceInverseSearch:
     def parse_args(self):
         parser = argparse.ArgumentParser(description='Inverse search with Evince')
         parser.add_argument('pdf', nargs=1, help='PDF file')
-        parser.add_argument('editor', nargs=1, help='Editor command')
+        #parser.add_argument('editor', nargs=1, help='Editor command')
         return parser.parse_args()
 
     def run(self):
@@ -66,7 +66,7 @@ class EvinceInverseSearch:
         from gi.repository import GObject
         args = self.parse_args()
         pdf = os.path.abspath(args.pdf[0])
-        editor = args.editor[0]
+        editor ='gvim -n --remote-silent +%l %f' #args.editor[0]
         dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
         a = EvinceWindowProxy('file://' + pdf, editor, True)
         loop = GObject.MainLoop()
