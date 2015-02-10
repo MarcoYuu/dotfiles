@@ -34,6 +34,9 @@ set pumheight       =15                                    " 補完Windowの行�
 set showmatch                                              " 対応するカッコに一瞬飛ぶ
 set matchtime       =1                                     " 対応するカッコを表示する時間
 set concealcursor   =nc                                    " Conceal(表示を簡略化する機能)をノーマル時のみ
+
+set wildmenu
+set wildmode        =longest:full,full
 "}}}
 
 " スペルチェック"{{{
