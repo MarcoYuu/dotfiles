@@ -12,11 +12,6 @@ set laststatus=2
 set t_Co=256
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 
-" Conceal (TeXの数式をプレビューしてくれるような機能)を入力時にはオフ
-if has('conceal')
-  set conceallevel=1 concealcursor=n
-endif
-
 " カラースキーマ
 if !has('win32') || !has('win64')
 	colorscheme zenburn_mod

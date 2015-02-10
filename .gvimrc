@@ -25,3 +25,4 @@ set guioptions-=L
 set guioptions-=b
 
 colorscheme zenburn_mod
+
