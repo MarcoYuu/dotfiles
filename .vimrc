@@ -1,10 +1,9 @@
-set encoding =utf-8
-scriptencoding utf-8
-
-" vim内部で通常使用する文字エンコーディングを設定
-
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
+
+" vim内部で通常使用する文字エンコーディングを設定
+set encoding =utf-8
+scriptencoding utf-8
 
 " $HOME/dotfiles/.vimrc.neobundle
 " $HOME/dotfiles/.vimrc.basic

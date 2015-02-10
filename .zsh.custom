@@ -47,7 +47,7 @@ else
     ls;
 fi
 }
-alias cd=cdls
+alias pd=pushd
 alias bd=popd
 
 export LESS='-R'
