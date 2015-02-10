@@ -2,16 +2,19 @@
 
 if [ -e $HOME/.dotfiles_backup ]; then
 	echo "There is backup directory."
-	echo "Do you want to install dotfiles anyway? [y/N]"
-
-	read ANSWER
-
-	ANSWER=`echo $ANSWER | tr y Y | tr -d '[\[\]]'`
-	case $ANSWER in
-		""|Y* ) echo "";;
-		*  ) exit;;
-	esac
 fi
+
+echo "This script will rm/overwrite some configuration files."
+echo "Do you want to install dotfiles anyway? [y/N]"
+
+read ANSWER
+
+ANSWER=`echo $ANSWER | tr y Y | tr -d '[\[\]]'`
+case $ANSWER in
+	""|Y* ) echo "";;
+	*  ) exit;;
+esac
+
 mkdir ~/.dotfiles_backup
 
 mv ~/.bashrc ~/.dotfiles_backup
