@@ -33,14 +33,27 @@ set display         =lastline                              " 長い行で@@@@に
 set pumheight       =15                                    " 補完Windowの行数
 set showmatch                                              " 対応するカッコに一瞬飛ぶ
 set matchtime       =1                                     " 対応するカッコを表示する時間
+set concealcursor   =nc                                    " Conceal(表示を簡略化する機能)をノーマル時のみ
+"}}}
 
-" Undo履歴をファイルに保存する
+" スペルチェック"{{{
+set spelllang+=cjk
+
+" バッファの内容が変更されるか保存された時にスペルチェックを行う
+augroup my-setspell
+	autocmd!
+	autocmd BufWritePost,TextChanged,TextChangedI *.tex,*.md,*.txt setlocal spell
+augroup END
+"}}}
+
+" Undo履歴をファイルに保存する"{{{
 let dir_for_undo=expand('$HOME/.vimundo')
 if !isdirectory(dir_for_undo)
 	call mkdir(dir_for_undo, 'p')
 endif
 set undodir=dir_for_undo
 set undofile
+"}}}
 
 " カーソル行のハイライト "{{{
 set cursorline
@@ -112,7 +125,6 @@ augroup Folding
 	hi Folded gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey30 guifg=Grey80
 	hi FoldColumn gui=bold term=standout ctermbg=LightGrey ctermfg=DarkBlue guibg=Grey guifg=DarkBlue
 augroup END
-"}}}
 "}}}
 
 " マウス設定 "{{{
@@ -219,6 +231,9 @@ augroup MyAutoCommands
 	" QuickFixを開く
 	autocmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
+	" Conceal (TeXの数式をプレビューしてくれるような機能)を入力時にはオフ
+	autocmd BufRead,BufNewFile * setl concealcursor=nc
+
 	" パスの設定
 	autocmd FileType html   setlocal includeexpr=substitute(v:fname,'^\\/','','') |setlocal path+=./,/
 	autocmd FileType php    setlocal path+=/usr/local/share/pear
@@ -238,6 +253,8 @@ augroup MyAutoCommands
 	" au BufNewFile,BufRead *.h,*.c,*.cc,*.cpp,*.ipp,*.hpp setl tags+=$HOME/.vim/tags/cpp.tags
 	autocmd BufRead,BufNewFile *.{txt,text} set filetype=markdown
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
+
+	autocmd BufRead,BufNewFile * set concealcursor=nc
 
 	" 標準ライブラリでfiletype が設定されていない場合に filetype=cpp を設定する
 	augroup vimrc-set_filetype_cpp
@@ -269,4 +286,76 @@ augroup MyAutoCommands
 		autocmd BufEnter *.{cc,cxx,cpp,h,hh,hpp,hxx} setlocal indentexpr=GetCppIndent()
 	augroup END
 augroup END
+"}}}
+
+" Plugin Setting{{{
+
+" Set "-no-quit" automatically in grep unite source.
+call unite#custom#profile('source/grep', 'context', {'no_quit' : 1})
+
+" 色相変化{{{
+if has('gui_running')
+	NeoBundle 'vim-scripts/huerotation.vim'
+	function! s:SID()
+		return matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SID$')
+	endfunction
+	let s:SID_PREFIX = s:SID()
+	delfunc s:SID
+
+	function! s:convertLocalFunc(funcname)
+		return printf('<SNR>%d_%s', s:SID_PREFIX, a:funcname)
+	endfunction
+
+	let s:unite_rotate_hue_source = {
+				\ 'name': 'rotate_hue',
+				\ 'hooks': {},
+				\ 'action_table': {'*': {}},
+				\}
+
+	function! s:unite_rotate_hue_source.hooks.on_init(args,context)
+		let s:hue_rotation_current_degree = 0
+	endfunction
+
+	let s:unite_rotate_hue_source.action_table['*'].preview = {
+				\ 'description': 'preview this hue rotated color',
+				\ 'is_quit': 0,
+				\}
+
+	function! s:unite_rotate_hue_source.action_table['*'].preview.func(candidate)
+		execute a:candidate.action__command
+	endfunction
+
+	function! s:unite_rotate_hue_source.gather_candidates(args, context)
+		if len(a:args) >= 1
+			let stride = a:args[0]
+		else
+			let stride = 20
+		endif
+
+		let strides = range(0,360,stride)
+
+		if (360 % stride) != 0
+			let strides += [360]
+		endif
+
+		let rotate_hue = s:convertLocalFunc("rotate_hue")
+
+		return map(strides, '{
+					\ "word": v:val,
+					\ "source": "rotate_hue",
+					\ "kind": ["command"],
+					\ "action__command": "call ".rotate_hue."(".v:val.")",
+					\ "action__type": ": ",
+					\ }')
+	endfunction
+
+	function! s:rotate_hue(degree)
+		call RotateHue(a:degree - s:hue_rotation_current_degree)
+		let s:hue_rotation_current_degree = a:degree
+	endfunction
+
+	call unite#define_source(s:unite_rotate_hue_source)
+endif
+"}}}
+
 "}}}

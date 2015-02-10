@@ -54,6 +54,12 @@ if &diff
 	nnoremap <C-l> dp
 end
 
+" Quickfix移動
+nnoremap [q :cprevious<CR>   " 前へ
+nnoremap ]q :cnext<CR>       " 次へ
+nnoremap [Q :<C-u>cfirst<CR> " 最初へ
+nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+
 " 強制mozcさん起動
 nnoremap <Leader>j :MozcOn<CR>
 inoremap <Leader>j <Esc>:MozcOn<CR>i

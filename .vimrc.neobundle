@@ -34,13 +34,10 @@ nnoremap <silent>,bp	:<C-u>NebulaPutFromClipboard<CR>
 "}}}
 
 " Unite {{{
-" 本体
+" 本体"{{{
 NeoBundleLazy 'Shougo/unite.vim',
 			\{
 			\    'autoload': {
-			\        'functions': [
-			\            "unite#custom#profile",
-			\        ],
 			\        'commands': [
 			\            {
 			\                'complete': 'customlist,unite#complete#source',
@@ -131,14 +128,12 @@ NeoBundleLazy 'Shougo/unite.vim',
 			\            'source',
 			\            'tab',
 			\            'vimgrep',
-			\            'colorscheme',
 			\            'window',
 			\            'window_gui'
 			\        ]
 			\    }
 			\}
-" Set "-no-quit" automatically in grep unite source.
-" call unite#custom#profile('source/grep', 'context', {'no_quit' : 1})
+"}}}
 
 " sudo
 NeoBundleLazy 'Shougo/unite-sudo',
@@ -662,6 +657,7 @@ let g:indentLine_color_gui = '#708090'
 let g:indentLine_char = '¦'
 let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'calendar', 'thumbnail', 'tweetvim']
 let g:indentLine_showFirstIndentLevel=1
+let g:indentLine_noConcealCursor=1
 
 " ログファイルを色づけしてくれる
 NeoBundleLazy 'vim-scripts/AnsiEsc.vim',
@@ -1649,7 +1645,7 @@ NeoBundleLazy 'itchyny/calendar.vim',
 			\}
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
-let g:calendar_frame = 'default'
+" let g:calendar_frame = 'default'
 
 " vimrcのベンチマーク
 NeoBundleLazy 'mattn/benchvimrc-vim',
@@ -1841,19 +1837,13 @@ NeoBundleLazy 'lervag/vim-latex',
 			\        ]
 			\    }
 			\}
-let g:latex_latexmk_enabled = 1
-let g:latex_latexmk_options = '-pdfdvi'
 
 if !has('win32') || !has('win64')
 	let g:latex_view_method = 'general'
 	let g:latex_view_general_viewer = 'evince'
 else
-	let g:latex_build_dir = '.'
 	let g:latex_view_enabled = 0
 end
-
-"" texのconceal(\sumとかをΣに置き換えるような処理)を無効化（#^ω^）
-" let g:tex_conceal=''
 
 if has('win32') || has('win64')
 	function! FwdSumatraPDF() "{{{
@@ -1936,8 +1926,6 @@ augroup VimLaTeXKeyMap
 	autocmd BufNewFile,BufRead,BufEnter *.tex set iskeyword=@,48-57,_,-,:,192-255
 
 	if has('win32') || has('win64')
-		autocmd BufNewFile,BufRead,BufEnter *.tex,*.bib
-					\ call latex#init() | execute 'lcd ' . g:latex#data[b:latex.id].root
 		autocmd FileType tex nnoremap <buffer> <silent><localleader>ls :call FwdSumatraPDF()<CR>
 		autocmd FileType tex nnoremap <buffer> <silent><localleader>lv :call FwdSumatraPDF()<CR>
 		autocmd BufNewFile,BufRead *.tex,*.bib nnoremap <buffer> gf <Esc>vi{gf
@@ -1965,8 +1953,11 @@ NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'bandit.vim'
 NeoBundle 'itchyny/landscape.vim'
-"NeoBundle 'abudden/EasyColour' , { 'rev' : '9d683aec8' }
+
+NeoBundle 'vim-scripts/huerotation.vim'
+
 NeoBundle 'skroll/vim-easycolour'
+
 "}}}
 
 
