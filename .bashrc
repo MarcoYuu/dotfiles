@@ -28,20 +28,20 @@ fi
 if [ -f ~/.hg-completion ]; then
 	. ~/.hg-completion.bash
 fi
-#hg_dirty() {
-#	hg status --no-color 2> /dev/null \
-	#		| awk '$1 == "?" { print "?" } $1 != "?" { print "!" }' \
-	#		| sort | uniq | head -c1
-#	[[ `hg branch 2> /dev/null` ]] && echo ')'
-#}
-#
-#hg_in_repo() {
-#	[[ `hg branch 2> /dev/null` ]] && echo ' (on '
-#}
-#
-#hg_branch() {
-#	hg branch 2> /dev/null
-#}
+hg_dirty() {
+	hg status --no-color 2> /dev/null \
+		| awk '$1 == "?" { print "?" } $1 != "?" { print "!" }' \
+		| sort | uniq | head -c1
+	[[ `hg branch 2> /dev/null` ]] && echo ')'
+}
+
+hg_in_repo() {
+	[[ `hg branch 2> /dev/null` ]] && echo ' (on '
+}
+
+hg_branch() {
+	hg branch 2> /dev/null
+}
 
 
 # If running interactively, then:
@@ -91,7 +91,7 @@ HISTTIMEFORMAT='%Y%m%d %T';
 export HISTTIMEFORMAT
 
 # よく使うコマンドは記録しない
-HISTIGNORE="fg*:bg*:history*:ls*:la*:ll*"
+HISTIGNORE="history*:jobs*"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -174,8 +174,6 @@ fi
 # --------------------------------------------------------------------------------
 # ------------- PATH --------------
 export PATH=~/bin:/usr/local/bin:${PATH}
-export PATH=${PATH}:/opt/android-studio/sdk/platform-tools:/opt/android-studio/sdk/tools
-
 export LD_PRELOAD="$HOME/bin/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
 
 # -------------- aliases --------------
@@ -260,26 +258,6 @@ export VTE_CJK_WIDTH=auto
 # emacsのなんか
 alias emacs='XMODIFIERS=@im=none emacs'
 
-# tmuxinator
-_tmuxinator() {
-	COMPREPLY=()
-	local word="${COMP_WORDS[COMP_CWORD]}"
-
-	if [ "$COMP_CWORD" -eq 1 ]; then
-		local commands="$(compgen -W "$(tmuxinator commands)" -- "$word")"
-		local projects="$(compgen -W "$(tmuxinator completions start)" -- "$word")"
-
-		COMPREPLY=( $commands $projects )
-	else
-		local words=("${COMP_WORDS[@]}")
-		unset words[0]
-		unset words[$COMP_CWORD]
-		local completions=$(tmuxinator completions "${words[@]}")
-		COMPREPLY=( $(compgen -W "$completions" -- "$word") )
-	fi
-}
-complete -F _tmuxinator tmuxinator mux
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 export EDITOR=vim
 
 
@@ -291,3 +269,4 @@ export PS1='\[\033[1;32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps
 
 # tmux用
 PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
+
