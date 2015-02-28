@@ -23,10 +23,11 @@ mv ~/.gdbinit ~/.dotfiles_backup
 mv ~/.gemrc ~/.dotfiles_backup
 mv ~/.gitconfig ~/.dotfiles_backup
 mv ~/.gvimrc ~/.dotfiles_backup
+mv ~/.hgrc ~/.dotfiles_backup
 mv ~/.inputrc ~/.dotfiles_backup
 mv ~/.tmux.conf ~/.dotfiles_backup
 mv ~/.tmux-powerlinerc ~/.dotfiles_backup
-mv ~/.vimrc ~/.dotfiles_backup
+mv ~/.vimrc* ~/.dotfiles_backup
 mv ~/.zshrc ~/.dotfiles_backup
 mv ~/.vim ~/.dotfiles_backup
 mv ~/bin ~/.dotfiles_backup
